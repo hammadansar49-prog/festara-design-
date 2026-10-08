@@ -1,104 +1,51 @@
 # CLAUDE.md
 
-> ## ⚠️ Branch `hammad-design`: DESIGN ONLY
->
-> This branch belongs to **Hammad**, who works **only on design** (look, layout, animation, copy). His friend builds the functionality on `main`.
->
-> **Rules for every session on this branch:**
->
-> 1. **Never push to `main`.** Never merge into `main`, never open a PR into `main` unless Hammad explicitly asks for it in that session. Commit and push only to `hammad-design`.
-> 2. **Design work only.** Allowed: components' markup and styling, `tokens.css`, fonts, images, animations, landing page, page layouts, empty/loading states, copy.
-> 3. **Do not touch functionality.** Do not change data logic, `DataSource`, Supabase code, server actions, API routes, auth, `lib/permissions.ts`, database schema, tests or config files (`package.json`, `next.config`, env files). If a design change seems to need one of these, stop and ask Hammad first.
-> 4. **Do not break the friend's work.** Keep component props, exports, file names and routes the same so `main` can be merged in cleanly. Restyle around existing logic; don't rewrite it.
-> 5. **Look before designing.** Read the friend's latest functionality on `main` (`git fetch && git log origin/main`) and design for what actually exists.
-> 6. To get the friend's new work: `git fetch origin && git merge origin/main` into `hammad-design` (never the other way round).
-> 7. Scroll motion: on this branch Hammad's design direction wins (smooth scroll, pinned horizontal "worlds", per-event themes for Wedding / University / Tours). The motion notes below about "no pinning" are the friend's older decision for `main`; don't apply them here, and don't change them on `main`.
-> 8. Design references and prototypes: the scroll-story site `https://claude.ai/artifact/Beu6UK8w2cu3WyzzjzCWWE` (v3, with the themed event planners) and the wedding invitation canvas `https://claude.ai/artifact/MkdMaFYpoQGL4ztaSUMMoF`.
->
-> Talk to Hammad in Roman Urdu, keep explanations simple.
+This is the **`hammad-design`** branch of Festara (NUML BSCS final-year project: a web app for planning weddings, university events and tours together).
 
+## Who decides what
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+- **Hammad owns the design.** Look, layout, colors, fonts, photos, animation, scrolling, page structure and wording are his call. Follow his instructions in the session over anything else in this repo.
+- Older design notes, style locks or "the user rejected X" notes from other branches or folders (for example `.tastemaker/style-lock.md` or an older CLAUDE.md on `main`) **do not apply here.** Don't follow them, and don't argue from them.
+- The friend builds functionality on `main`. That code is his; we design around it.
 
-## What this is
+Talk to Hammad in Roman Urdu and keep explanations simple.
 
-Workspace for **Festara**, a NUML BSCS final-year project, with two parts:
+## Git rules (strict)
 
-- **`festara-app/`**: the web app (Next.js 16, Tailwind, shadcn/ui, Supabase later). Its own repo and its own `AGENTS.md`: read the Next.js docs in `festara-app/node_modules/next/dist/docs/` before writing code, because this version differs from older Next.js.
-- **The FYP report**, generated from source in `report_src/` (below).
+1. Commit and push **only to `hammad-design`**.
+2. **Never push, merge or open a PR into `main`** (or `master`). A local pre-push hook in Hammad's clone also blocks it.
+3. To bring in the friend's new work: `git fetch origin && git merge origin/main` into `hammad-design`. Never the other direction.
 
-## Current focus: finish the 40% app
+## What we change, and what we don't
 
-Order of work, decided 2026-10-08. Do not start other work until these are done:
+**Change freely (design):** markup and styling, design tokens, fonts, images and illustrations, animation and scroll behaviour, landing page, page layouts, empty/loading states, copy.
 
-1. **The existing landing page** (`festara-app/components/landing/`) and **the dashboard** (event overview, `festara-app/app/(app)/events/[id]/`) first.
-2. Then finish the 40% scope: Auth, Event Management, RBAC with invite links (FR-01..14). Plan and spec: `docs/superpowers/plans/2026-10-08-festara-40-percent-build.md` and `docs/superpowers/specs/`.
-3. Guests/RSVP, Budget, Tasks stay **Planned** (sidebar shows "Planned", dashboard numbers are tagged "Sample"). Do not build them for the 40%.
+**Don't touch (functionality):** data logic and the `DataSource` layer, Supabase code, server actions, API routes, auth, `lib/permissions.ts`, database schema, tests, and config (`package.json`, `next.config`, env files). If a design needs one of these changed, stop and ask Hammad first.
 
-The landing was rebuilt on 2026-10-08 from the sticky-stage prototype (Artifact `https://claude.ai/artifact/2Tr725c2rjY1SFG5L3amhC`), with event cover colors in place of photos (no photos, per the style lock). The user rejected heavy scroll motion: no pinning, smooth scroll, scrubbing or sticky stacks (see `.tastemaker/style-lock.md`).
+Keep component props, exports, file names and routes the same, so the friend's work keeps merging in cleanly. Restyle around existing logic; don't rewrite it.
 
-### App decisions
+## Hammad's design direction
 
-- **Layout:** desktop = shadcn inset sidebar + overview. Below `md` = bottom tab bar (`components/shell/bottom-tabs.tsx`, tabs follow the role via `can()`) and a cover-color hero with a countdown on the event overview.
-- **Brand:** tokens in `festara-app/app/tokens.css` (mirrors `brand/tokens.css`). Use tokens, never raw hex. Fraunces (24px+ only) and Hanken Grotesk. Style notes: `festara-app/.tastemaker/style-lock.md`.
-- **Roles are `admin`, `member`, `guest`.** The rules live in `lib/permissions.ts` (`can(role, action)`); UI and server both use it.
-- **Data:** everything goes through one `DataSource` interface. Runs on an in-memory mock now (`DATA_SOURCE=mock`); Supabase comes with Tasks 10-13 and needs the user's project keys.
-- **No institution name** (NUML) anywhere in the app. Campus is Multan (report and proposal still say Islamabad).
-- Money is `Rs 412,000` via `Intl.NumberFormat('en-PK')`.
+- **Three event worlds, each with its own look:**
+  - **Weddings**: cream and deep green, botanical line drawings, arch-shaped photo frames, Cormorant Garamond with Pinyon Script accents, real wedding photos.
+  - **University events**: black and white photos, copper accent, torn-paper shapes, Oswald caps with a handwritten script word.
+  - **Tours**: teal and sunset orange, big Anton type, Caveat handwritten notes, mountain photos.
+- **Scrolling:** buttery smooth (Lenis + GSAP ScrollTrigger). Scrolling down moves the home screen sideways from Wedding to University to Tours, with flowing "water" edges between worlds, depth parallax and a gentle snap.
+- **Pink and green fairy lights (lariyan)** as the festive signature.
+- **Each world's "Start planning" opens that world's own planner** (themed multi-step form), ending in an "event ready" screen with a share link and WhatsApp share.
+- **Shareable invitation page** for guests in the botanical wedding style: hero photo, arched card, programme, dress code, RSVP.
+- Desktop first; phone layout comes later.
 
-### App commands (run in `festara-app/`)
+Reference prototypes (open these before designing):
+- Scroll-story site with the three worlds and planners: https://claude.ai/artifact/Beu6UK8w2cu3WyzzjzCWWE (source also in `D:\festara\site\v3.html`, photos in `D:\festara\site\img\`)
+- Wedding invitation (desktop): https://claude.ai/artifact/MkdMaFYpoQGL4ztaSUMMoF
 
-```bash
-npm run dev        # Next 16 allows only one dev server per project; use the one already on :3000
-npm test           # vitest unit tests
-npm run test:e2e   # Playwright, uses installed Edge
-npx tsc --noEmit && npm run lint
-```
+Photos come from Unsplash (free licence); keep a credit in the footer.
 
-Three lint errors in `settings/page.tsx` and `events/error.tsx` (unescaped apostrophes) predate this work. When adding shadcn components, back up first and diff, because the CLI can overwrite edited files.
+## Repo map
 
-## The FYP report
-
-The report is a separate deliverable, **paused** for now (do not rebuild it until asked; known pending fixes: campus is Multan not Islamabad, and the schema deviations listed in the build spec). It is generated from source in `report_src/`:
-
-- `Festara_FYP_Report_40_percent.pdf`: print-exact output
-- `Festara_FYP_Report_40_percent.docx`: must open cleanly in **Google Docs** (the team opens files from Google Drive)
-- `FYP_Proposal_Festara.docx` / `.pdf`: the approved proposal; use it as the source of truth for scope
-
-Do not hand-edit the generated `.pdf`/`.docx`. Edit the source and rebuild.
-
-## Build
-
-Run everything from `report_src/`:
-
-```bash
-npm install
-pip install pdfplumber pypdf reportlab pypdfium2 matplotlib
-python diagrams.py img        # only when a figure changed
-python build.py img ../Festara_FYP_Report_40_percent.pdf ../Festara_FYP_Report_40_percent.docx
-```
-
-The build needs Microsoft Edge at `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe` (headless printing). Word and LibreOffice are not installed. To check the output visually, render the PDF pages to images with pypdfium2. There are no tests or linters.
-
-## Architecture
-
-One content source produces two outputs:
-
-- **`report.js`** holds all report content (title page, front matter, chapters 1–7, appendices, references), written against the `docx` npm API using small helpers (`P`, `B`, `N`, `H2`–`H4`, `table`, `fig`, `tCap`/`fCap`, `chapterSep`, `useCase`). Inline `**bold**` and `__italic__` markup is parsed by `runs()`.
-- **`MODE` env var** selects the backend. `MODE=docx` (default) uses the real `docx` package. `MODE=html` swaps in **`shim.js`**, a stand-in that only records constructor options; **`render.js`** then turns those nodes into `title.html`, `front.html` and `body.html`, plus `entries.json` (headings and captions for the contents lists). Any new `docx` class or enum used in `report.js` must also be added to `shim.js` and handled in `render.js`.
-- **`build.py`** runs the pipeline in two passes:
-  1. Render HTML, print `body.html` with Edge, then use pdfplumber to find the page of every heading and caption from `entries.json`, and write `html/toc.json`.
-  2. Re-render HTML with `TOC_JSON` set so the front matter carries real page numbers. Print title, front and body, stamp page numbers with reportlab (none / lower roman / arabic, bottom right), and merge with pypdf.
-  3. Run `report.js` in docx mode with `TOC_JSON` set, which writes **static** contents tables instead of a Word TOC field.
-
-  If a "`! not found:`" warning prints, a heading's text no longer matches what pdfplumber extracts, so its contents entry has the wrong page.
-- **`diagrams.py`** draws every figure in `img/` (UML, DFD, ERD, architecture, Gantt) with matplotlib. `img/im7.png` is the NUML logo and is not generated.
-- `html/` and `edge-profile/` are build artifacts and the Edge user-data dir. Leave them alone.
-- `reference_docs/` contains the official NUML report format, submission guidelines, a sample report, and the meeting-log and 40% undertaking templates. Check these when a formatting question comes up.
-
-## Formatting constraints (NUML + Google Docs)
-
-- A4. Margins: 1.25" left, 1" on the other sides. Times New Roman 12pt, 1.5 line spacing, justified.
-- Chapter separator pages have the number at 18pt and the title at 22pt, centered on the page.
-- Front matter uses roman page numbers. Arabic numbering restarts at Chapter 1.
-- Keep the DOCX Google-Docs-safe: no TOC fields, no section vertical alignment, no exact line heights, and no empty page-break paragraphs. Start new pages with `{ __np: true }` markers, which become section breaks in `buildSections()` and CSS page breaks in the HTML. Earlier versions broke in Google Docs (empty TOC, off-center separators, blank pages) for exactly these reasons.
+- `brand/`: logo, `tokens.css`, brand sheet
+- `docs/`: specs and plans
+- `fypdocs/`: proposal and report (PDF/DOCX). Generated; don't hand-edit.
+- `report_src/`: source for the FYP report. Paused; don't rebuild unless Hammad asks.
+- The Next.js app (`festara-app/`) lives in its own repo and is not in this folder yet.
