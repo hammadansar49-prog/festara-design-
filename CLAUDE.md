@@ -36,7 +36,7 @@ Keep component props, exports, file names and routes the same, so Anas's work ke
 - **Shareable invitation page** for guests in the botanical wedding style: hero photo, arched card, programme, dress code, RSVP.
 - Desktop first; phone layout comes later.
 
-Reference prototypes (open these before designing):
+Reference prototypes (open these before designing). `design/version-1/` and `design/version-2/` are the photo-led "three worlds" direction above. `design/version-3/` (https://claude.ai/artifact/B2M16x3qe8ERPCJxtpeRN5) is a fresh direction built on Anas's real app: no photos, cover-colour blocks with ajrak-style patterns, dark-first. Ask Hammad which direction to carry into `festara-app/` before restyling it.
 - Scroll-story site with the three worlds and planners: https://claude.ai/artifact/Beu6UK8w2cu3WyzzjzCWWE (source in `design/version-1/`)
 - Wedding invitation (desktop): https://claude.ai/artifact/MkdMaFYpoQGL4ztaSUMMoF
 
