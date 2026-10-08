@@ -379,8 +379,127 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
 @media (max-width:600px){ .grid3,.stats,.two{grid-template-columns:minmax(0,1fr)} .invite-row{grid-template-columns:minmax(0,1fr) auto} }
 @media (prefers-reduced-motion:reduce){ .cover::before{animation:none} *{transition-duration:.01ms!important} }
 
+/* ===================== v3.1 · layout + responsiveness ===================== */
+/* sample-data note: a small pill that never covers the navigation */
+.demo-bar{position:fixed;z-index:65;left:16px;bottom:16px;right:auto;max-width:min(420px,calc(100% - 32px));justify-content:flex-start;gap:10px;padding:10px 12px 10px 16px;border-radius:999px;box-shadow:0 20px 40px -18px rgba(0,0,0,.6);text-align:left;line-height:1.3}
+.demo-bar button{flex:none;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.12);color:inherit;cursor:pointer;display:grid;place-items:center}
+.auth,.shell{min-height:100vh}
+
+/* landing: one container width for nav and sections */
+.l-nav{width:min(1240px - 2 * 40px,calc(100% - 32px))}
+.l-nav .menu-btn{display:none}
+.l-sheet{position:fixed;z-index:59;inset:0;display:none;background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(10px);padding:110px 24px 40px;flex-direction:column;gap:6px}
+.l-sheet.on{display:flex}
+.l-sheet a{font-family:var(--f-display);font-weight:800;font-size:44px;letter-spacing:-.04em;text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line)}
+.l-sheet .btn{margin-top:22px;font-family:var(--f-body);font-size:16px;letter-spacing:0;border:0;padding:0 24px}
+.hero{padding-top:140px}
+.stage{min-height:540px;aspect-ratio:auto}
+.stage .toasts{min-height:0}
+
+/* app on wide screens: chart and people side by side */
+.ov-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px;align-items:start}
+.page{max-width:1240px}
+.ehead h1{max-width:14ch}
+
+/* app: drawer + bottom tabs below 980px */
+.side-back{display:none}
+.tabs{display:none}
+.menu-ic{display:none}
+
+@media (max-width:1180px){
+  .ov-grid{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:980px){
+  .l-nav{padding-left:18px}
+  .l-nav .act .ghost{display:none}
+  .l-nav .menu-btn{display:grid}
+  .hero{padding-top:118px}
+  .hero h1{font-size:clamp(54px,14vw,96px)}
+  .stage{min-height:480px;max-width:520px;width:100%;justify-self:center}
+  .scard{min-height:0;gap:26px}
+  .scard .num{font-size:84px}
+  .access .wrap{gap:36px}
+  .auth{grid-template-columns:minmax(0,1fr)}
+  .auth-side{order:-1;margin:12px 12px 0;min-height:230px;padding:26px}
+  .auth-side .big{font-size:clamp(40px,9vw,64px)}
+  .auth-side .cards{display:none}
+  .auth-main{padding:34px 20px 60px;gap:26px}
+
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{display:flex;position:fixed;z-index:120;left:0;top:0;bottom:0;height:auto;width:min(300px,86vw);transform:translateX(-105%);transition:transform .5s var(--ease);box-shadow:30px 0 60px -30px rgba(0,0,0,.6)}
+  .shell.drawer .side{transform:none}
+  .shell.collapsed .side{width:min(300px,86vw)}
+  .shell.collapsed .side .txt,.shell.collapsed .side .lbl,.shell.collapsed .side .pl{display:revert}
+  .side-back{position:fixed;z-index:110;inset:0;background:rgba(10,9,13,.5);backdrop-filter:blur(3px)}
+  .shell.drawer .side-back{display:block}
+  .menu-ic{display:block}.coll-ic{display:none}
+  .hdr{height:60px;gap:8px;padding:0 12px}
+  .jump{padding:0;width:44px;justify-content:center}
+  .jump .jt,.jump kbd{display:none}
+  .page{padding:24px 16px 120px;gap:22px}
+  .ph h1{font-size:clamp(44px,11vw,64px)}
+  .ph{align-items:flex-start}
+  .ehead{grid-template-columns:minmax(0,1fr);min-height:0;padding:26px;gap:18px}
+  .ehead h1{font-size:clamp(42px,11vw,72px);margin:10px 0 14px}
+  .countdown{text-align:left;display:flex;align-items:baseline;gap:12px}
+  .countdown b{font-size:clamp(64px,18vw,110px)}
+  .formgrid{grid-template-columns:minmax(0,1fr);gap:22px}
+  .preview{order:-1;position:relative;top:0}
+  .preview .ecard .cv{min-height:150px}
+  .tabs{display:flex;position:fixed;z-index:90;left:0;right:0;bottom:0;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--panel) 94%,transparent);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+  .tabs a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:56px;border-radius:14px;text-decoration:none;font-size:12px;font-weight:600;color:var(--muted)}
+  .tabs a[aria-current="page"]{color:var(--text);background:var(--panel2)}
+  .tabs a[aria-current="page"] svg{color:var(--brand)}
+  .demo-bar{bottom:84px}
+  .inv-page{padding:30px 16px}
+  .inv-ticket .cv{min-height:230px;padding:26px}
+  .inv-ticket .body{padding:24px}
+}
+@media (max-width:640px){
+  .wrap{padding-inline:16px}
+  .l-nav{top:12px;width:calc(100% - 24px)}
+  .hero .lead{font-size:17px}
+  .hero .ctas .btn{flex:1 1 100%}
+  .stage{min-height:440px;padding:22px}
+  .toasts .toast-card{font-size:13px}
+  .marquee{margin-top:50px}
+  .problem{padding:90px 0}
+  .sec-h{margin-bottom:34px}
+  .scard{padding:22px}
+  .mock{padding:14px}
+  .ecard-mini .cv b{font-size:28px}
+  .acc{padding:22px;min-height:0}
+  .acc .big{font-size:36px}
+  .acc .more h3{font-size:28px}
+  .matrix th,.matrix td{padding:12px 10px;font-size:14px}
+  .close{margin:0 12px;padding:60px 22px}
+  .l-foot{justify-content:center;text-align:center}
+  .stats,.grid3,.two{grid-template-columns:minmax(0,1fr)}
+  .stat b{font-size:40px}
+  .panel{padding:18px}
+  .panel h2{font-size:26px}
+  .person{grid-template-columns:minmax(0,1fr) auto;row-gap:10px}
+  .person .who{grid-column:1/-1}
+  .person .sel{justify-self:start}
+  .invite-row{grid-template-columns:minmax(0,1fr) auto;row-gap:8px}
+  .invite-row code{grid-column:1/-1}
+  .actions .btn{flex:1 1 auto}
+  .crumbs{font-size:13px}
+  .crumbs > a,.crumbs > span[aria-hidden]{display:none}
+  .chart{height:200px}
+  .modal .box{padding:22px}
+  .modal .row{flex-direction:column-reverse}
+  .modal .row .btn{width:100%}
+  .cmdk .box{margin-top:8vh}
+  .demo-bar{left:12px;right:12px;max-width:none;border-radius:16px;font-size:12px}
+}
+@media (max-width:980px){ .demo-bar{bottom:16px} body:has(#v-app.on) .demo-bar{bottom:84px} }
+@media (max-width:640px){ .stage{min-height:600px} .toasts .toast-card:nth-last-child(n+4){display:none} }
+
 </style>
-<div class="demo-bar" role="note">Design version 3 · sample data from Anas's mock. Try any sign-in with password <code>festara123</code>.</div>
+<div class="demo-bar" role="note">Design version 3 · sample data from Anas's mock. Try any sign-in with password <code>festara123</code>.<button type="button" id="demoX" aria-label="Hide this note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="glow" id="glow" aria-hidden="true"></div>
 
 <!-- ======================= LANDING ======================= -->
@@ -388,9 +507,10 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
   <header class="l-nav">
     <a class="wordmark" href="#/"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l2.6 7.4L22 11l-7.4 2.6L12 21l-2.6-7.4L2 11l7.4-2.6z"/></svg>festara</a>
     <nav aria-label="Sections"><a href="#how" data-scroll>How it works</a><a href="#occasions" data-scroll>Occasions</a><a href="#access" data-scroll>Access</a></nav>
-    <div class="act"><a class="btn ghost sm" href="#/login"><span>Sign in</span></a><a class="btn sm" href="#/register"><span>Create event</span></a></div>
+    <div class="act"><a class="btn ghost sm" href="#/login"><span>Sign in</span></a><a class="btn sm" href="#/register"><span>Create event</span></a><button type="button" class="icon-btn menu-btn" id="lMenu" aria-label="Open menu" aria-expanded="false" aria-controls="lSheet"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button></div>
   </header>
 
+  <nav class="l-sheet" id="lSheet" aria-label="Menu"><a href="#how" data-scroll>How it works</a><a href="#occasions" data-scroll>Occasions</a><a href="#access" data-scroll>Access</a><a href="#/login">Sign in</a><a class="btn lg" href="#/register"><span>Create your event</span></a></nav>
   <section class="hero">
     <div class="wrap">
       <div>
@@ -506,12 +626,14 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
     </aside>
     <div class="main">
       <header class="hdr">
-        <button type="button" class="icon-btn" id="collapse" aria-label="Collapse sidebar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+        <button type="button" class="icon-btn" id="collapse" aria-label="Collapse sidebar"><svg class="coll-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg><svg class="menu-ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
         <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
-        <button type="button" class="jump" id="jumpBtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Jump to…<kbd>Ctrl K</kbd></button>
+        <button type="button" class="jump" id="jumpBtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span class="jt">Jump to…</span><kbd>Ctrl K</kbd></button>
       </header>
       <div class="page" id="page"></div>
     </div>
+    <div class="side-back" id="sideBack"></div>
+    <nav class="tabs" id="tabs" aria-label="Main"></nav>
   </div>
 </div>
 
@@ -821,13 +943,27 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
     var crumbs = [];
     if (kind === 'profile') crumbs = [['Profile']];
     else { crumbs.push(['Events', (e || kind === 'new') ? '#/events' : null]); if (kind === 'new') crumbs.push(['New event']); if (e){ crumbs.push([e.name, kind !== 'overview' ? '#/events/' + e.id : null]); if (kind === 'members') crumbs.push(['Members']); if (kind === 'settings') crumbs.push(['Settings']); } }
+    var tabs = [['#/events', 'Events', ICON.events, kind === 'events' || kind === 'new']];
+    if (e){ tabs.push(['#/events/' + e.id, 'Home', ICON.grid, kind === 'overview']); if (can(role, 'event.viewFull')) tabs.push(['#/events/' + e.id + '/members', 'Members', ICON.ppl, kind === 'members']); if (can(role, 'event.edit')) tabs.push(['#/events/' + e.id + '/settings', 'Settings', ICON.gear, kind === 'settings']); }
+    tabs.push(['#/profile', 'Profile', ICON.user, kind === 'profile']);
+    $('#tabs').innerHTML = tabs.map(function(t){ return '<a href="' + t[0] + '"' + (t[3] ? ' aria-current="page"' : '') + '>' + t[2] + t[1] + '</a>'; }).join('');
+    drawer(false);
     $('#crumbs').innerHTML = crumbs.map(function(c, i){ return (i ? '<span aria-hidden="true">/</span>' : '') + (c[1] ? '<a href="' + c[1] + '">' + esc(c[0]) + '</a>' : '<b aria-current="page">' + esc(c[0]) + '</b>'); }).join('');
     fn();
   }
   function closeMenus(){ $$('.menu.on').forEach(function(m){ m.classList.remove('on'); }); $$('[aria-haspopup]').forEach(function(b){ b.setAttribute('aria-expanded', 'false'); }); }
   [['#swBtn', '#swMenu'], ['#meBtn', '#meMenu']].forEach(function(p){ $(p[0]).addEventListener('click', function(e){ e.stopPropagation(); var m = $(p[1]), open = !m.classList.contains('on'); closeMenus(); if (open){ m.classList.add('on'); this.setAttribute('aria-expanded', 'true'); if (hasG) gsap.from(m, { y: 10, opacity: 0, scale: .97, duration: .35, ease: 'expo.out' }); } }); });
   document.addEventListener('click', function(e){ if (!e.target.closest('.menu') || e.target.closest('a')) closeMenus(); });
-  $('#collapse').addEventListener('click', function(){ shell.classList.toggle('collapsed'); this.setAttribute('aria-label', shell.classList.contains('collapsed') ? 'Expand sidebar' : 'Collapse sidebar'); });
+  var phone = matchMedia('(max-width: 980px)');
+  function drawer(open){ shell.classList.toggle('drawer', open); $('#collapse').setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); if (open){ var f = $('.side a'); if (f) f.focus(); } }
+  $('#collapse').addEventListener('click', function(){
+    if (phone.matches){ drawer(!shell.classList.contains('drawer')); return; }
+    shell.classList.toggle('collapsed'); this.setAttribute('aria-label', shell.classList.contains('collapsed') ? 'Expand sidebar' : 'Collapse sidebar');
+  });
+  $('#sideBack').addEventListener('click', function(){ drawer(false); });
+  $('.side').addEventListener('click', function(e){ if (phone.matches && e.target.closest('a')) drawer(false); });
+  phone.addEventListener('change', function(){ drawer(false); $('#collapse').setAttribute('aria-label', phone.matches ? 'Open menu' : 'Collapse sidebar'); });
+  if (phone.matches) $('#collapse').setAttribute('aria-label', 'Open menu');
 
   function cardHTML(e, role, still){
     var d = daysUntil(e.eventDate), mc = membersOf(e.id).length;
@@ -893,8 +1029,8 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
         + stat('Guests confirmed', ICON.check, '<span data-count="' + s.confirmed + '">' + s.confirmed + '</span><small> / ' + s.invited + '</small>', 'Guests and RSVP arrive in a later phase', true)
         + stat('Budget used', ICON.shield, '<span data-count="' + s.spent + '" data-fmt="money" style="font-size:.62em">' + money(s.spent) + '</span>', pct + '% of ' + money(e.totalBudget), true, '<div class="meter" role="progressbar" aria-label="Budget used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i data-meter style="width:' + pct + '%;background:' + (pct > 90 ? 'var(--over)' : pct >= 80 ? 'var(--warn)' : 'var(--brand)') + '"></i></div>')
         + '</div>'
-        + '<section class="panel" data-in><header><div><p class="lbl">Last 90 days</p><h2>Momentum</h2></div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="sample">Sample</span><div class="seg" role="group" aria-label="Series"><button type="button" aria-pressed="true" data-series="rsvps">RSVPs</button><button type="button" aria-pressed="false" data-series="spend">Spend</button></div></div></header><div style="position:relative" id="chartBox"></div></section>'
-        + '<section class="panel" data-in><header><div><p class="lbl">' + mem.length + ' people</p><h2>Who\'s in</h2></div>' + (can(role, 'member.manage') ? '<a class="btn ghost sm" href="#/events/' + e.id + '/members"><span>Manage</span></a>' : '') + '</header><div class="people">' + mem.map(function(m, i){ return '<div class="person"><div class="who">' + av(m.fullName, i) + '<span style="min-width:0"><b>' + esc(m.fullName) + (m.userId === me.id ? ' <span style="font-weight:400;color:var(--muted)">(you)</span>' : '') + '</b><small>' + esc(m.email) + '</small></span></div>' + badge(m.role) + '<span></span></div>'; }).join('') + '</div></section>';
+        + '<div class="ov-grid"><section class="panel" data-in><header><div><p class="lbl">Last 90 days</p><h2>Momentum</h2></div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="sample">Sample</span><div class="seg" role="group" aria-label="Series"><button type="button" aria-pressed="true" data-series="rsvps">RSVPs</button><button type="button" aria-pressed="false" data-series="spend">Spend</button></div></div></header><div style="position:relative" id="chartBox"></div></section>'
+        + '<section class="panel" data-in><header><div><p class="lbl">' + mem.length + ' people</p><h2>Who\'s in</h2></div>' + (can(role, 'member.manage') ? '<a class="btn ghost sm" href="#/events/' + e.id + '/members"><span>Manage</span></a>' : '') + '</header><div class="people">' + mem.map(function(m, i){ return '<div class="person"><div class="who">' + av(m.fullName, i) + '<span style="min-width:0"><b>' + esc(m.fullName) + (m.userId === me.id ? ' <span style="font-weight:400;color:var(--muted)">(you)</span>' : '') + '</b><small>' + esc(m.email) + '</small></span></div>' + badge(m.role) + '<span></span></div>'; }).join('') + '</div></section></div>';
     } else html += '<div class="panel" data-in><p style="font-size:18px">You are a guest of this event. You can see its date, place and details.</p></div>';
     page.innerHTML = html;
     if (full){ drawChart(s.points, 'rsvps', e.coverColor); $$('[data-series]').forEach(function(b){ b.addEventListener('click', function(){ $$('[data-series]').forEach(function(x){ x.setAttribute('aria-pressed', x === b); }); drawChart(s.points, b.dataset.series, e.coverColor); }); }); }
@@ -1002,6 +1138,14 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
   /* magnetic buttons */
   if (hasG && !reduce && matchMedia('(pointer:fine)').matches){ document.addEventListener('mousemove', function(e){ var b = e.target.closest && e.target.closest('.btn'); if (!b) return; var r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .2, y: (e.clientY - r.top - r.height / 2) * .3, duration: .4, ease: 'power3.out' }); }); document.addEventListener('mouseout', function(e){ var b = e.target.closest && e.target.closest('.btn'); if (b && !b.contains(e.relatedTarget)) gsap.to(b, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1,.4)' }); }); }
 
+  /* sample-data note can be hidden */
+  try { if (localStorage.getItem('festara-demo-x')) $('.demo-bar').hidden = true; } catch (e) {}
+  $('#demoX').addEventListener('click', function(){ $('.demo-bar').hidden = true; try { localStorage.setItem('festara-demo-x', '1'); } catch (e) {} });
+  /* landing menu on phones */
+  var lSheet = $('#lSheet'), lMenu = $('#lMenu');
+  function sheet(open){ lSheet.classList.toggle('on', open); lMenu.setAttribute('aria-expanded', open); lMenu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); if (open && hasG) gsap.from($$('a', lSheet), { y: 40, opacity: 0, stagger: .05, duration: .6, ease: 'expo.out' }); if (lenis) open ? lenis.stop() : lenis.start(); }
+  lMenu.addEventListener('click', function(){ sheet(!lSheet.classList.contains('on')); });
+  lSheet.addEventListener('click', function(e){ if (e.target.closest('a')) sheet(false); });
   landing();
   addEventListener('hashchange', route);
   route();
