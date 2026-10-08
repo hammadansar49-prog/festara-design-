@@ -1,5 +1,23 @@
 # CLAUDE.md
 
+> ## ⚠️ Branch `hammad-design`: DESIGN ONLY
+>
+> This branch belongs to **Hammad**, who works **only on design** (look, layout, animation, copy). His friend builds the functionality on `main`.
+>
+> **Rules for every session on this branch:**
+>
+> 1. **Never push to `main`.** Never merge into `main`, never open a PR into `main` unless Hammad explicitly asks for it in that session. Commit and push only to `hammad-design`.
+> 2. **Design work only.** Allowed: components' markup and styling, `tokens.css`, fonts, images, animations, landing page, page layouts, empty/loading states, copy.
+> 3. **Do not touch functionality.** Do not change data logic, `DataSource`, Supabase code, server actions, API routes, auth, `lib/permissions.ts`, database schema, tests or config files (`package.json`, `next.config`, env files). If a design change seems to need one of these, stop and ask Hammad first.
+> 4. **Do not break the friend's work.** Keep component props, exports, file names and routes the same so `main` can be merged in cleanly. Restyle around existing logic; don't rewrite it.
+> 5. **Look before designing.** Read the friend's latest functionality on `main` (`git fetch && git log origin/main`) and design for what actually exists.
+> 6. To get the friend's new work: `git fetch origin && git merge origin/main` into `hammad-design` (never the other way round).
+> 7. Scroll motion: on this branch Hammad's design direction wins (smooth scroll, pinned horizontal "worlds", per-event themes for Wedding / University / Tours). The motion notes below about "no pinning" are the friend's older decision for `main`; don't apply them here, and don't change them on `main`.
+> 8. Design references and prototypes: the scroll-story site `https://claude.ai/artifact/Beu6UK8w2cu3WyzzjzCWWE` (v3, with the themed event planners) and the wedding invitation canvas `https://claude.ai/artifact/MkdMaFYpoQGL4ztaSUMMoF`.
+>
+> Talk to Hammad in Roman Urdu, keep explanations simple.
+
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## What this is
