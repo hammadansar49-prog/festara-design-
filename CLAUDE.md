@@ -37,7 +37,7 @@ Keep component props, exports, file names and routes the same, so Anas's work ke
 - Desktop first; phone layout comes later.
 
 Reference prototypes (open these before designing):
-- Scroll-story site with the three worlds and planners: https://claude.ai/artifact/Beu6UK8w2cu3WyzzjzCWWE (source also in `D:\festara\site\v3.html`, photos in `D:\festara\site\img\`)
+- Scroll-story site with the three worlds and planners: https://claude.ai/artifact/Beu6UK8w2cu3WyzzjzCWWE (source in `design/version-1/`)
 - Wedding invitation (desktop): https://claude.ai/artifact/MkdMaFYpoQGL4ztaSUMMoF
 
 Photos come from Unsplash (free licence); keep a credit in the footer.

@@ -1,4 +1,4 @@
-# Festara v3: scroll-story prototype
+# Festara design, version 1: scroll-story prototype
 
 Hammad's design prototype for the Festara home page. Live version: https://claude.ai/artifact/Beu6UK8w2cu3WyzzjzCWWE
 
