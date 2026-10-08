@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { signOutAction } from "@/lib/actions/auth";
 import { initials } from "@/lib/text";
 
@@ -21,6 +22,8 @@ export function UserMenu({ name, email }: { name: string; email: string }) {
           <div className="text-sm font-semibold">{name}</div>
           <div className="text-xs text-muted-foreground">{email}</div>
         </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <div className="flex items-center justify-between px-2 py-1.5 text-sm">Theme<ThemeToggle /></div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild><Link href="/profile">Profile</Link></DropdownMenuItem>
         <DropdownMenuItem asChild>
