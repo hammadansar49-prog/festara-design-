@@ -547,6 +547,64 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
 .flood .flood-art{position:absolute;width:min(520px,70vw);opacity:.25;left:50%;top:50%;transform:translate(-50%,-50%)}
 .flood b{position:relative;z-index:1}
 
+/* ===================== v3.3 · next up, guest page, skeletons, role cards ===================== */
+.nextup{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);border-radius:var(--r-xl);overflow:hidden;box-shadow:0 0 0 1px var(--line);text-decoration:none;min-height:320px;transition:transform .6s var(--ease),box-shadow .6s}
+.nextup:hover{transform:translateY(-4px);box-shadow:0 0 0 1px var(--line2),0 50px 80px -50px rgba(0,0,0,.8)}
+.nextup .cv{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.nextup .cv .lbl{color:inherit;opacity:.85}
+.nextup .cv b{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,4.4vw,68px);letter-spacing:-.05em;line-height:.95;max-width:12ch}
+.nextup .cv .art{right:-30px;bottom:-40px;width:min(320px,55%);opacity:.4}
+.nextup .side2{background:var(--panel);padding:clamp(24px,3vw,40px);display:grid;align-content:space-between;gap:22px}
+.ticks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.ticks div{border-radius:var(--r-md);background:var(--panel2);padding:14px 8px;text-align:center}
+.ticks b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(30px,3vw,44px);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.ticks small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.nextup .facts2{display:grid;gap:8px;font-size:15px;color:var(--muted)}
+.nextup .facts2 span{display:flex;align-items:center;gap:10px}
+.sec-t{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.sec-t h2{font-size:28px;font-weight:800;letter-spacing:-.04em}
+
+/* guest page: one friendly card, not a dashboard */
+.guestview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.gcard{border-radius:var(--r-xl);background:var(--panel);box-shadow:0 0 0 1px var(--line);padding:clamp(22px,3vw,34px);display:grid;gap:16px;align-content:start}
+.gcard h2{font-size:32px;font-weight:800;letter-spacing:-.045em}
+.gcard ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;font-size:17px}
+.gcard li{display:flex;gap:12px;align-items:center}
+.gcard li svg{color:var(--muted)}
+.can-list li{font-size:15px}
+.can-list .yes{width:24px;height:24px;flex:none}
+.can-list .no{width:24px;flex:none;text-align:center;background:none;height:auto;color:var(--faint)}
+.onlist{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--r-lg);background:var(--ok-t);color:var(--ok);font-weight:600}
+.onlist .yes{background:var(--ok);color:var(--panel)}
+
+/* skeleton shimmer while a page "loads" */
+.skel{display:grid;gap:22px}
+.sk{border-radius:var(--r-lg);background:linear-gradient(100deg,var(--panel) 30%,var(--panel2) 50%,var(--panel) 70%);background-size:300% 100%;animation:shim 1.2s ease-in-out infinite;box-shadow:0 0 0 1px var(--line)}
+@keyframes shim{from{background-position:100% 0}to{background-position:0 0}}
+
+/* role cards on members */
+.roles3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rcard{border-radius:var(--r-lg);background:var(--panel);box-shadow:0 0 0 1px var(--line);padding:20px;display:grid;gap:12px;align-content:start;transition:transform .5s var(--ease),box-shadow .5s}
+.rcard:hover{transform:translateY(-4px);box-shadow:0 0 0 1px var(--line2)}
+.rcard header{display:flex;justify-content:space-between;align-items:center}
+.rcard b.n{font-family:var(--f-display);font-weight:800;font-size:34px;letter-spacing:-.04em;line-height:1}
+.rcard ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.rcard li{display:flex;gap:8px;align-items:center}
+.rcard li .yes{width:20px;height:20px}
+.rcard li .yes svg{width:12px;height:12px}
+
+/* planned items: a small note on hover/focus */
+.nav-a.planned{position:relative}
+.nav-a.planned::after{content:attr(data-tip);position:absolute;left:calc(100% + 10px);top:50%;transform:translate(-6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;padding:8px 12px;border-radius:10px;background:var(--text);color:var(--bg);font-size:13px;font-weight:500;transition:opacity .2s,transform .3s var(--ease);z-index:5}
+.nav-a.planned:hover::after,.nav-a.planned:focus-visible::after{opacity:1;transform:translate(0,-50%)}
+
+@media (max-width:1180px){ .nextup,.guestview{grid-template-columns:minmax(0,1fr)} .roles3{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:980px){ .nav-a.planned::after{display:none} }
+@media (max-width:640px){ .ticks{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (prefers-reduced-motion:reduce){ .sk{animation:none} }
+.nextup .cv .badge,.ehead .badge{align-self:flex-start}
+@media (min-width:981px){ .demo-bar{left:auto;right:16px} }
+
 </style>
 <div class="demo-bar" role="note">Design version 3 · sample data from Anas's mock. Try any sign-in with password <code>festara123</code>.<button type="button" id="demoX" aria-label="Hide this note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="glow" id="glow" aria-hidden="true"></div>
@@ -667,9 +725,9 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
       <div class="switcher"><button type="button" class="switch-btn" id="swBtn" aria-haspopup="menu" aria-expanded="false"></button><div class="menu" id="swMenu" role="menu"></div></div>
       <div class="grp"><p class="lbl">Workspace</p><nav id="sideNav"></nav></div>
       <div class="grp"><p class="lbl">Coming next</p>
-        <span class="nav-a planned" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span class="txt">Guests</span><span class="pl">Planned</span></span>
-        <span class="nav-a planned" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 12h2"/></svg><span class="txt">Budget</span><span class="pl">Planned</span></span>
-        <span class="nav-a planned" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span class="txt">Tasks</span><span class="pl">Planned</span></span>
+        <span class="nav-a planned" aria-disabled="true" tabindex="0" data-tip="Guests arrive in the next phase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span class="txt">Guests</span><span class="pl">Planned</span></span>
+        <span class="nav-a planned" aria-disabled="true" tabindex="0" data-tip="Budget arrive in the next phase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 12h2"/></svg><span class="txt">Budget</span><span class="pl">Planned</span></span>
+        <span class="nav-a planned" aria-disabled="true" tabindex="0" data-tip="Tasks arrive in the next phase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span class="txt">Tasks</span><span class="pl">Planned</span></span>
       </div>
       <div class="me"><button type="button" class="switch-btn" id="meBtn" aria-haspopup="menu" aria-expanded="false"></button><div class="menu" id="meMenu" role="menu"></div></div>
     </aside>
@@ -767,13 +825,14 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
       { id:'e-mehndi', name:"Ayesha's Mehndi", type:'mehndi', eventDate:'2026-12-14', location:'Lahore', description:'Family only. Dholki at 7, dinner at 9.', totalBudget:500000, coverColor:'mehndi' },
       { id:'e-naran', name:'Naran Trip', type:'trip', eventDate:'2027-06-20', location:'Naran, Khyber Pakhtunkhwa', description:null, totalBudget:150000, coverColor:'sky' },
       { id:'e-fest', name:'Spring Tech Fest 2027', type:'university_event', eventDate:'2027-03-20', location:'Main Hall, Multan', description:null, totalBudget:350000, coverColor:'night' },
+      { id:'e-walima', name:"Zara's Walima", type:'walima', eventDate:'2027-01-17', location:'Pearl Marquee, Multan', description:'Dinner at 8. Families from both sides.', totalBudget:900000, coverColor:'kahwa' },
       { id:'e-eid', name:'Eid Milan 2026', type:'eid_gathering', eventDate:'2026-03-21', location:'Rashid house, Lahore', description:'Past event, kept for the record.', totalBudget:80000, coverColor:'marigold' }
     ],
     members: [
       ['e-mehndi','u-rashid','admin'],['e-mehndi','u-hamza','member'],['e-mehndi','u-sana','member'],['e-mehndi','u-tariq','guest'],
       ['e-naran','u-hamza','admin'],['e-naran','u-rashid','member'],
       ['e-fest','u-areeba','admin'],['e-fest','u-rashid','member'],
-      ['e-eid','u-rashid','admin'],['e-eid','u-sana','member']
+      ['e-eid','u-rashid','admin'],['e-walima','u-areeba','admin'],['e-walima','u-sana','member'],['e-walima','u-rashid','guest'],['e-eid','u-sana','member']
     ],
     invites: [ { id:'i1', eventId:'e-mehndi', token:'k3x9-ayesha-mehndi', role:'member', daysLeft:6 }, { id:'i2', eventId:'e-mehndi', token:'p7q2-family-guests', role:'guest', daysLeft:2 } ]
   };
@@ -931,7 +990,15 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
     closeMenus(); closeModal(); closeCmd();
     var c = colourFor(r), col = c ? 'var(--' + c + ')' : 'var(--brand)', fg = c ? 'var(--' + c + '-fg)' : '#17141B';
     var label = c && r.parts[0] === 'events' ? ev(r.parts[1]).name : r.parts[0] === 'invite' ? "You're invited" : 'festara';
-    var go = function(){ render(r); scrollTo(0, { immediate: true }); if (hasG && !reduce) enter(); };
+    var go = function(){
+      var appPage = r.parts.length && ['login','register','forgot-password','reset-password','invite'].indexOf(r.parts[0]) < 0;
+      if (appPage && !first && !reduce){
+        show('app'); page.innerHTML = '<div class="skel" aria-busy="true" aria-label="Loading"><div class="sk" style="height:' + (r.parts[1] && r.parts[1] !== 'new' ? 300 : 90) + 'px;border-radius:28px"></div><div class="stats"><div class="sk" style="height:140px"></div><div class="sk" style="height:140px"></div><div class="sk" style="height:140px"></div><div class="sk" style="height:140px"></div></div><div class="sk" style="height:260px;border-radius:28px"></div></div>';
+        setTimeout(function(){ render(r); scrollTo(0, { immediate: true }); if (hasG) enter(); }, 380);
+        return;
+      }
+      render(r); scrollTo(0, { immediate: true }); if (hasG && !reduce) enter();
+    };
     if (first || !hasG || reduce){ first = false; go(); return; }
     flood.style.background = col; flood.style.color = fg; $('#floodTxt').textContent = label;
     flood.classList.toggle('cover', !!c); var fa = flood.querySelector('.art'); if (fa) fa.remove(); if (c && r.parts[0] === 'events') flood.insertAdjacentHTML('afterbegin', art(ev(r.parts[1]).type).replace('class="art ', 'class="art flood-art '));
@@ -1043,9 +1110,19 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
   function renderEvents(past){
     var t = today.toLocaleDateString('en-CA'), list = myEvents().filter(function(e){ return past ? e.eventDate < t : e.eventDate >= t; });
     page.innerHTML = '<div class="ph" data-in><div><p class="lbl">' + esc(me.fullName) + '</p><h1>Your <span class="serif">events</span></h1></div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><nav class="seg" aria-label="Event filter"><a href="#/events"' + (!past ? ' aria-current="page"' : '') + '>Upcoming</a><a href="#/events?show=past"' + (past ? ' aria-current="page"' : '') + '>Past</a></nav><a class="btn" href="#/events/new">' + ICON.plus + '<span>Create event</span></a></div></div>'
+      + (!past && list.length ? nextUp(list.slice().sort(function(a, b){ return a.eventDate < b.eventDate ? -1 : 1; })[0]) + '<div class="sec-t" data-in><h2>All upcoming</h2><span style="color:var(--muted);font-size:14px">' + list.length + ' events</span></div>' : '')
       + (list.length ? '<div class="grid3">' + list.map(function(e){ return '<div data-in>' + cardHTML(e, roleIn(e.id)) + '</div>'; }).join('') + (past ? '' : '<a class="newtile" href="#/events/new" data-in><span class="plus">' + ICON.plus + '</span><b style="font-family:var(--f-display);font-size:24px;letter-spacing:-.03em;color:var(--text)">New event</b><span>Wedding, trip, society or anything</span></a>') + '</div>'
         : '<div class="empty" data-in><p>' + (past ? 'No past events.' : 'No events yet. Create one, or open an invite link someone sent you.') + '</p>' + (past ? '' : '<a class="btn ghost" href="#/events/new">' + ICON.plus + '<span>Create event</span></a>') + '</div>');
     if (hasG && !reduce) $$('.ecard', page).forEach(function(c){ c.addEventListener('mousemove', function(e){ var r = c.getBoundingClientRect(); gsap.to(c, { rotateY: ((e.clientX - r.left) / r.width - .5) * 7, rotateX: -((e.clientY - r.top) / r.height - .5) * 7, transformPerspective: 900, duration: .5 }); }); c.addEventListener('mouseleave', function(){ gsap.to(c, { rotateY: 0, rotateX: 0, duration: .8, ease: 'elastic.out(1,.5)' }); }); });
+  }
+
+  function nextUp(e){
+    var ms = Math.max(0, new Date(e.eventDate + 'T00:00:00') - Date.now()), role = roleIn(e.id);
+    var t = [[Math.floor(ms / 864e5), 'Days'], [Math.floor(ms / 36e5) % 24, 'Hours'], [Math.floor(ms / 6e4) % 60, 'Min'], [Math.floor(ms / 1e3) % 60, 'Sec']];
+    clearInterval(nextUp.timer);
+    nextUp.timer = setInterval(function(){ var el = $('#nuTicks'); if (!el){ clearInterval(nextUp.timer); return; } var m = Math.max(0, new Date(e.eventDate + 'T00:00:00') - Date.now()); var v = [Math.floor(m / 864e5), Math.floor(m / 36e5) % 24, Math.floor(m / 6e4) % 60, Math.floor(m / 1e3) % 60]; $$('b', el).forEach(function(b, i){ b.textContent = v[i]; }); }, 1000);
+    return '<a class="nextup" href="#/events/' + e.id + '" data-in><div class="cv cover c-' + e.coverColor + '">' + art(e.type, 'draw') + '<span class="lbl">Next up · ' + TYPES[e.type] + '</span><b>' + esc(e.name) + '</b>' + badge(role) + '</div>'
+      + '<div class="side2"><div class="ticks" id="nuTicks">' + t.map(function(x){ return '<div><b>' + x[0] + '</b><small>' + x[1] + '</small></div>'; }).join('') + '</div><div class="facts2"><span>' + ICON.cal + fdate(e.eventDate) + '</span>' + (e.location ? '<span>' + ICON.pin + esc(e.location) + '</span>' : '') + '<span>' + ICON.ppl + membersOf(e.id).length + ' people in</span></div><span class="btn ghost" style="justify-self:start"><span>Open the event →</span></span></div></a>';
   }
 
   /* ---------- event form (new + settings) with a live preview ---------- */
@@ -1099,7 +1176,11 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
         + '</div>'
         + '<div class="ov-grid"><section class="panel" data-in><header><div><p class="lbl">Last 90 days</p><h2>Momentum</h2></div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="sample">Sample</span><div class="seg" role="group" aria-label="Series"><button type="button" aria-pressed="true" data-series="rsvps">RSVPs</button><button type="button" aria-pressed="false" data-series="spend">Spend</button></div></div></header><div style="position:relative" id="chartBox"></div></section>'
         + '<section class="panel" data-in><header><div><p class="lbl">' + mem.length + ' people</p><h2>Who\'s in</h2></div>' + (can(role, 'member.manage') ? '<a class="btn ghost sm" href="#/events/' + e.id + '/members"><span>Manage</span></a>' : '') + '</header><div class="people">' + mem.map(function(m, i){ return '<div class="person"><div class="who">' + av(m.fullName, i) + '<span style="min-width:0"><b>' + esc(m.fullName) + (m.userId === me.id ? ' <span style="font-weight:400;color:var(--muted)">(you)</span>' : '') + '</b><small>' + esc(m.email) + '</small></span></div>' + badge(m.role) + '<span></span></div>'; }).join('') + '</div></section></div>';
-    } else html += '<div class="panel" data-in><p style="font-size:18px">You are a guest of this event. You can see its date, place and details.</p></div>';
+    } else {
+      var host = mem.filter(function(m){ return m.role === 'admin'; })[0];
+      html += '<div class="guestview"><section class="gcard" data-in><p class="lbl">Your invitation</p><h2>See you there.</h2><div class="onlist"><span class="yes">' + ICON.check + '</span>You\'re on the guest list</div><ul><li>' + ICON.cal + fdate(e.eventDate) + '</li>' + (e.location ? '<li>' + ICON.pin + esc(e.location) + '</li>' : '') + (host ? '<li>' + ICON.user + 'Hosted by ' + esc(host.fullName) + '</li>' : '') + '</ul></section>'
+        + '<section class="gcard" data-in><p class="lbl">As a guest you can</p><ul class="can-list">' + [['event.viewBasic', 'See the date, place and details'], ['rsvp.confirmOwn', 'Confirm you\'re coming, when RSVP opens'], ['event.viewFull', 'See the full plan'], ['guest.add', 'Add other guests'], ['event.edit', 'Change the event']].map(function(r){ var ok = can(role, r[0]); return '<li>' + (ok ? '<span class="yes">' + ICON.check + '</span>' : '<span class="no">–</span>') + '<span' + (ok ? '' : ' style="color:var(--faint)"') + '>' + r[1] + '</span></li>'; }).join('') + '</ul><p style="font-size:14px;color:var(--muted)">Need to help with planning? Ask ' + esc(host ? host.fullName.split(' ')[0] : 'the host') + ' to make you a Member.</p></section></div>';
+    }
     page.innerHTML = html;
     if (full){ drawChart(s.points, 'rsvps', e.coverColor); $$('[data-series]').forEach(function(b){ b.addEventListener('click', function(){ $$('[data-series]').forEach(function(x){ x.setAttribute('aria-pressed', x === b); }); drawChart(s.points, b.dataset.series, e.coverColor); }); }); }
   }
@@ -1130,6 +1211,7 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
     function draw(){
       var mem = membersOf(e.id), inv = DB.invites.filter(function(i){ return i.eventId === e.id; }), admins = mem.filter(function(m){ return m.role === 'admin'; }).length;
       page.innerHTML = '<div class="ph" data-in><div><p class="lbl">' + esc(e.name) + '</p><h1>Members &amp; <span class="serif">invites</span></h1></div></div>'
+        + '<div class="roles3">' + [['admin', 'Runs the event'], ['member', 'Helps plan'], ['guest', 'Just attends']].map(function(rr){ var n = mem.filter(function(m){ return m.role === rr[0]; }).length; return '<div class="rcard" data-in><header>' + badge(rr[0]) + '<b class="n">' + n + '</b></header><p style="font-weight:600">' + rr[1] + '</p><ul>' + [['event.viewFull', 'Sees the full plan'], ['guest.add', 'Adds guests'], ['invite.create', 'Creates invite links'], ['member.manage', 'Changes roles']].filter(function(a){ return can(rr[0], a[0]); }).map(function(a){ return '<li><span class="yes">' + ICON.check + '</span>' + a[1] + '</li>'; }).join('') + (rr[0] === 'guest' ? '<li><span class="yes">' + ICON.check + '</span>Sees date and place</li>' : '') + '</ul></div>'; }).join('') + '</div>'
         + (manage ? '<section class="panel" data-in><header><h2>Invite link</h2></header><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><div class="seg" role="group" aria-label="Role for this link"><button type="button" data-ir="member" aria-pressed="true">As Member</button><button type="button" data-ir="guest" aria-pressed="false">As Guest</button></div><button type="button" class="btn" id="mk">' + ICON.link + '<span>Create invite link</span></button></div><p style="font-size:14px;color:var(--muted)">Anyone with a link joins with the role you pick. It stops working after 7 days.</p><div style="display:grid;gap:10px" id="invs">'
           + inv.map(function(i){ return '<div class="invite-row"><code>/invite/' + i.token + '</code>' + badge(i.role) + '<span style="font-size:13px;color:var(--muted)">' + i.daysLeft + (i.daysLeft === 1 ? ' day' : ' days') + ' left</span><button type="button" class="btn ghost sm" data-copy="' + i.token + '"><span>Copy link</span></button></div>'; }).join('') + '</div></section>' : '')
         + '<section class="panel" data-in><header><h2>' + mem.length + ' ' + (mem.length === 1 ? 'person' : 'people') + '</h2>' + (manage ? '<span style="font-size:14px;color:var(--muted)">' + admins + ' Admin' + (admins > 1 ? 's' : '') + '</span>' : '') + '</header><div class="people">'
