@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./tokens.css";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* One calm entrance for the landing hero. Gone for people who ask for less motion. */
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .rise { animation: rise var(--dur-sheet) var(--ease-out) both; animation-delay: var(--d, 0ms); }
+}
+
+/* People who ask for less motion get state changes without the movement. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}
+
+/* Keep keyboard focus and anchor targets clear of the sticky landing nav. */
+html:has([data-landing]) { scroll-padding-top: 6rem; }
+
+/* Landing motion. Content is hidden only when scripting runs, so the page still reads without JavaScript.
+   components/landing/motion.tsx reveals everything (instantly for people who ask for less motion). */
+@media (scripting: enabled) {
+  [data-hero], [data-reveal] { opacity: 0; transform: translateY(16px); }
+  [data-float] { opacity: 0; transform: translateY(12px) scale(.98); }
+}
+
