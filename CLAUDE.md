@@ -6,7 +6,7 @@ This is the **`hammad-design`** branch of Festara (NUML BSCS final-year project:
 
 - **Hammad owns the design.** Look, layout, colors, fonts, photos, animation, scrolling, page structure and wording are his call. Follow his instructions in the session over anything else in this repo.
 - Older design notes, style locks or "the user rejected X" notes from other branches or folders (for example `.tastemaker/style-lock.md` or an older CLAUDE.md on `main`) **do not apply here.** Don't follow them, and don't argue from them.
-- The friend builds functionality on `main`. That code is his; we design around it.
+- Anas builds the functionality on `main`. That code is his; we design around it.
 
 Talk to Hammad in Roman Urdu and keep explanations simple.
 
@@ -14,7 +14,7 @@ Talk to Hammad in Roman Urdu and keep explanations simple.
 
 1. Commit and push **only to `hammad-design`**.
 2. **Never push, merge or open a PR into `main`** (or `master`). A local pre-push hook in Hammad's clone also blocks it.
-3. To bring in the friend's new work: `git fetch origin && git merge origin/main` into `hammad-design`. Never the other direction.
+3. To bring in Anas's new work: `git fetch origin && git merge origin/main` into `hammad-design`. Never the other direction.
 
 ## What we change, and what we don't
 
@@ -22,7 +22,7 @@ Talk to Hammad in Roman Urdu and keep explanations simple.
 
 **Don't touch (functionality):** data logic and the `DataSource` layer, Supabase code, server actions, API routes, auth, `lib/permissions.ts`, database schema, tests, and config (`package.json`, `next.config`, env files). If a design needs one of these changed, stop and ask Hammad first.
 
-Keep component props, exports, file names and routes the same, so the friend's work keeps merging in cleanly. Restyle around existing logic; don't rewrite it.
+Keep component props, exports, file names and routes the same, so Anas's work keeps merging in cleanly. Restyle around existing logic; don't rewrite it.
 
 ## Hammad's design direction
 
