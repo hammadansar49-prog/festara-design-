@@ -55,6 +55,21 @@
   --input: var(--line-strong);
   --ring: var(--ink);
 
+  /* Sidebar + charts (aliases of the brand tokens, so dark mode follows automatically) */
+  --sidebar: var(--secondary);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--card);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--ring);
+  --chart-1: var(--event-mehndi);
+  --chart-2: var(--event-sindoor);
+  --chart-3: var(--event-sky);
+  --chart-4: var(--event-marigold);
+  --chart-5: var(--event-kahwa);
+
   /* Shape */
   --radius: 0.75rem;          /* cards, sheets: 12px */
   --radius-control: 0.375rem; /* buttons, inputs, chips: 6px */
@@ -116,6 +131,17 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1); --color-chart-2: var(--chart-2); --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4); --color-chart-5: var(--chart-5);
 
   --color-marigold: var(--marigold);
   --color-ok: var(--ok);       --color-ok-tint: var(--ok-tint);

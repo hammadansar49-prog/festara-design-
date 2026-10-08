@@ -1,108 +1,141 @@
-import { Link2, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { Wordmark } from "@/components/brand/wordmark";
-import { EventCard, type CardEvent } from "@/components/event-card";
-import { RoleBadge } from "@/components/role-badge";
+import { HeroStage } from "@/components/landing/hero-stage";
+import { LandingMotion } from "@/components/landing/motion";
+import { Occasions } from "@/components/landing/occasions";
+import { PermissionMatrix } from "@/components/landing/permission-matrix";
+import { PanelCreate, PanelRoles, PanelShare, STEPS } from "@/components/landing/story-panels";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import type { Role } from "@/lib/permissions";
 
-const HERO_EVENTS: CardEvent[] = [
-  { name: "Ayesha's Mehndi", type: "mehndi", eventDate: "2026-12-14", location: "Lahore", coverColor: "mehndi", role: "admin", memberCount: 18 },
-  { name: "Naran Trip", type: "trip", eventDate: "2027-06-20", location: "Naran, Khyber Pakhtunkhwa", coverColor: "sky", role: "member", memberCount: 9 },
-  { name: "Spring Tech Fest 2027", type: "university_event", eventDate: "2027-03-20", location: "Main Hall, Multan", coverColor: "night", role: "admin", memberCount: 14 },
+const NAV = [
+  { href: "#how", label: "How it works" },
+  { href: "#occasions", label: "Occasions" },
+  { href: "#access", label: "Access" },
 ];
 
-const ROLE_COPY: { role: Role; line: string }[] = [
-  { role: "admin", line: "Edits the event, sends invites, decides who is in and what they can do." },
-  { role: "member", line: "Sees the full plan and helps with it. Cannot change the event or who is in it." },
-  { role: "guest", line: "Sees the basics, such as the date and place, and nothing more." },
-];
+/** One container and one section rhythm for the whole page. */
+const WRAP = "mx-auto w-full max-w-6xl px-4 sm:px-6";
+const SECTION = "scroll-mt-28 py-24 lg:py-32";
+
+function SectionHead({ id, label, title, tone = "text-muted-foreground", children }: { id: string; label: string; title: string; tone?: string; children?: ReactNode }) {
+  return (
+    <div className="grid gap-4">
+      <p data-reveal className={`lbl ${tone}`}>{label}</p>
+      <h2 id={id} data-reveal className="font-display max-w-[18ch] text-balance text-4xl sm:text-5xl">{title}</h2>
+      {children}
+    </div>
+  );
+}
 
 export function Landing() {
+  const panels = [<PanelCreate key="c" />, <PanelShare key="s" />, <PanelRoles key="r" />];
   return (
-    <div className="min-h-dvh">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6">
-        <Link href="/" aria-label="Festara home"><Wordmark className="h-7 w-auto" /></Link>
-        <div className="flex items-center gap-2 sm:gap-3">
-          <ThemeToggle className="hidden sm:inline-flex" />
-          <Button asChild variant="ghost"><Link href="/login">Sign in</Link></Button>
-          <Button asChild><Link href="/register">Create account</Link></Button>
+    <div data-landing className="min-h-dvh overflow-x-clip">
+      <LandingMotion />
+
+      <header className={`sticky top-4 z-50 mt-4 ${WRAP}`}>
+        <div className="flex items-center justify-between rounded-full border bg-card/95 py-2 pr-2 pl-5 shadow-[var(--shadow-overlay)] backdrop-blur">
+          <Link href="/" aria-label="Festara home"><Wordmark className="h-5 w-auto" /></Link>
+          <nav aria-label="Sections" className="hidden items-center gap-1 md:flex">
+            {NAV.map((n) => (
+              <a key={n.href} href={n.href} className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">{n.label}</a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-1.5">
+            <Button asChild variant="ghost" size="sm"><Link href="/login">Sign in</Link></Button>
+            <Button asChild size="sm" className="rounded-full"><Link href="/register">Create event</Link></Button>
+          </div>
         </div>
       </header>
 
       <main>
-        <section className="mx-auto grid max-w-6xl gap-12 px-4 pt-10 pb-20 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:pt-16 lg:pb-28">
-          <div className="grid gap-6">
-            <h1 className="rise font-display text-balance text-[2.5rem] leading-[1.05] sm:text-6xl" style={{ "--d": "0ms" } as React.CSSProperties}>
-              A calm place for people planning something together.
+        {/* hook */}
+        <section className={`${WRAP} grid grid-cols-1 gap-14 pt-16 pb-24 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-20 lg:pt-24 lg:pb-32`}>
+          <div className="grid justify-items-start gap-7">
+            <p data-hero className="lbl text-muted-foreground">Event planning for groups</p>
+            <h1 data-hero className="font-display text-balance text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-[4.5rem]">
+              One link. Everyone planning together.
             </h1>
-            <p className="rise max-w-[52ch] text-pretty text-lg text-muted-foreground" style={{ "--d": "80ms" } as React.CSSProperties}>
-              Weddings, trips and society events. Create the event, send one link to everyone involved, and decide who can see and change what.
+            <p data-hero className="max-w-[46ch] text-pretty text-lg text-muted-foreground">
+              Festara is where weddings, trips and society events get planned. Send one invite, and every person sees exactly what they should.
             </p>
-            <div className="rise flex flex-wrap items-center gap-3" style={{ "--d": "160ms" } as React.CSSProperties}>
-              <Button asChild size="lg"><Link href="/register">Create your first event</Link></Button>
-              <Button asChild size="lg" variant="outline"><Link href="/login">Sign in</Link></Button>
+            <div data-hero className="flex flex-wrap items-center gap-3">
+              <Button asChild size="lg"><Link href="/register">Create your event</Link></Button>
+              <Button asChild size="lg" variant="outline"><a href="#how">See how it works</a></Button>
             </div>
+            <p data-hero className="text-sm text-muted-foreground">Opens in the browser on any phone. Nothing to install.</p>
           </div>
-          <div className="rise grid gap-4 sm:grid-cols-2 lg:grid-cols-1" style={{ "--d": "240ms" } as React.CSSProperties} aria-hidden>
-            {HERO_EVENTS.slice(0, 2).map((e) => <EventCard key={e.name} event={e} />)}
-            <div className="sm:col-span-2 lg:col-span-1"><EventCard event={HERO_EVENTS[2]} /></div>
-          </div>
+          <HeroStage />
         </section>
 
-        <section aria-labelledby="how" className="border-y bg-secondary">
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6">
-            <h2 id="how" className="font-display text-balance text-3xl sm:text-4xl">Three steps from idea to everyone on board.</h2>
-            <ol className="grid gap-4 md:grid-cols-3">
-              <li className="grid content-start gap-3 rounded-xl border bg-card p-6">
-                <Sparkles className="size-5" aria-hidden />
-                <h3 className="text-lg font-semibold">Create the event</h3>
-                <p className="text-muted-foreground">Name it, set the date and place, pick a cover color. You become its Admin.</p>
-              </li>
-              <li className="grid content-start gap-3 rounded-xl border bg-card p-6">
-                <Link2 className="size-5" aria-hidden />
-                <h3 className="text-lg font-semibold">Share one link</h3>
-                <p className="text-muted-foreground">Send the invite link on WhatsApp. It works for seven days and shows the event before anyone has to sign up.</p>
-              </li>
-              <li className="grid content-start gap-3 rounded-xl border bg-card p-6">
-                <ShieldCheck className="size-5" aria-hidden />
-                <h3 className="text-lg font-semibold">Set each person&rsquo;s role</h3>
-                <p className="text-muted-foreground">Promote a helper, keep a guest to the basics. Every event always keeps at least one Admin.</p>
-              </li>
-            </ol>
-          </div>
-        </section>
-
-        <section aria-labelledby="roles" className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.2fr]">
-          <div className="grid content-start gap-3">
-            <h2 id="roles" className="font-display text-balance text-3xl sm:text-4xl">The right access for every person.</h2>
-            <p className="max-w-[48ch] text-muted-foreground">
-              A family event and a society fest need different rules. Roles are checked on the server, not only hidden in the interface.
+        {/* problem */}
+        <section className="border-y bg-secondary">
+          <div className={`${WRAP} py-24 lg:py-32`}>
+            <p data-reveal className="font-display max-w-[22ch] text-balance text-4xl sm:text-5xl">
+              The plan lives in six chats and one cousin&rsquo;s memory.
             </p>
           </div>
-          <ul className="grid gap-3">
-            {ROLE_COPY.map(({ role, line }) => (
-              <li key={role} className="flex items-start gap-4 rounded-xl border bg-card p-5">
-                <RoleBadge role={role} className="mt-0.5" />
-                <p>{line}</p>
+        </section>
+
+        {/* how it works: three steps, each with the screen it produces */}
+        <section id="how" aria-labelledby="how-h" className={`${WRAP} ${SECTION} grid gap-16`}>
+          <SectionHead id="how-h" label="How it works" title="From idea to everyone on board." />
+          <ol className="grid gap-16 lg:gap-20">
+            {STEPS.map((s, i) => (
+              <li key={s.n} data-reveal className="grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1.15fr] md:gap-16">
+                <div className="grid gap-2">
+                  <span className="lbl text-muted-foreground">{s.n}</span>
+                  <h3 className="text-2xl font-semibold">{s.title}</h3>
+                  <p className="max-w-[40ch] text-muted-foreground">{s.body}</p>
+                </div>
+                <div className="rounded-[24px] bg-secondary p-4 sm:p-8">{panels[i]}</div>
               </li>
             ))}
-          </ul>
+          </ol>
         </section>
 
-        <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
-          <div className="grid gap-6 rounded-xl border bg-card p-8 sm:p-12">
-            <h2 className="font-display text-balance text-3xl sm:text-4xl">Start with the event you are planning now.</h2>
-            <div><Button asChild size="lg"><Link href="/register">Create your first event</Link></Button></div>
+        {/* occasions */}
+        <section id="occasions" aria-labelledby="occ-h" className="scroll-mt-28" style={{ background: "var(--event-night)", color: "var(--event-night-fg)" }}>
+          <div className={`${WRAP} py-24 lg:py-32 grid gap-16`}>
+            <SectionHead id="occ-h" label="Occasions" title="Built for the events we actually have." tone="text-[var(--event-night-fg)]/70" />
+            <Occasions />
+          </div>
+        </section>
+
+        {/* proof */}
+        <section id="access" aria-labelledby="acc-h" className={`${WRAP} ${SECTION} grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-16`}>
+          <SectionHead id="acc-h" label="Access" title="Checked on the server, not just hidden.">
+            <p data-reveal className="max-w-[44ch] text-lg text-muted-foreground">
+              A guest cannot edit an event by finding the right URL. Every role is enforced where the data lives, and this table is drawn from the same rules.
+            </p>
+          </SectionHead>
+          <div data-reveal className="min-w-0"><PermissionMatrix /></div>
+        </section>
+
+        {/* close */}
+        <section aria-labelledby="end-h" style={{ background: "var(--event-mehndi)", color: "var(--event-mehndi-fg)" }}>
+          <div className={`${WRAP} grid justify-items-start gap-7 py-24 lg:py-32`}>
+            <h2 id="end-h" data-reveal className="font-display max-w-[14ch] text-balance text-5xl leading-[1.02] sm:text-6xl">Your next event starts with one link.</h2>
+            <p data-reveal className="max-w-[40ch] text-lg opacity-90">Create the event and share the link. Everyone else just taps it.</p>
+            <div data-reveal>
+              <Button asChild size="lg" className="bg-[var(--event-mehndi-fg)] text-[var(--event-mehndi)] hover:bg-[var(--event-mehndi-fg)]/90 focus-visible:ring-[var(--event-mehndi-fg)]/70">
+                <Link href="/register">Create your event</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm text-muted-foreground sm:px-6">
+      <footer>
+        <div className={`${WRAP} flex flex-wrap items-center justify-between gap-4 py-8 text-sm text-muted-foreground`}>
           <Wordmark className="h-5 w-auto" />
-          <span>A final year project. Plan together.</span>
+          <nav aria-label="Account" className="flex items-center gap-4">
+            <Link href="/login" className="hover:text-foreground">Sign in</Link>
+            <Link href="/register" className="hover:text-foreground">Create account</Link>
+          </nav>
+          <span className="flex items-center gap-3">A final year project. Plan together.<ThemeToggle /></span>
         </div>
       </footer>
     </div>

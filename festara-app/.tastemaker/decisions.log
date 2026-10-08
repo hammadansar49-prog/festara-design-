@@ -1,0 +1,11 @@
+2026-10-08 chosen   landing direction: invite-first story (user picked from 3 options)
+2026-10-08 chosen   motion: rich scroll storytelling with GSAP + Lenis (user)
+2026-10-08 chosen   dashboard: full dashboard-01 look incl. sample data for Planned modules (user)
+2026-10-08 chosen   visuals: real product UI, no stock (user)
+2026-10-08 pending-review  landing visual taste, pinned scene pacing, hero headline "One link. Everyone planning together."
+2026-10-08 chosen   landing structure: sticky-stage prototype ported, photos replaced by event cover colors (user: port prototype, no photos)
+2026-10-08 rejected motion: pinned scroll scene, Lenis smooth scroll, scrubbed word reveal, sticky card stack (user: "weird animations", inconsistent layout)
+2026-10-08 rejected decoration: star watermarks inside cover blocks (read as a house shape, no job)
+2026-10-08 chosen   motion: quiet, played once only (hero entrance, fade-up on enter, budget meter fill). Scrolling is never altered.
+2026-10-08 chosen   hero headline kept: "One link. Everyone planning together." (Claude's call, user asked for best practice)
+2026-10-08 pending-review  rebuilt landing (consistent container/section head/rhythm), awaiting user verdict
