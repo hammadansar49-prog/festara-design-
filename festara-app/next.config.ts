@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Every Festara page is personalised (cookies, params), so we keep the classic dynamic model.
+  // Both options become the default in the next Next.js major release; revisit then.
+  cacheComponents: false,
   turbopack: {
     rules: {
       "*.css": {
