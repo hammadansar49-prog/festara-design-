@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Festara">
+  <rect width="64" height="64" rx="14" fill="#1C1A22"/>
+  <path d="M32.00,9.00 L38.74,15.74 L48.26,15.74 L48.26,25.26 L55.00,32.00 L48.26,38.74 L48.26,48.26 L38.74,48.26 L32.00,55.00 L25.26,48.26 L15.74,48.26 L15.74,38.74 L9.00,32.00 L15.74,25.26 L15.74,15.74 L25.26,15.74Z" fill="#E9A23B" stroke="#E9A23B" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>

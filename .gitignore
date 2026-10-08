@@ -1,0 +1,41 @@
+# Dependencies and framework output
+node_modules/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+
+# Secrets. The shareable template stays tracked.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Report build. html/ and edge-profile/ are generated; the Edge profile
+# holds browser data and must not be published.
+report_src/html/
+report_src/edge-profile/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Test output
+test-results/
+playwright-report/
+blob-report/
+
+# festara-app is its own git repository. Ignoring it here keeps this
+# repo from recording a gitlink instead of the app files.
+festara-app/
+
+# OS and local tooling
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.vercel
+.claude/
