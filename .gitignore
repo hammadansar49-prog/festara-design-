@@ -28,10 +28,6 @@ test-results/
 playwright-report/
 blob-report/
 
-# festara-app is its own git repository. Ignoring it here keeps this
-# repo from recording a gitlink instead of the app files.
-festara-app/
-
 # OS and local tooling
 .DS_Store
 Thumbs.db
