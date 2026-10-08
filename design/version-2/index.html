@@ -533,6 +533,159 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .mtable-wrap{overflow-x:auto}
 }
 
+
+/* =================== VERSION 2.1 · new screens =================== */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lbl2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft,var(--ink-soft))}
+.pagehead{display:flex;flex-direction:column;gap:4px}
+.ph-sc{font-family:var(--script);font-size:40px;line-height:1;color:var(--acc2)}
+.pagehead h1{font-family:var(--h);font-weight:var(--hw);text-transform:var(--case);font-size:clamp(46px,4.6vw,72px);line-height:1}
+.toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.search{display:flex;align-items:center;gap:10px;flex:1 1 240px;min-width:0;height:46px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);color:var(--soft)}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--fg);font:400 15px var(--f-body);outline:none}
+.num{font-variant-numeric:tabular-nums}
+.themed .field label{color:var(--soft)}
+.themed .field input,.themed .field select{background:var(--card);color:var(--fg);border-color:var(--line);border-radius:var(--r)}
+.themed .field input:focus,.themed .field select:focus{border-color:var(--acc);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 18%,transparent)}
+.field input[aria-invalid="true"]{border-color:#C0533F!important}
+.field.full{grid-column:1/-1}
+.sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+
+/* drawer */
+.drawer{position:fixed;inset:0;z-index:88;display:none}
+.drawer.on{display:block}
+.dr-back{position:absolute;inset:0;background:rgba(17,16,16,.45);backdrop-filter:blur(3px)}
+.dr-panel{position:absolute;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--card);color:var(--fg);display:flex;flex-direction:column;box-shadow:-30px 0 60px -30px rgba(0,0,0,.5)}
+.dr-panel header,.dr-panel footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:22px 26px;border-bottom:1px solid var(--line)}
+.dr-panel footer{border-bottom:0;border-top:1px solid var(--line);margin-top:auto}
+.dr-panel h2{font-family:var(--h);font-weight:var(--hw);text-transform:var(--case);font-size:30px;line-height:1}
+.dr-panel .pl-close{border-color:var(--line);color:var(--fg)}
+.dr-body{padding:26px;display:flex;flex-direction:column;gap:18px;overflow-y:auto}
+
+/* budget */
+.budhero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:30px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:calc(var(--r) * 2);padding:34px}
+.bh-l{display:flex;flex-direction:column;gap:10px}
+.bh-l small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.bh-l .big{font-family:var(--h);font-weight:var(--hw);font-size:clamp(52px,5vw,84px);line-height:1;font-variant-numeric:tabular-nums}
+.meter2{position:relative;height:14px;border-radius:7px;background:var(--line);margin:22px 0 8px}
+.meter2 > i{position:absolute;inset:0 auto 0 0;border-radius:7px;transform-origin:left}
+.meter2 .mark{position:absolute;top:-8px;bottom:-8px;width:2px;background:var(--fg);opacity:.5}
+.meter2 .mark em{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-style:normal;font-size:11px;white-space:nowrap;color:var(--soft)}
+.warn{color:#B8701F;font-size:14px}
+.split2{display:flex;justify-content:space-between;gap:10px;padding:14px 16px;border-radius:var(--r);background:var(--bg);font-size:15px}
+.bh-r{display:flex;align-items:center;gap:22px;flex-wrap:wrap;justify-content:center}
+.legend{display:flex;flex-direction:column;gap:8px;font-size:14px}
+.legend span{display:flex;align-items:center;gap:10px}
+.legend i{width:12px;height:12px;border-radius:3px}
+.legend b{margin-left:auto;padding-left:16px;font-weight:500}
+
+/* tasks */
+.tprog{display:flex;align-items:center;gap:14px;margin-left:auto;font-size:14px;color:var(--soft)}
+.tprog b{font-family:var(--h);font-weight:var(--hw);color:var(--fg);font-size:26px}
+.tprog > i{width:200px;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.tprog > i b{display:block;height:100%;background:var(--acc);border-radius:4px;transform-origin:left;font-size:0}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+.tcol{background:color-mix(in srgb,var(--card) 70%,var(--bg));border:1px solid var(--line);border-radius:calc(var(--r) * 1.4);padding:14px;display:flex;flex-direction:column;gap:12px;min-height:300px}
+.tcol header{display:flex;justify-content:space-between;align-items:center;padding:4px 6px}
+.tcol header b{font-family:var(--h);font-weight:var(--hw);text-transform:var(--case);font-size:22px}
+.tcol header span{min-width:28px;height:28px;border-radius:14px;display:grid;place-items:center;background:var(--bg);font-size:13px}
+.tlist{display:flex;flex-direction:column;gap:10px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 20px -18px rgba(0,0,0,.5);transition:box-shadow .3s,transform .3s}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 18px 30px -20px rgba(0,0,0,.6)}
+.tcard.me{border-left:0;box-shadow:inset 3px 0 0 var(--acc2),0 10px 20px -18px rgba(0,0,0,.5)}
+.tcard > b{font-weight:500;font-size:15px}
+.tmeta{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--soft)}
+.tmeta .av{width:26px;height:26px;font-size:11px}
+.due{margin-left:auto;padding:3px 9px;border-radius:999px;background:var(--bg);font-size:12px}
+.due.late{background:#FBEFD9;color:#8A5A12}
+.tmove{display:flex;gap:8px}
+.tmove button{flex:1;min-height:38px;border:1px solid var(--line);border-radius:var(--r);background:transparent;color:var(--fg);cursor:pointer;font:500 13px var(--f-body)}
+.tmove button:hover{background:var(--acc);color:var(--acc-fg);border-color:var(--acc)}
+.tmove button[data-mv="-1"]{flex:0 0 44px}
+
+/* settings + profile */
+.covers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cover{padding:0;border:2px solid transparent;border-radius:var(--r);overflow:hidden;cursor:pointer;aspect-ratio:4/3;background:none}
+.cover img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cover:hover img{transform:scale(1.06)}
+.cover.on{border-color:var(--acc);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 20%,transparent)}
+.danger{border-color:#E8B4A8}
+.danger h2{color:#B2402F}
+.danger-btn{background:#B2402F;color:#fff}
+.danger-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.prof{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.bigav{width:110px;height:110px;border-radius:50%;background:#1F3A2E;color:#fff;display:grid;place-items:center;font-family:var(--f-wed);font-size:42px}
+.swatches{display:flex;gap:10px}
+.swatches button{width:36px;height:36px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px #D8CBB8;cursor:pointer}
+.swatches button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ink)}
+.toggles{display:flex;flex-direction:column;gap:12px;font-size:15px}
+.toggles label{display:flex;align-items:center;gap:12px}
+.toggles input{width:20px;height:20px;accent-color:#1F3A2E}
+
+/* invites: university pass, tour join, expired */
+.invx{min-height:100vh}
+.inv-uni{background:#111010;color:#F3EFE8}
+.iu-hero{position:relative;height:520px;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 86%,74% 94%,50% 88%,24% 100%,0 90%)}
+.iu-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.45)}
+.iu-head{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:0 20px}
+.iu-head span{font-family:var(--f-uni);letter-spacing:.3em;text-transform:uppercase;font-size:14px;color:#C8874A}
+.iu-head h1{font-family:var(--f-uni);font-weight:400;font-size:clamp(64px,9vw,140px);line-height:.9;text-transform:uppercase}
+.iu-head p{font-family:var(--f-uni);font-weight:300;font-size:20px;letter-spacing:.08em;text-transform:uppercase}
+.iu-body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:60px;align-items:center;max-width:1180px;margin:0 auto;padding:60px clamp(20px,5vw,60px) 100px}
+.iu-info{display:flex;flex-direction:column;gap:18px;--line:#3A3633;--card:#1C1A19;--fg:#F3EFE8;--soft:#ADA59A;--acc:#C8874A;--r:0px}
+.iu-info h2{font-family:var(--f-uni);font-weight:400;font-size:52px;line-height:1;text-transform:uppercase}
+.iu-info h2 em{font-family:var(--f-uni-script);font-style:normal;text-transform:none;color:#C8874A;font-size:1.4em}
+.iu-info p{color:#ADA59A;max-width:520px}
+.iu-info .field input{background:#1C1A19;color:#F3EFE8;border-color:#3A3633;border-radius:0}
+.iu-info .x-btn{align-self:flex-start;background:#C8874A;color:#111;border-radius:0;min-height:54px;font-family:var(--f-uni);letter-spacing:.14em;text-transform:uppercase}
+.ticket{width:320px;background:#F3EFE8;color:#111;border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(200,135,74,.5)}
+.tk-top{padding:26px;background:#C8874A;display:flex;flex-direction:column;gap:4px}
+.tk-top span{font-family:var(--f-uni);letter-spacing:.2em;text-transform:uppercase;font-size:13px}
+.tk-top b{font-family:var(--f-uni);font-weight:400;font-size:36px;text-transform:uppercase;line-height:1.05}
+.tk-cut{height:24px;background:radial-gradient(circle at 0 50%,#111010 11px,transparent 12px),radial-gradient(circle at 100% 50%,#111010 11px,transparent 12px),repeating-linear-gradient(90deg,#BBB 0 8px,transparent 8px 16px) center/100% 1px no-repeat}
+.tk-bot{display:flex;gap:16px;align-items:center;padding:22px 26px 26px}
+.tk-bot .qr{width:110px;padding:6px}
+.tk-bot small{display:block;font-size:12px;color:#666}
+.tk-bot b{font-family:var(--f-uni);font-weight:400;font-size:20px;text-transform:uppercase}
+.inv-tour{background:#EAF2F0;color:#0E3B43}
+.it-hero{position:relative;height:520px;overflow:hidden}
+.it-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.it-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,59,67,.3),rgba(14,59,67,.75))}
+.it-head{position:absolute;z-index:1;left:clamp(20px,6vw,90px);bottom:60px;color:#fff;display:flex;flex-direction:column;gap:6px}
+.it-head span{font-family:var(--f-tour-hand);font-size:36px;color:#F2A65A}
+.it-head h1{font-family:var(--f-tour);font-weight:400;font-size:clamp(64px,8vw,130px);line-height:.9;text-transform:uppercase}
+.it-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:50px;max-width:1180px;margin:0 auto;padding:60px clamp(20px,5vw,60px) 100px;align-items:start}
+.route{--line:0;position:relative;display:flex;flex-direction:column;gap:26px;padding-left:34px}
+.route::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:#0E3B43;transform-origin:top;transform:scaleY(var(--line))}
+.stop{position:relative;display:flex;flex-direction:column}
+.stop i{position:absolute;left:-34px;top:2px;width:20px;height:20px;border-radius:50%;background:#EAF2F0;border:3px solid #0E3B43}
+.stop:first-child i,.stop:last-child i{background:#F2A65A;border-color:#F2A65A}
+.stop b{font-family:var(--f-tour);font-weight:400;font-size:28px;text-transform:uppercase;letter-spacing:.02em}
+.stop small{font-family:var(--f-tour-hand);font-size:22px;color:#4E7378}
+.it-card{background:#fff;border-radius:22px;padding:30px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 60px -36px rgba(14,59,67,.6)}
+.it-card h2{font-family:var(--f-tour);font-weight:400;font-size:40px;text-transform:uppercase}
+.it-card p{color:#4E7378}
+.who-row{display:flex}.who-row .av{margin-left:-8px;border:3px solid #fff}.who-row .av:first-child{margin-left:0}
+.it-card .x-btn{background:#F2A65A;color:#0E3B43;border-radius:14px;min-height:54px;font-family:var(--f-tour);font-size:20px;letter-spacing:.05em;text-transform:uppercase}
+.inv-exp{display:grid;place-items:center;background:var(--cream);padding:40px 20px}
+.exp-card{max-width:560px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;color:var(--ink)}
+.exp-card svg{color:var(--gold)}
+.exp-card h1{font-family:var(--f-wed);font-weight:500;font-size:50px;line-height:1.05}
+.exp-card p{color:var(--ink-soft)}
+.env{position:relative;width:150px;height:100px;margin:10px 0 20px;perspective:600px}
+.env-body{position:absolute;inset:0;background:#E9DCC8;border-radius:8px;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);z-index:3}
+.env-letter{position:absolute;left:12px;right:12px;top:10px;height:80px;background:#fff;border-radius:6px;z-index:2;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.env-flap{position:absolute;left:0;right:0;top:0;height:60px;background:#D8C7AE;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;z-index:4}
+.overview-link{font-size:13px;color:var(--soft);text-decoration:none}
+.overview-link:hover{color:var(--fg)}
+.stat[data-go]{cursor:pointer;transition:transform .3s,box-shadow .3s}
+.stat[data-go]:hover{transform:translateY(-4px);box-shadow:0 20px 40px -26px rgba(0,0,0,.5)}
+@media (max-width:900px){
+  .budhero,.board,.iu-body,.it-body,.sgrid{grid-template-columns:minmax(0,1fr)}
+  .covers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tprog{margin-left:0}
+}
+
 /* ---------- narrow screens: no pin, worlds stack ---------- */
 @media (max-width:900px){
   .top{grid-template-columns:1fr auto}
@@ -598,7 +751,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
           <p class="body a-in">Mehndi, Baraat and Walima in one place: both families' guest lists, a live budget, and an invitation your khala can open on WhatsApp.</p>
           <div class="btns a-in">
             <a class="b-dark" href="#start" data-plan="wed">Plan your wedding <span aria-hidden="true">→</span></a>
-            <a class="b-line" href="#invite"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z"/></svg>See an invitation</a>
+            <a class="b-line" href="#/invite/wed"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z"/></svg>See an invitation</a>
           </div>
           <div class="feats a-in">
             <div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B8945A" stroke-width="1.2" aria-hidden="true"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg><span><b>3 functions</b>one plan</span></div>
@@ -702,11 +855,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 <section class="sec">
   <div class="sec-head"><small>Invitation themes</small><h2>Themes that speak your style</h2><p>Pick a look for your invitation page. Every theme carries your programme, dress code and RSVP.</p></div>
   <div class="themes">
-    <div class="theme rv"><div class="im"><img src="img/hennahold.jpg" alt="Hennaed hands with red bangles"></div><b>Royal Mehndi</b><span>Grand · Traditional</span></div>
-    <div class="theme rv"><div class="im"><img src="img/stagedecor.jpg" alt="Stage with white florals and gold chairs"></div><b>Pastel Stage</b><span>Soft · Modern</span></div>
-    <div class="theme rv"><div class="im"><img src="img/reception.jpg" alt="Guests under trees strung with lights"></div><b>Garden Night</b><span>Fresh · Dreamy</span></div>
-    <div class="theme rv"><div class="im"><img src="img/tables.jpg" alt="A long candlelit dinner table"></div><b>Candlelit Walima</b><span>Warm · Intimate</span></div>
-    <div class="theme rv"><div class="im"><img src="img/whitestage.jpg" alt="White floral stage under spotlights"></div><b>White Florals</b><span>Elegant · Timeless</span></div>
+    <a class="theme rv" href="#/invite/wed" style="text-decoration:none;color:inherit"><div class="im"><img src="img/hennahold.jpg" alt="Hennaed hands with red bangles"></div><b>Royal Mehndi</b><span>Grand · Traditional</span></a>
+    <a class="theme rv" href="#/invite/wed" style="text-decoration:none;color:inherit"><div class="im"><img src="img/stagedecor.jpg" alt="Stage with white florals and gold chairs"></div><b>Pastel Stage</b><span>Soft · Modern</span></a>
+    <a class="theme rv" href="#/invite/wed" style="text-decoration:none;color:inherit"><div class="im"><img src="img/reception.jpg" alt="Guests under trees strung with lights"></div><b>Garden Night</b><span>Fresh · Dreamy</span></a>
+    <a class="theme rv" href="#/invite/wed" style="text-decoration:none;color:inherit"><div class="im"><img src="img/tables.jpg" alt="A long candlelit dinner table"></div><b>Candlelit Walima</b><span>Warm · Intimate</span></a>
+    <a class="theme rv" href="#/invite/wed" style="text-decoration:none;color:inherit"><div class="im"><img src="img/whitestage.jpg" alt="White floral stage under spotlights"></div><b>White Florals</b><span>Elegant · Timeless</span></a>
   </div>
 </section>
 
@@ -774,9 +927,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
           <div class="field in"><label for="aEmail">Email</label><input id="aEmail" type="email" autocomplete="email" placeholder="you@example.com" required><span class="err" hidden></span></div>
           <div class="field in"><label for="aPass">Password</label><div class="pw"><input id="aPass" type="password" autocomplete="current-password" placeholder="At least 8 characters" required><button type="button" id="aShow">Show</button></div><span class="err" hidden></span>
             <div class="strength" id="strength" hidden><i></i><i></i><i></i><i></i></div></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px" class="in" id="forgotRow"><label style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink-soft)"><input type="checkbox" id="aKeep" checked style="width:18px;height:18px;accent-color:#1F3A2E"> Keep me signed in</label><a href="#/login" id="aForgot" style="font-size:14px">Forgot password?</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px" class="in" id="forgotRow"><label style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink-soft)"><input type="checkbox" id="aKeep" checked style="width:18px;height:18px;accent-color:#1F3A2E"> Keep me signed in</label><a href="#/forgot" id="aForgot" style="font-size:14px">Forgot password?</a></div>
           <button class="x-btn in" type="submit" id="aSubmit" style="min-height:56px;font-size:15px">Log in</button>
         </form>
+        <div id="authExtra" hidden style="display:flex;flex-direction:column;gap:18px;max-width:440px;align-items:flex-start"></div>
         <p class="in" style="font-size:14px;color:var(--ink-soft)" id="authSwitch">New to Festara? <a href="#/register">Create an account</a></p>
       </div>
     </div>
@@ -789,7 +943,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         <a class="brand" href="#/" style="color:var(--ink)"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M20 36C20 24 14 14 6 8M20 36c0-12 6-22 14-28M20 36V14"/><path d="M12 16c-4-1-6-4-6-8 4 0 7 3 6 8zM28 16c4-1 6-4 6-8-4 0-7 3-6 8z"/></svg><span><b style="font-size:22px">FESTARA</b><small>Celebrations &amp; beyond</small></span></a>
         <div id="sideEvent"></div>
         <nav id="sideNav" aria-label="App"></nav>
-        <div class="me"><span class="av" style="background:#1F3A2E">HA</span><span><b>Hammad Ansar</b><a href="#/">Log out</a></span></div>
+        <div class="me"><span class="av" style="background:#1F3A2E">HA</span><span><b><a href="#/profile" style="color:inherit;text-decoration:none">Hammad Ansar</a></b><a href="#/">Log out</a></span></div>
       </aside>
       <div class="main" id="mainView"></div>
     </div>
@@ -811,6 +965,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </article>
       <div style="height:120px"></div>
     </div>
+    <div id="invOther" hidden></div>
   </section>
 </div>
 
@@ -1234,7 +1389,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         feed:[['Ali','logged Rs 9,400 for petrol','5 min ago'],['Usman','paid the hotel deposit','3 hr ago'],['Bilal','added the Attabad Lake stop','Yesterday']],
         members:[['Hammad Ansar','hammad@example.com','Admin'],['Ali','ali@example.com','Member'],['Usman','usman@example.com','Member'],['Hamza','hamza@example.com','Member']] }
     ];
-    function byId(id){ for (var i = 0; i < EVENTS.length; i++) if (EVENTS[i].id === id) return EVENTS[i]; return EVENTS[0]; }
+    function byId(id){ for (var i = 0; i < EVENTS.length; i++) if (EVENTS[i].id === id) return EVENTS[i]; for (var j = 0; j < EVENTS.length; j++) if (EVENTS[j].kind === id) return EVENTS[j]; return EVENTS[0]; }
     function left(e){ var ms = Math.max(0, new Date(e.date) - Date.now()); return { d: Math.floor(ms / DAY), h: Math.floor(ms / 36e5) % 24, m: Math.floor(ms / 6e4) % 60 }; }
     function niceDate(e){ return new Date(e.date).toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'long', year:'numeric' }); }
     var ICON = {
@@ -1252,15 +1407,14 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     function renderSide(ev, page){
       if (!ev){
         sideEvent.innerHTML = '';
-        sideNav.innerHTML = '<a href="#/events" aria-current="page">' + ICON.home + 'My events</a><a href="#/new">' + ICON.task + 'Create event</a><a href="#/invite/wed">' + ICON.mail + 'Sample invitation</a><a href="#/">' + ICON.over + 'Back to site</a>';
+        sideNav.innerHTML = '<a href="#/events"' + (page === 'profile' ? '' : ' aria-current="page"') + '>' + ICON.home + 'My events</a><a href="#/profile"' + (page === 'profile' ? ' aria-current="page"' : '') + '>' + ICON.ppl + 'Profile</a><a href="#/new">' + ICON.task + 'Create event</a><a href="#/invite/wed">' + ICON.mail + 'Sample invitation</a><a href="#/invite/expired">' + ICON.gear + 'Expired link</a><a href="#/">' + ICON.over + 'Back to site</a>';
         return;
       }
       sideEvent.innerHTML = '<a class="ev" href="#/events" style="text-decoration:none;color:inherit"><img src="' + ev.img + '" alt=""' + (ev.kind==='uni'?' style="filter:grayscale(1)"':'') + '><span><b>' + esc(ev.short) + '</b><small>' + ev.label + ' · ' + ev.role + '</small></span></a>';
-      var items = [['', 'Overview', ICON.over], ['/guests', ev.people, ICON.ppl, 1], ['/budget', 'Budget', ICON.money, 1], ['/tasks', 'Tasks', ICON.task, 1], ['/members', 'Members', ICON.team], ['/invite', 'Invitation', ICON.mail]];
+      var items = [['', 'Overview', ICON.over, 'overview'], ['/guests', ev.people, ICON.ppl, 'guests'], ['/budget', 'Budget', ICON.money, 'budget'], ['/tasks', 'Tasks', ICON.task, 'tasks'], ['/members', 'Members', ICON.team, 'members'], ['/settings', 'Settings', ICON.gear, 'settings'], ['inv', 'Invitation page', ICON.mail, 'invite']];
       sideNav.innerHTML = '<a href="#/events">' + ICON.home + 'All events</a>' + items.map(function(it){
-        var href = it[1] === 'Invitation' ? '#/invite/' + ev.id : '#/event/' + ev.id + (it[3] ? '' : it[0]);
-        var cur = (page === 'members' && it[1] === 'Members') || (page === 'overview' && it[1] === 'Overview');
-        return '<a href="' + href + '"' + (cur ? ' aria-current="page"' : '') + '>' + it[2] + esc(it[1]) + (it[3] ? '<small>on overview</small>' : '') + '</a>';
+        var href = it[0] === 'inv' ? '#/invite/' + ev.kind : '#/event/' + ev.id + it[0];
+        return '<a href="' + href + '"' + (page === it[3] ? ' aria-current="page"' : '') + '>' + it[2] + esc(it[1]) + '</a>';
       }).join('');
     }
 
@@ -1298,21 +1452,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       var words = { wed: ['Latest RSVPs', 'Budget by category', 'Tasks', 'Activity'], uni: ['Latest registrations', 'Spending by head', 'Committee tasks', 'Activity'], tour: ['Who paid what', 'Spent so far', 'Before we leave', 'Activity'] }[e.kind];
       mainView.innerHTML = '<div class="themed ' + e.theme + '" style="min-height:100vh"><div class="bar"><div class="crumbs"><a href="#/events" style="color:inherit">My events</a> / <b>' + esc(e.short) + '</b></div><span class="sample">Sample data</span></div>'
         + '<div class="wrap">'
-        + '<div class="hero2 in" id="hero2"><img src="' + e.img + '" alt=""><div class="acts"><a class="x-btn sm ghost" href="#/event/' + e.id + '/members">Invite members</a><a class="x-btn sm" href="#/invite/' + e.id + '">Share invitation</a></div>'
+        + '<div class="hero2 in" id="hero2"><img src="' + e.img + '" alt=""><div class="acts"><a class="x-btn sm ghost" href="#/event/' + e.id + '/members">Invite members</a><a class="x-btn sm" href="#/invite/' + e.kind + '">Share invitation</a></div>'
         + '<div class="hc"><span class="sc">' + e.script + '</span><h1>' + esc(e.title) + '</h1><div class="where"><span>' + niceDate(e) + '</span><span>' + esc(e.place) + '</span><span class="pill ' + e.role.toLowerCase() + '">' + e.role + '</span></div></div>'
         + '<div class="cdn"><div><b data-count="' + l.d + '">' + l.d + '</b><small>days</small></div><div><b>' + l.h + '</b><small>hours</small></div><div><b>' + l.m + '</b><small>min</small></div></div></div>'
         + '<div class="stats">'
-        + '<div class="stat in"><small>' + e.yesLabel + '</small><b><span data-count="' + e.yes + '">' + e.yes + '</span><em>/ ' + fmt(e.total) + '</em></b><div class="track2"><i data-bar="' + (e.yes / e.total) + '"></i></div></div>'
-        + '<div class="stat in"><small>Budget used</small><b><span data-count="' + Math.round(bp * 100) + '">' + Math.round(bp * 100) + '</span><em>%</em></b><span style="font-size:13px;color:var(--soft)">Rs ' + fmt(e.spent) + ' of ' + fmt(e.budget) + '</span>'
+        + '<div class="stat in" data-go="#/event/' + e.id + '/guests" role="link" tabindex="0"><small>' + e.yesLabel + '</small><b><span data-count="' + e.yes + '">' + e.yes + '</span><em>/ ' + fmt(e.total) + '</em></b><div class="track2"><i data-bar="' + (e.yes / e.total) + '"></i></div></div>'
+        + '<div class="stat in" data-go="#/event/' + e.id + '/budget" role="link" tabindex="0"><small>Budget used</small><b><span data-count="' + Math.round(bp * 100) + '">' + Math.round(bp * 100) + '</span><em>%</em></b><span style="font-size:13px;color:var(--soft)">Rs ' + fmt(e.spent) + ' of ' + fmt(e.budget) + '</span>'
         + '<svg class="ring" width="76" height="76" viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="' + R + '" stroke="var(--line)"/><circle cx="38" cy="38" r="' + R + '" stroke="var(--acc2)" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '" data-ring="' + (C * (1 - bp)) + '" transform="rotate(-90 38 38)"/></svg></div>'
-        + '<div class="stat in"><small>Tasks done</small><b><span data-count="' + e.done + '">' + e.done + '</span><em>/ ' + e.tasks + '</em></b><div class="track2"><i data-bar="' + (e.done / e.tasks) + '"></i></div></div>'
-        + '<div class="stat in"><small>Team</small><b><span data-count="' + e.members.length + '">' + e.members.length + '</span><em>people</em></b><div style="display:flex">' + e.members.map(function(m, i){ return '<span style="margin-left:' + (i ? -10 : 0) + 'px;border:2px solid var(--card);border-radius:50%">' + av(m[0], i) + '</span>'; }).join('') + '</div></div>'
+        + '<div class="stat in" data-go="#/event/' + e.id + '/tasks" role="link" tabindex="0"><small>Tasks done</small><b><span data-count="' + e.done + '">' + e.done + '</span><em>/ ' + e.tasks + '</em></b><div class="track2"><i data-bar="' + (e.done / e.tasks) + '"></i></div></div>'
+        + '<div class="stat in" data-go="#/event/' + e.id + '/members" role="link" tabindex="0"><small>Team</small><b><span data-count="' + e.members.length + '">' + e.members.length + '</span><em>people</em></b><div style="display:flex">' + e.members.map(function(m, i){ return '<span style="margin-left:' + (i ? -10 : 0) + 'px;border:2px solid var(--card);border-radius:50%">' + av(m[0], i) + '</span>'; }).join('') + '</div></div>'
         + '</div>'
         + '<div class="grid2">'
-        + '<div class="panel2 in"><header><h2>' + words[0] + '</h2><span class="sample">Planned</span></header>' + e.list.map(function(r, i){ return '<div class="rsvp">' + av(r[0], i + 2) + '<span class="nm">' + esc(r[0]) + '<small>' + esc(r[1]) + '</small></span><span class="pill ' + r[2] + '">' + esc(r[3]) + '</span></div>'; }).join('') + '</div>'
-        + '<div class="panel2 in"><header><h2>' + words[1] + '</h2><span style="font-size:13px;color:var(--soft)">Rs ' + fmt(e.spent) + '</span></header>' + e.cats.map(function(c){ return '<div class="cat"><span>' + c[0] + '</span><i><b data-bar="' + (c[1] / max) + '"></b></i><span>Rs ' + fmt(c[1]) + '</span></div>'; }).join('')
+        + '<div class="panel2 in"><header><h2>' + words[0] + '</h2><a class="overview-link" href="#/event/' + e.id + '/guests">See everyone →</a></header>' + e.list.map(function(r, i){ return '<div class="rsvp">' + av(r[0], i + 2) + '<span class="nm">' + esc(r[0]) + '<small>' + esc(r[1]) + '</small></span><span class="pill ' + r[2] + '">' + esc(r[3]) + '</span></div>'; }).join('') + '</div>'
+        + '<div class="panel2 in"><header><h2>' + words[1] + '</h2><a class="overview-link" href="#/event/' + e.id + '/budget">Open budget →</a></header>' + e.cats.map(function(c){ return '<div class="cat"><span>' + c[0] + '</span><i><b data-bar="' + (c[1] / max) + '"></b></i><span>Rs ' + fmt(c[1]) + '</span></div>'; }).join('')
         + (bp > .7 ? '<p style="font-size:13px;color:#B8701F;margin-top:4px">You\'re at ' + Math.round(bp * 100) + '% of your budget. The warning turns on at 80%.</p>' : '') + '</div>'
-        + '<div class="panel2 in"><header><h2>' + words[2] + '</h2><span style="font-size:13px;color:var(--soft)">Click a task to move it on</span></header><div class="kan" id="kan">'
+        + '<div class="panel2 in"><header><h2>' + words[2] + '</h2><a class="overview-link" href="#/event/' + e.id + '/tasks">Open the board →</a></header><div class="kan" id="kan">'
         + kanCol('To do', e.todo, 'todo') + kanCol('Doing', e.doing, 'doing') + kanCol('Done', e.doneT, 'done') + '</div></div>'
         + '<div class="panel2 in"><header><h2>' + words[3] + '</h2></header><div class="feed">' + e.feed.map(function(f, i){ return '<div>' + av(f[0], i + 4) + '<span><b style="font-weight:500">' + esc(f[0]) + '</b> ' + esc(f[1]) + '<small>' + f[2] + '</small></span></div>'; }).join('') + '</div></div>'
         + '</div></div></div>';
@@ -1345,7 +1499,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         + '<p id="roleNote" style="font-size:14px;color:var(--soft)">Members can add guests, log expenses and update tasks.</p>'
         + '<button type="button" class="x-btn" id="mkLink" style="align-self:flex-start">Create invite link</button>'
         + '<div id="linkOut" hidden style="display:flex;flex-direction:column;gap:12px"><div class="linkout"><label for="invLink" style="position:absolute;left:-9999px">Invite link</label><input id="invLink" readonly><button type="button" class="x-btn" id="cpLink">Copy</button></div><span id="linkMeta" style="font-size:13px;color:var(--soft)"></span></div></div>'
-        + '<div class="panel2 in" style="align-items:center;justify-content:center;text-align:center"><div class="qr" id="qr" aria-hidden="true"></div><p style="font-size:14px;color:var(--soft);max-width:300px">Print it on the card or put it on a slide. Scanning opens the same invite page.</p><a class="x-btn ghost sm" href="#/invite/' + e.id + '">Preview what guests see</a></div></div>'
+        + '<div class="panel2 in" style="align-items:center;justify-content:center;text-align:center"><div class="qr" id="qr" aria-hidden="true"></div><p style="font-size:14px;color:var(--soft);max-width:300px">Print it on the card or put it on a slide. Scanning opens the same invite page.</p><a class="x-btn ghost sm" href="#/invite/' + e.kind + '">Preview what guests see</a></div></div>'
         + '<div class="panel2 in"><header><h2>' + e.members.length + ' people</h2><span style="font-size:13px;color:var(--soft)">' + admins + ' admin' + (admins > 1 ? 's' : '') + '</span></header><div class="mtable-wrap"><table class="mtable"><thead><tr><th>Person</th><th>Role</th><th style="text-align:right">Actions</th></tr></thead><tbody>'
         + e.members.map(function(m, i){ var lastAdmin = m[2] === 'Admin' && admins === 1; return '<tr data-i="' + i + '"><td><div class="who">' + av(m[0], i) + '<span>' + esc(m[0]) + '<small>' + esc(m[1]) + '</small></span></div></td><td><label style="position:absolute;left:-9999px" for="r' + i + '">Role for ' + esc(m[0]) + '</label><select id="r' + i + '"' + (lastAdmin ? ' disabled title="The last Admin can\'t change role"' : '') + '>' + ['Admin','Member','Guest'].map(function(r){ return '<option' + (r === m[2] ? ' selected' : '') + '>' + r + '</option>'; }).join('') + '</select>' + (lastAdmin ? '<small style="display:block;color:var(--soft);font-size:12px;margin-top:4px">Last Admin</small>' : '') + '</td><td style="text-align:right"><span class="act"><button type="button" class="rm"' + (lastAdmin ? ' disabled' : '') + '>Remove</button></span></td></tr>'; }).join('')
         + '</tbody></table></div></div></div></div>';
@@ -1370,8 +1524,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         else if (b.hasAttribute('data-yes')){ gsap.to(tr, { opacity: 0, x: 40, duration: .45, ease: 'power3.in', onComplete: function(){ e.members.splice(+tr.dataset.i, 1); toast(m[0] + ' was removed from the event'); renderMembers(e); intro(mainView); } }); }
       });
     }
-    function drawQR(seed){
-      var q = document.getElementById('qr'); if (!q) return; var h = 0, cells = '';
+    function drawQR(seed, id){
+      var q = document.getElementById(id || 'qr'); if (!q) return; var h = 0, cells = '';
       for (var k = 0; k < seed.length; k++) h = (h * 31 + seed.charCodeAt(k)) >>> 0;
       function finder(x, y, ox, oy){ var dx = x - ox, dy = y - oy; if (dx < 0 || dy < 0 || dx > 6 || dy > 6) return -1; return (dx === 0 || dy === 0 || dx === 6 || dy === 6 || (dx > 1 && dx < 5 && dy > 1 && dy < 5)) ? 1 : 0; }
       for (var y = 0; y < 21; y++) for (var x = 0; x < 21; x++){
@@ -1468,6 +1622,242 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     }
     function settle(root){ root.querySelectorAll('[data-bar]').forEach(function(el){ el.style.width = (+el.dataset.bar * 100) + '%'; }); root.querySelectorAll('[data-ring]').forEach(function(el){ el.setAttribute('stroke-dashoffset', el.dataset.ring); }); }
 
+
+    /* =====================================================================
+       VERSION 2.1 · every button gets its screen
+       ===================================================================== */
+    var PEOPLE = {
+      wed: [['Nadia Khan',"Bride's side",'ok',2,'0300 1234567'],['Tariq Mehmood',"Groom's side",'wait',0,'0301 2223344'],['Sadia Iqbal',"Bride's side",'ok',4,'0333 5556677'],['Rabia Saeed',"Groom's side",'no',0,'0345 8889900'],['Hamza Ali',"Groom's side",'ok',3,'0312 4445566'],['Farah Anwar',"Bride's side",'ok',5,'0321 7778899'],['Imran Butt',"Groom's side",'wait',0,'0300 9998877'],['Zoya Hassan',"Bride's side",'ok',2,'0336 1112233'],['Kamran Akmal',"Groom's side",'ok',6,'0302 6665544'],['Hina Javed',"Bride's side",'wait',0,'0315 3332211'],['Omer Farooq',"Groom's side",'ok',2,'0346 7776655'],['Mehwish Ali',"Bride's side",'no',0,'0300 5554433']],
+      uni: [['Areeba Shah','BSCS · 5th','ok',1,'Pass sent'],['Danish Raza','BBA · 3rd','ok',1,'Pass sent'],['Mahnoor Ali','BSSE · 7th','wait',0,'Unpaid'],['Fahad Iqbal','BSCS · 1st','ok',1,'Pass sent'],['Kinza Noor','MBA · 2nd','no',0,'Cancelled'],['Saad Khan','BSAI · 3rd','ok',1,'Pass sent'],['Laiba Tariq','BSCS · 7th','ok',1,'Pass sent'],['Usama Javed','BSEE · 5th','wait',0,'Unpaid'],['Rida Fatima','BSCS · 3rd','ok',1,'Pass sent'],['Hassan Raza','BBA · 1st','ok',1,'Pass sent']],
+      tour: [['Hammad Ansar','Admin','ok',0,'Rs 0 paid'],['Ali','Driver','ok',9400,'Rs 9,400 paid'],['Usman','Hotels','ok',7850,'Rs 7,850 paid'],['Hamza','Food','ok',6200,'Rs 6,200 paid'],['Bilal','Jeep','wait',4300,'Rs 4,300 paid']]
+    };
+    var SPEND = {
+      wed: [['12 Oct','Marquee advance','Venue','Bilal',260000],['10 Oct','Catering deposit','Catering','Ayesha',300000],['8 Oct','Stage flowers','Decor','Usman',18000],['6 Oct','Bridal lehenga','Clothes','Ayesha',96000],['4 Oct','Photographer booking','Photography','Bilal',60000],['2 Oct','Mehndi decor','Decor','Sana',130000],['1 Oct','Menu tasting','Catering','Bilal',220000]],
+      uni: [['14 Oct','Sound system','Stage & sound','Ahmed',90000],['12 Oct','Lunch boxes','Food','Hira',60000],['10 Oct','Trophies','Prizes','Zain',35000],['8 Oct','Social ads','Marketing','Zain',17000],['6 Oct','Pass printing','Passes','Hammad',10000]],
+      tour: [['Day 1','Petrol, Islamabad to Naran','Petrol','Ali',9400],['Day 1','Hotel deposit','Hotel','Usman',7850],['Day 1','Chai and pakoray','Food','Hamza',6200],['Day 2','Jeep to Attabad','Jeep','Bilal',4300]]
+    };
+    var BOARD = {
+      wed: { todo:[['Book dholki group','Usman','Fri'],['Order mehndi cones','Sana','Sat'],['Finalise seating plan','Ayesha','Next week'],['Arrange guest transport','Bilal','Next week']], doing:[['Confirm caterer menu','Bilal','Today'],['Collect RSVPs from khala','Sana','Tomorrow']], done:[['Book venue','Ayesha','Done'],['Print cards','Usman','Done'],['Book photographer','Bilal','Done']] },
+      uni: { todo:[['Sponsor banner','Hira','Mon'],['Print passes','Zain','Tue'],['Invite chief guest','Hammad','Wed']], doing:[['Judges list','Ahmed','Today'],['Social media teaser','Zain','Today']], done:[['Book auditorium','Hira','Done'],['Poster design','Zain','Done']] },
+      tour: { todo:[['Get the car serviced','Ali','Tue'],['Download offline maps','Hamza','Wed']], doing:[['Book hotel in Karimabad','Usman','Today'],['Buy snacks','Hamza','Thu']], done:[['Plan the route','Bilal','Done'],['Pack first aid','Ali','Done']] }
+    };
+    var COVERS = { wed:['img/couple.jpg','img/canopy.jpg','img/arch.jpg','img/couple2.jpg'], uni:['img/speaker.jpg','img/conf.jpg','img/grads.jpg','img/audience.jpg'], tour:['img/valley.jpg','img/tent.jpg','img/lake.jpg','img/truck.jpg'] };
+
+    function pageHead(e, crumb, script, title, actions){
+      return '<div class="bar"><div class="crumbs"><a href="#/events" style="color:inherit">My events</a> / <a href="#/event/' + e.id + '" style="color:inherit">' + esc(e.short) + '</a> / <b>' + crumb + '</b></div>' + (actions || '<span class="sample">Sample data</span>') + '</div>'
+        + '<div class="wrap"><div class="in pagehead"><span class="ph-sc">' + script + '</span><h1>' + title + '</h1></div>';
+    }
+    function drawer(id, title, body, cta){
+      return '<div class="drawer" id="' + id + '" role="dialog" aria-modal="true" aria-label="' + esc(title) + '"><div class="dr-back" data-close></div><form class="dr-panel" novalidate><header><h2>' + title + '</h2><button type="button" class="pl-close" data-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header><div class="dr-body">' + body + '</div><footer><button type="button" class="x-btn ghost" data-close>Cancel</button><button type="submit" class="x-btn">' + cta + '</button></footer></form></div>';
+    }
+    function openDrawer(d){ d.classList.add('on'); gsap.fromTo(d.querySelector('.dr-back'), { opacity: 0 }, { opacity: 1, duration: .4 }); gsap.fromTo(d.querySelector('.dr-panel'), { xPercent: 100 }, { xPercent: 0, duration: .7, ease: 'expo.out' }); gsap.from(d.querySelectorAll('.dr-body > *'), { x: 40, opacity: 0, stagger: .05, duration: .7, ease: 'expo.out', delay: .15 }); var f = d.querySelector('input,select'); if (f) setTimeout(function(){ f.focus(); }, 300); }
+    function closeDrawer(d){ gsap.to(d.querySelector('.dr-panel'), { xPercent: 100, duration: .45, ease: 'power3.in' }); gsap.to(d.querySelector('.dr-back'), { opacity: 0, duration: .45, onComplete: function(){ d.classList.remove('on'); } }); }
+    function wireDrawer(d, onSubmit){
+      d.addEventListener('click', function(ev){ if (ev.target.closest('[data-close]')) closeDrawer(d); });
+      d.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') closeDrawer(d); });
+      d.querySelector('form').addEventListener('submit', function(ev){
+        ev.preventDefault();
+        var bad = null;
+        d.querySelectorAll('input[required]').forEach(function(i){ var b = !i.value.trim(); i.setAttribute('aria-invalid', b); if (b && !bad) bad = i; });
+        if (bad){ bad.focus(); gsap.fromTo(bad, { x: -8 }, { x: 0, duration: .5, ease: 'elastic.out(1,.3)' }); return; }
+        onSubmit(d.querySelector('form')); closeDrawer(d); d.querySelector('form').reset();
+      });
+    }
+    function seg(name, opts, cur){ return '<div class="seg" role="group" aria-label="' + name + '">' + opts.map(function(o){ return '<button type="button" aria-pressed="' + (o === cur) + '" data-v="' + o + '">' + o + '</button>'; }).join('') + '</div>'; }
+
+    /* ---------------- GUESTS ---------------- */
+    function renderGuests(e){
+      renderSide(e, 'guests');
+      var rows = PEOPLE[e.kind], wed = e.kind === 'wed', tour = e.kind === 'tour';
+      var sides = wed ? ['All', "Bride's side", "Groom's side"] : null, stat = 'All', side = 'All', q = '';
+      var ok = rows.filter(function(r){ return r[2] === 'ok'; }).length, wait = rows.filter(function(r){ return r[2] === 'wait'; }).length, no = rows.filter(function(r){ return r[2] === 'no'; }).length;
+      var heads = wed ? ['Guest','Side','Coming','Status'] : tour ? ['Traveller','Looks after','Paid','Status'] : ['Student','Programme','Pass','Status'];
+      mainView.innerHTML = '<div class="themed ' + e.theme + '" style="min-height:100vh">' + pageHead(e, e.people, wed ? 'everyone we love' : tour ? 'the crew' : 'who\'s coming', esc(e.people), '<button type="button" class="x-btn sm" id="addG">+ Add ' + (wed ? 'guest' : tour ? 'traveller' : 'student') + '</button>')
+        + '<div class="stats"><div class="stat in"><small>Total</small><b data-count="' + e.total + '">' + e.total + '</b></div><div class="stat in"><small>' + (tour ? 'Paid up' : 'Confirmed') + '</small><b data-count="' + e.yes + '">' + e.yes + '</b><div class="track2"><i data-bar="' + e.yes / e.total + '"></i></div></div><div class="stat in"><small>Waiting</small><b data-count="' + wait * (wed ? 4 : 1) + '">0</b></div><div class="stat in"><small>Declined</small><b data-count="' + no * (wed ? 3 : 1) + '">0</b></div></div>'
+        + '<div class="panel2 in"><div class="toolbar"><label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span class="sr">Search</span><input id="gq" placeholder="Search by name"></label>'
+        + (sides ? seg('Side', sides, 'All').replace('class="seg"', 'class="seg" id="gside"') : '') + seg('Status', ['All', 'Confirmed', 'Waiting', 'Declined'], 'All').replace('class="seg"', 'class="seg" id="gstat"')
+        + (tour ? '' : '<button type="button" class="x-btn ghost sm" id="remind">Send reminder to waiting</button>') + '</div>'
+        + '<div class="mtable-wrap"><table class="mtable"><thead><tr>' + heads.map(function(h, i){ return '<th' + (i === 3 ? ' style="text-align:right"' : '') + '>' + h + '</th>'; }).join('') + '</tr></thead><tbody id="gbody"></tbody></table></div><p id="gempty" hidden style="text-align:center;color:var(--soft);padding:30px 0">Nobody matches that search. Try another name or clear the filters.</p></div></div>'
+        + drawer('gDrawer', 'Add ' + (wed ? 'a guest' : tour ? 'a traveller' : 'a student'), '<div class="field"><label for="gn">Name</label><input id="gn" required placeholder="' + (wed ? 'Khala Shazia' : 'Name') + '"></div><div class="field"><label for="gp">' + (wed ? 'Phone' : tour ? 'Looks after' : 'Programme') + '</label><input id="gp" placeholder="' + (wed ? '0300 1234567' : tour ? 'Snacks' : 'BSCS · 3rd') + '"></div>' + (wed ? '<div class="field"><span class="lbl2">Side</span>' + seg('Side', ["Bride's side", "Groom's side"], "Bride's side") + '</div><div class="field"><label for="gc">How many people</label><input id="gc" type="number" min="1" value="2"></div>' : ''), 'Add')
+        + '</div>';
+      function draw(){
+        var list = rows.filter(function(r){ return (side === 'All' || r[1] === side) && (stat === 'All' || ({ Confirmed: 'ok', Waiting: 'wait', Declined: 'no' })[stat] === r[2]) && r[0].toLowerCase().indexOf(q) > -1; });
+        document.getElementById('gbody').innerHTML = list.map(function(r, i){ var lbl = { ok: tour ? 'Paid up' : wed ? 'Confirmed' : 'Registered', wait: 'Waiting', no: 'Declined' }[r[2]]; return '<tr><td><div class="who">' + av(r[0], i) + '<span>' + esc(r[0]) + '<small>' + esc(wed ? r[4] : '') + '</small></span></div></td><td>' + esc(r[1]) + '</td><td class="num">' + (tour ? 'Rs ' + fmt(r[3]) : wed ? (r[3] ? r[3] + ' people' : '–') : esc(r[4])) + '</td><td style="text-align:right"><span class="pill ' + r[2] + '">' + lbl + '</span></td></tr>'; }).join('');
+        document.getElementById('gempty').hidden = list.length > 0;
+        gsap.from('#gbody tr', { y: 14, opacity: 0, stagger: .025, duration: .5, ease: 'power3.out' });
+      }
+      draw();
+      document.getElementById('gq').addEventListener('input', function(){ q = this.value.trim().toLowerCase(); draw(); });
+      mainView.querySelectorAll('#gside button, #gstat button').forEach(function(b){ b.addEventListener('click', function(){ var g = b.parentElement; g.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); }); if (g.id === 'gside') side = b.dataset.v; else stat = b.dataset.v; draw(); }); });
+      var rem = document.getElementById('remind'); if (rem) rem.addEventListener('click', function(){ rem.innerHTML = '<span class="spin" style="border-color:rgba(0,0,0,.2);border-top-color:currentColor"></span>Sending…'; setTimeout(function(){ rem.textContent = 'Reminder sent ✓'; toast('Reminder link sent to ' + wait + ' people who haven\'t replied'); }, 900); });
+      var d = document.getElementById('gDrawer');
+      d.querySelectorAll('.seg button').forEach(function(b){ b.addEventListener('click', function(){ b.parentElement.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); }); }); });
+      document.getElementById('addG').addEventListener('click', function(){ openDrawer(d); });
+      wireDrawer(d, function(f){ var n = f.querySelector('#gn').value.trim(), p = f.querySelector('#gp').value.trim(), sd = f.querySelector('.seg [aria-pressed="true"]'); rows.unshift([n, wed ? (sd ? sd.dataset.v : "Bride's side") : (p || '—'), 'wait', wed ? +(f.querySelector('#gc').value || 1) : 0, wed ? p : 'Invite sent']); e.total++; draw(); toast(n + ' added. Their invite link is ready to share.'); });
+    }
+
+    /* ---------------- BUDGET ---------------- */
+    function donut(cats, total){
+      var R = 80, C = 2 * Math.PI * R, off = 0, cols = ['var(--acc)','var(--acc2)','#8B6B4A','#C9A3A0','#6E8B74','#A08CB0'];
+      return '<svg viewBox="0 0 220 220" width="220" height="220" class="donut" aria-hidden="true"><circle cx="110" cy="110" r="' + R + '" fill="none" stroke="var(--line)" stroke-width="26"/>' + cats.map(function(c, i){ var len = C * c[1] / total, s = '<circle cx="110" cy="110" r="' + R + '" fill="none" stroke="' + cols[i % cols.length] + '" stroke-width="26" stroke-dasharray="0 ' + C + '" data-dash="' + Math.max(0, len - 3) + ' ' + C + '" stroke-dashoffset="' + (-off) + '" transform="rotate(-90 110 110)"/>'; off += len; return s; }).join('') + '</svg>';
+    }
+    function renderBudget(e){
+      renderSide(e, 'budget');
+      var ex = SPEND[e.kind], spent = ex.reduce(function(s, x){ return s + x[4]; }, 0);
+      e.spent = Math.max(e.spent, spent);
+      var cats = {}; ex.forEach(function(x){ cats[x[2]] = (cats[x[2]] || 0) + x[4]; }); var catArr = Object.keys(cats).map(function(k){ return [k, cats[k]]; }).sort(function(a, b){ return b[1] - a[1]; });
+      var by = {}; ex.forEach(function(x){ by[x[3]] = (by[x[3]] || 0) + x[4]; });
+      var pct = Math.round(spent / e.budget * 100), left2 = e.budget - spent, cols = ['var(--acc)','var(--acc2)','#8B6B4A','#C9A3A0','#6E8B74','#A08CB0'];
+      mainView.innerHTML = '<div class="themed ' + e.theme + '" style="min-height:100vh">' + pageHead(e, 'Budget', e.kind === 'tour' ? 'who paid what' : 'every rupee', 'Budget', '<button type="button" class="x-btn sm" id="addX">+ Log expense</button>')
+        + '<div class="budhero in"><div class="bh-l"><small>Spent so far</small><b class="big">Rs <span data-count="' + spent + '">0</span></b><span style="color:var(--soft)">of Rs ' + fmt(e.budget) + ' · Rs ' + fmt(left2) + ' left</span>'
+        + '<div class="meter2"><i data-bar="' + Math.min(1, spent / e.budget) + '" style="background:' + (pct >= 80 ? '#B8701F' : 'var(--acc)') + '"></i><span class="mark" style="left:80%"><em>80% warning</em></span></div>'
+        + (pct >= 80 ? '<p class="warn">You\'re at ' + pct + '% of your budget. Time to check the big items.</p>' : '<p style="color:var(--soft);font-size:14px">You\'re at ' + pct + '%. The warning turns on at 80%.</p>')
+        + (e.kind === 'tour' ? '<div class="split2"><b>Fair share</b><span>Rs ' + fmt(Math.round(spent / PEOPLE.tour.length)) + ' each · ' + PEOPLE.tour.length + ' travellers</span></div>' : '') + '</div>'
+        + '<div class="bh-r">' + donut(catArr, spent) + '<div class="legend">' + catArr.map(function(c, i){ return '<span><i style="background:' + cols[i % cols.length] + '"></i>' + c[0] + '<b>' + Math.round(c[1] / spent * 100) + '%</b></span>'; }).join('') + '</div></div></div>'
+        + '<div class="grid2"><div class="panel2 in"><header><h2>Expenses</h2><span style="font-size:13px;color:var(--soft)">' + ex.length + ' entries</span></header><div class="mtable-wrap"><table class="mtable"><thead><tr><th>When</th><th>What</th><th>Paid by</th><th style="text-align:right">Amount</th></tr></thead><tbody id="xbody">'
+        + ex.map(function(x, i){ return '<tr><td style="color:var(--soft)">' + x[0] + '</td><td>' + esc(x[1]) + '<small style="display:block;color:var(--soft);font-size:12px">' + x[2] + '</small></td><td><div class="who">' + av(x[3], i) + esc(x[3]) + '</div></td><td class="num" style="text-align:right">Rs ' + fmt(x[4]) + '</td></tr>'; }).join('') + '</tbody></table></div></div>'
+        + '<div class="panel2 in"><header><h2>By person</h2></header>' + Object.keys(by).map(function(k){ return '<div class="cat"><span>' + esc(k) + '</span><i><b data-bar="' + by[k] / spent + '"></b></i><span>Rs ' + fmt(by[k]) + '</span></div>'; }).join('') + '</div></div></div>'
+        + drawer('xDrawer', 'Log an expense', '<div class="field"><label for="xa">Amount (Rs)</label><input id="xa" type="number" min="1" required placeholder="18000" inputmode="numeric"></div><div class="field"><label for="xw">What was it for?</label><input id="xw" required placeholder="Stage flowers"></div><div class="field"><label for="xc">Category</label><select id="xc">' + catArr.map(function(c){ return '<option>' + c[0] + '</option>'; }).join('') + '<option>Other</option></select></div><div class="field"><label for="xb">Paid by</label><select id="xb">' + Object.keys(by).map(function(k){ return '<option>' + k + '</option>'; }).join('') + '</select></div>', 'Log expense')
+        + '</div>';
+      setTimeout(function(){ mainView.querySelectorAll('.donut [data-dash]').forEach(function(c, i){ gsap.to(c, { attr: { 'stroke-dasharray': c.dataset.dash }, duration: 1.6, delay: .3 + i * .12, ease: 'expo.out' }); }); }, 50);
+      var d = document.getElementById('xDrawer');
+      document.getElementById('addX').addEventListener('click', function(){ openDrawer(d); });
+      wireDrawer(d, function(f){ var a = +f.querySelector('#xa').value; ex.unshift(['Today', f.querySelector('#xw').value.trim(), f.querySelector('#xc').value, f.querySelector('#xb').value, a]); toast('Rs ' + fmt(a) + ' logged. The budget is updated for everyone.'); renderBudget(e); intro(mainView); });
+    }
+
+    /* ---------------- TASKS ---------------- */
+    function renderTasks(e){
+      renderSide(e, 'tasks');
+      var b = BOARD[e.kind], mine = false, me = e.kind === 'wed' ? 'Usman' : 'Hammad';
+      function card(t, k, i){ var late = t[2] === 'Today' || t[2] === 'Tomorrow'; return '<article class="tcard' + (t[1] === me ? ' me' : '') + '" data-flip-id="t' + k + i + t[0].replace(/\W/g, '') + '" data-who="' + esc(t[1]) + '"><b>' + esc(t[0]) + '</b><div class="tmeta">' + av(t[1], i) + '<span>' + esc(t[1]) + '</span><span class="due' + (late ? ' late' : '') + '">' + esc(t[2]) + '</span></div><div class="tmove">' + (k !== 'todo' ? '<button type="button" data-mv="-1" aria-label="Move back">←</button>' : '') + (k !== 'done' ? '<button type="button" data-mv="1" aria-label="Move forward">' + (k === 'doing' ? 'Mark done ✓' : 'Start →') + '</button>' : '') + '</div></article>'; }
+      function col(k, name){ return '<section class="tcol in" data-k="' + k + '"><header><b>' + name + '</b><span>' + b[k].length + '</span></header><div class="tlist">' + b[k].map(function(t, i){ return card(t, k, i); }).join('') + '</div></section>'; }
+      var total = b.todo.length + b.doing.length + b.done.length;
+      mainView.innerHTML = '<div class="themed ' + e.theme + '" style="min-height:100vh">' + pageHead(e, 'Tasks', 'who does what', 'Tasks', '<button type="button" class="x-btn sm" id="addT">+ New task</button>')
+        + '<div class="toolbar in"><div class="seg" id="tmine" role="group" aria-label="Show"><button type="button" aria-pressed="true" data-v="all">Everyone</button><button type="button" aria-pressed="false" data-v="me">Only mine (' + me + ')</button></div><div class="tprog"><span><b data-count="' + Math.round(b.done.length / total * 100) + '">0</b>% done</span><i><b data-bar="' + b.done.length / total + '"></b></i></div></div>'
+        + '<div class="board" id="board">' + col('todo', 'To do') + col('doing', 'In progress') + col('done', 'Done') + '</div></div>'
+        + drawer('tDrawer', 'New task', '<div class="field"><label for="tt">Task</label><input id="tt" required placeholder="Book the dholki group"></div><div class="field"><label for="tw">Who does it</label><select id="tw">' + e.members.map(function(m){ return '<option>' + esc(m[0].split(' ')[0]) + '</option>'; }).join('') + '</select></div><div class="field"><label for="td">Deadline</label><input id="td" type="date"></div>', 'Add task')
+        + '</div>';
+      var board = document.getElementById('board'), order = ['todo', 'doing', 'done'];
+      board.addEventListener('click', function(ev){
+        var btn = ev.target.closest('[data-mv]'); if (!btn) return;
+        var art = btn.closest('.tcard'), from = art.closest('.tcol').dataset.k, to = order[order.indexOf(from) + (+btn.dataset.mv)];
+        var idx = Array.prototype.indexOf.call(art.parentElement.children, art), t = b[from].splice(idx, 1)[0]; if (to === 'done') t[2] = 'Done'; b[to].unshift(t);
+        var st = window.Flip ? Flip.getState(board.querySelectorAll('.tcard')) : null;
+        board.querySelector('[data-k="' + to + '"] .tlist').prepend(art);
+        art.outerHTML = card(t, to, 0);
+        var nu = board.querySelector('[data-k="' + to + '"] .tcard');
+        board.querySelectorAll('.tcol').forEach(function(c){ c.querySelector('header span').textContent = c.querySelectorAll('.tcard').length; });
+        if (st) Flip.from(st, { duration: .7, ease: 'expo.inOut', absolute: true, targets: board.querySelectorAll('.tcard') });
+        var tot = b.todo.length + b.doing.length + b.done.length; mainView.querySelector('.tprog b').textContent = Math.round(b.done.length / tot * 100); gsap.to(mainView.querySelector('.tprog i b'), { width: (b.done.length / tot * 100) + '%', scaleX: 1, duration: .8, ease: 'expo.out' });
+        if (to === 'done'){ burst(nu); toast('"' + t[0] + '" is done. Shabash!'); }
+        if (mine) filterMine();
+      });
+      function filterMine(){ board.querySelectorAll('.tcard').forEach(function(c){ c.hidden = mine && c.dataset.who !== me; }); }
+      mainView.querySelectorAll('#tmine button').forEach(function(x){ x.addEventListener('click', function(){ mainView.querySelectorAll('#tmine button').forEach(function(y){ y.setAttribute('aria-pressed', y === x); }); var st = window.Flip ? Flip.getState(board.querySelectorAll('.tcard')) : null; mine = x.dataset.v === 'me'; filterMine(); if (st) Flip.from(st, { duration: .6, ease: 'expo.inOut', onEnter: function(els){ return gsap.fromTo(els, { opacity: 0, scale: .9 }, { opacity: 1, scale: 1, duration: .5 }); }, onLeave: function(els){ return gsap.to(els, { opacity: 0, scale: .9, duration: .3 }); } }); }); });
+      var d = document.getElementById('tDrawer');
+      document.getElementById('addT').addEventListener('click', function(){ openDrawer(d); });
+      wireDrawer(d, function(f){ var dt = f.querySelector('#td').value; b.todo.unshift([f.querySelector('#tt').value.trim(), f.querySelector('#tw').value, dt ? new Date(dt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : 'No date']); toast('Task added and assigned to ' + f.querySelector('#tw').value); renderTasks(e); intro(mainView); });
+    }
+
+    /* ---------------- SETTINGS ---------------- */
+    function renderSettings(e){
+      renderSide(e, 'settings');
+      var cov = COVERS[e.kind], d = new Date(e.date), iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      mainView.innerHTML = '<div class="themed ' + e.theme + '" style="min-height:100vh">' + pageHead(e, 'Settings', 'make it yours', 'Event settings', ' ')
+        + '<form class="panel2 in" id="sform" novalidate><header><h2>Details</h2><span style="font-size:13px;color:var(--soft)">Only Admins can change these</span></header><div class="sgrid">'
+        + '<div class="field full"><label for="s1">Event name</label><input id="s1" value="' + esc(e.title) + '" required></div><div class="field"><label for="s2">Date</label><input id="s2" type="date" value="' + iso + '"></div><div class="field"><label for="s3">Place</label><input id="s3" value="' + esc(e.place) + '"></div><div class="field"><label for="s4">Budget (Rs)</label><input id="s4" type="number" min="0" value="' + e.budget + '"></div></div>'
+        + '<div class="field"><span class="lbl2">Cover photo</span><div class="covers">' + cov.map(function(c){ return '<button type="button" class="cover' + (c === e.img ? ' on' : '') + '" data-img="' + c + '" aria-pressed="' + (c === e.img) + '"><img src="' + c + '" alt=""' + (e.kind === 'uni' ? ' style="filter:grayscale(1)"' : '') + '></button>'; }).join('') + '</div></div>'
+        + '<div style="display:flex;justify-content:flex-end"><button type="submit" class="x-btn">Save changes</button></div></form>'
+        + '<section class="panel2 in danger"><header><h2>Delete this event</h2></header><p style="color:var(--soft)">This removes the event, its guest list, budget and tasks for everyone. It can\'t be undone. Type <b style="color:var(--fg)">' + esc(e.title) + '</b> to confirm.</p><div class="linkout"><label for="dn" class="sr">Event name</label><input id="dn" placeholder="' + esc(e.title) + '" autocomplete="off"><button type="button" class="x-btn danger-btn" id="delBtn" disabled>Delete event</button></div></section></div></div>';
+      var pick = e.img;
+      mainView.querySelectorAll('.cover').forEach(function(c){ c.addEventListener('click', function(){ pick = c.dataset.img; mainView.querySelectorAll('.cover').forEach(function(x){ x.classList.toggle('on', x === c); x.setAttribute('aria-pressed', x === c); }); gsap.fromTo(c, { scale: .92 }, { scale: 1, duration: .6, ease: 'elastic.out(1,.5)' }); }); });
+      document.getElementById('sform').addEventListener('submit', function(ev){ ev.preventDefault(); var t = document.getElementById('s1'); if (!t.value.trim()){ t.setAttribute('aria-invalid', 'true'); t.focus(); return; } e.title = t.value.trim(); e.place = document.getElementById('s3').value; e.budget = +document.getElementById('s4').value || e.budget; if (document.getElementById('s2').value) e.date = document.getElementById('s2').value + 'T19:00:00+05:00'; e.img = pick; renderSide(e, 'settings'); toast('Saved. Everyone sees the new details now.'); });
+      var dn = document.getElementById('dn'), del = document.getElementById('delBtn');
+      dn.addEventListener('input', function(){ del.disabled = dn.value.trim() !== e.title; });
+      del.addEventListener('click', function(){ del.innerHTML = '<span class="spin"></span>Deleting…'; setTimeout(function(){ EVENTS.splice(EVENTS.indexOf(e), 1); toast('"' + e.title + '" was deleted'); location.hash = '#/events'; }, 900); });
+    }
+
+    /* ---------------- PROFILE ---------------- */
+    function renderProfile(){
+      renderSide(null, 'profile');
+      mainView.innerHTML = '<div class="bar"><div class="crumbs"><a href="#/events" style="color:inherit">My events</a> / <b>Profile</b></div></div><div class="wrap" style="max-width:900px">'
+        + '<div class="in pagehead" style="--script:var(--f-script);--h:var(--f-wed);--hw:500;--acc2:var(--gold)"><span class="ph-sc">that\'s you</span><h1>Your profile</h1></div>'
+        + '<form class="panel2 in" id="pform" novalidate style="--line:#E2D6C4;--card:#fff;--r:12px"><div class="prof"><div class="bigav" id="bigav">HA</div><div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;color:var(--ink-soft)">Avatar colour</span><div class="swatches">' + ['#1F3A2E','#B8945A','#8B2252','#0E3B43','#C8874A','#2B2620'].map(function(c, i){ return '<button type="button" style="background:' + c + '" aria-label="Colour ' + (i + 1) + '" aria-pressed="' + (i === 0) + '" data-c="' + c + '"></button>'; }).join('') + '</div></div></div>'
+        + '<div class="sgrid"><div class="field"><label for="p1">Full name</label><input id="p1" value="Hammad Ansar" required></div><div class="field"><label for="p2">Phone</label><input id="p2" value="0300 1234567" inputmode="tel"></div><div class="field full"><label for="p3">Email</label><input id="p3" value="hammad@example.com" readonly style="background:#F6F0E8"><span style="font-size:12px;color:var(--ink-soft)">Your email is your login, so it can\'t be changed here.</span></div></div>'
+        + '<div class="toggles"><label><input type="checkbox" checked> Email me when someone RSVPs</label><label><input type="checkbox" checked> Warn me when a budget passes 80%</label><label><input type="checkbox"> Weekly summary of my events</label></div>'
+        + '<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><a class="x-btn ghost" href="#/">Log out</a><button type="submit" class="x-btn">Save profile</button></div></form></div>';
+      mainView.querySelectorAll('.swatches button').forEach(function(b){ b.addEventListener('click', function(){ mainView.querySelectorAll('.swatches button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); }); gsap.to('#bigav', { backgroundColor: b.dataset.c, duration: .6 }); gsap.fromTo('#bigav', { scale: .9 }, { scale: 1, duration: .8, ease: 'elastic.out(1,.4)' }); }); });
+      document.getElementById('p1').addEventListener('input', function(){ document.getElementById('bigav').textContent = this.value.split(/\s+/).map(function(w){ return w[0] || ''; }).join('').slice(0, 2).toUpperCase() || '?'; });
+      document.getElementById('pform').addEventListener('submit', function(ev){ ev.preventDefault(); toast('Profile saved'); });
+    }
+
+    /* ---------------- INVITES for university and tours, and an expired link ---------------- */
+    function renderInviteOther(kind){
+      var box = document.getElementById('invOther'), e = byId(kind);
+      if (kind === 'expired'){
+        box.className = 'invx inv-exp';
+        box.innerHTML = '<div class="exp-card in"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h1>This invite link has expired</h1><p>Links stop working after the time the Admin chose. Ask whoever sent it for a fresh link, it only takes them a second.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><a class="x-btn" href="#/">Go to Festara</a><a class="x-btn ghost" href="#/login">Log in</a></div></div>';
+        return;
+      }
+      if (kind === 'uni'){
+        box.className = 'invx inv-uni';
+        box.innerHTML = '<div class="iu-hero"><img src="img/conf.jpg" alt="A packed hall"><div class="iu-head in"><span>Computing Society presents</span><h1>' + esc(e.title) + '</h1><p>' + niceDate(e) + ' · ' + esc(e.place) + '</p></div></div>'
+          + '<div class="iu-body"><div class="iu-info in"><h2>Register for your <em>pass</em></h2><p>Talks, a hackathon, the gaming arena and the closing concert. One pass gets you into everything.</p><div class="sgrid" style="max-width:520px"><div class="field"><label for="u1">Your name</label><input id="u1" placeholder="Areeba Shah"></div><div class="field"><label for="u2">Programme</label><input id="u2" placeholder="BSCS · 5th"></div></div><button type="button" class="x-btn" id="getPass">Get my pass</button></div>'
+          + '<div class="ticket" id="ticket" hidden><div class="tk-top"><span>' + esc(e.title) + '</span><b id="tkName">Guest</b><small id="tkProg">Student</small></div><div class="tk-cut"></div><div class="tk-bot"><div class="qr" id="qr2" aria-hidden="true"></div><div><small>Gate</small><b>Main Auditorium</b><small>' + niceDate(e) + '</small></div></div></div></div>';
+        document.getElementById('getPass').addEventListener('click', function(){
+          var n = document.getElementById('u1').value.trim() || 'Areeba Shah', p = document.getElementById('u2').value.trim() || 'BSCS · 5th';
+          document.getElementById('tkName').textContent = n; document.getElementById('tkProg').textContent = p;
+          var t = document.getElementById('ticket'); t.hidden = false;
+          drawQR(n, 'qr2');
+          gsap.fromTo(t, { y: -260, rotate: -6, opacity: 0, clipPath: 'inset(0 0 100% 0)' }, { y: 0, rotate: 2, opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 1.3, ease: 'expo.out' });
+          burst(t); this.textContent = 'Pass ready ✓';
+        });
+        return;
+      }
+      box.className = 'invx inv-tour';
+      box.innerHTML = '<div class="it-hero"><img src="img/lake.jpg" alt="A blue lake among pines"><div class="it-head in"><span>you\'re invited on</span><h1>' + esc(e.title) + '</h1><p>Leaving ' + niceDate(e) + '</p></div></div>'
+        + '<div class="it-body"><div class="route in">' + [['Islamabad','5:00 am · leave'],['Naran','Lunch and chai'],['Babusar Top','Photo stop'],['Chilas','Night stay'],['Karimabad','Two nights'],['Attabad Lake','Boat ride']].map(function(s, i){ return '<div class="stop"><i></i><b>' + s[0] + '</b><small>' + s[1] + '</small></div>'; }).join('') + '</div>'
+        + '<div class="it-card in"><h2>Join the trip</h2><p>Hammad added you as a traveller. You\'ll be able to log what you spend and see your fair share.</p><div class="who-row">' + PEOPLE.tour.map(function(p, i){ return av(p[0], i); }).join('') + '</div><button type="button" class="x-btn" id="joinTrip">Count me in</button></div></div>';
+      gsap.from('.route .stop', { x: -40, opacity: 0, stagger: .1, duration: .8, ease: 'expo.out', delay: .6 });
+      gsap.fromTo('.route', { '--line': 0 }, { '--line': 1, duration: 2, delay: .5, ease: 'expo.inOut' });
+      document.getElementById('joinTrip').addEventListener('click', function(){ var b = this; burst(b); b.parentElement.querySelector('.who-row').insertAdjacentHTML('beforeend', av('You', 6)); gsap.from(b.parentElement.querySelector('.who-row .av:last-child'), { scale: 0, duration: .7, ease: 'elastic.out(1,.4)' }); b.textContent = 'You\'re in ✓'; b.disabled = true; setTimeout(function(){ location.hash = '#/event/tour'; }, 1600); });
+    }
+
+    /* ---------------- forgot / reset password ---------------- */
+    function authExtra(mode){
+      var f = document.getElementById('authForm'), x = document.getElementById('authExtra');
+      f.hidden = mode !== 'login' && mode !== 'register'; x.hidden = !f.hidden;
+      document.querySelector('.auth-tabs').hidden = !f.hidden ? false : true;
+      document.getElementById('authSwitch').hidden = f.hidden;
+      if (!f.hidden) return;
+      var t = document.getElementById('authTitle');
+      if (mode === 'forgot'){
+        t.innerHTML = 'Forgot your <span>password?</span>';
+        x.innerHTML = '<p style="color:var(--ink-soft);max-width:420px">Enter the email you signed up with and we\'ll send you a link to set a new one.</p><div class="field"><label for="fEmail">Email</label><input id="fEmail" type="email" placeholder="you@example.com"><span class="err" hidden></span></div><button type="button" class="x-btn" id="fSend" style="min-height:56px">Send reset link</button><a href="#/login" style="font-size:14px">← Back to log in</a>';
+        document.getElementById('fSend').addEventListener('click', function(){
+          var em = document.getElementById('fEmail'), err = em.parentElement.querySelector('.err');
+          if (!/.+@.+\..+/.test(em.value)){ err.hidden = false; err.textContent = 'Enter an email like name@example.com.'; em.focus(); return; }
+          var b = this; b.innerHTML = '<span class="spin"></span>Sending…';
+          setTimeout(function(){
+            t.innerHTML = 'Check your <span>inbox</span>';
+            x.innerHTML = '<div class="env" aria-hidden="true"><div class="env-flap"></div><div class="env-letter"></div><div class="env-body"></div></div><p style="color:var(--ink-soft);max-width:420px">We sent a reset link to <b style="color:var(--ink)">' + esc(em.value) + '</b>. It works for one hour. Check spam if it isn\'t there in a minute.</p><a class="x-btn" href="#/reset" style="min-height:56px">Open the reset link (demo)</a><a href="#/login" style="font-size:14px">← Back to log in</a>';
+            gsap.timeline().from('.env', { y: 40, opacity: 0, duration: .6, ease: 'expo.out' }).to('.env-flap', { rotateX: 180, duration: .6, ease: 'power2.inOut' }).to('.env-letter', { y: -46, duration: .7, ease: 'expo.out' }, '-=.1');
+          }, 1000);
+        });
+      } else if (mode === 'reset'){
+        t.innerHTML = 'Set a new <span>password</span>';
+        x.innerHTML = '<div class="field"><label for="r1">New password</label><input id="r1" type="password" autocomplete="new-password" placeholder="At least 8 characters"></div><div class="field"><label for="r2">Type it again</label><input id="r2" type="password" autocomplete="new-password"><span class="err" hidden></span></div><button type="button" class="x-btn" id="rSave" style="min-height:56px">Save new password</button>';
+        document.getElementById('rSave').addEventListener('click', function(){
+          var a = document.getElementById('r1'), c = document.getElementById('r2'), err = c.parentElement.querySelector('.err');
+          var msg = a.value.length < 8 ? 'Use at least 8 characters.' : a.value !== c.value ? 'The two passwords don\'t match.' : '';
+          err.hidden = !msg; err.textContent = msg; if (msg){ (a.value.length < 8 ? a : c).focus(); return; }
+          var b = this; b.innerHTML = '<span class="spin"></span>Saving…';
+          setTimeout(function(){ toast('Password changed. Log in with the new one.'); location.hash = '#/login'; }, 900);
+        });
+      }
+      gsap.from(x.children, { y: 30, opacity: 0, stagger: .07, duration: .9, ease: 'expo.out' });
+    }
+
     /* ---------------- router with curtain ---------------- */
     var current = null, busy = false;
     var CURT = { wed:['#1F3A2E','the big day'], uni:['#111010','unforgettable'], tour:['#0E3B43','the road awaits'], app:['#1F3A2E','har jashn, ek jagah'], auth:['#2B2620','welcome'] };
@@ -1475,10 +1865,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     function show(r){
       var screens = app.querySelectorAll('.screen');
       screens.forEach(function(s){ s.classList.remove('on'); });
-      if (r.a === 'login' || r.a === 'register'){ app.querySelector('[data-screen="auth"]').classList.add('on'); renderAuth(r.a); return app.querySelector('[data-screen="auth"]'); }
-      if (r.a === 'invite'){ app.querySelector('[data-screen="invite"]').classList.add('on'); renderInvite(); return app.querySelector('[data-screen="invite"]'); }
+      if (['login','register','forgot','reset'].indexOf(r.a) > -1){ var au = app.querySelector('[data-screen="auth"]'); au.classList.add('on'); renderAuth(r.a === 'register' ? 'register' : 'login'); authExtra(r.a); return au; }
+      if (r.a === 'invite'){ var iv = app.querySelector('[data-screen="invite"]'), k = r.b || 'wed'; iv.classList.add('on'); var wedInv = k === 'wed' || k.indexOf('wed') === 0; iv.querySelector('.invpage').hidden = !wedInv; document.getElementById('invOther').hidden = wedInv; if (wedInv) renderInvite(); else renderInviteOther(k === 'expired' ? 'expired' : byId(k).kind); return iv; }
+      if (r.a === 'profile'){ var sh0 = app.querySelector('[data-screen="shell"]'); sh0.classList.add('on'); renderProfile(); return sh0; }
       var sh = app.querySelector('[data-screen="shell"]'); sh.classList.add('on');
-      if (r.a === 'event'){ var e = byId(r.b); r.c === 'members' ? renderMembers(e) : renderOverview(e); }
+      if (r.a === 'event'){ var e = byId(r.b); ({ members: renderMembers, guests: renderGuests, budget: renderBudget, tasks: renderTasks, settings: renderSettings })[r.c] ? ({ members: renderMembers, guests: renderGuests, budget: renderBudget, tasks: renderTasks, settings: renderSettings })[r.c](e) : renderOverview(e); }
       else renderEvents();
       return sh;
     }
@@ -1488,8 +1879,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       var key = r.a === '' ? 'landing' : (r.a + '/' + r.b + '/' + r.c);
       if (key === current) return;
       var toApp = key !== 'landing', fromLanding = current === null || current === 'landing';
-      var themeKey = r.a === 'event' || r.a === 'invite' ? byId(r.b || 'wed').kind : (r.a === 'login' || r.a === 'register') ? 'auth' : 'app';
-      if (r.a === 'invite') themeKey = 'wed';
+      var themeKey = r.a === 'event' ? byId(r.b).kind : r.a === 'invite' ? (r.b === 'expired' ? 'app' : byId(r.b || 'wed').kind) : ['login','register','forgot','reset'].indexOf(r.a) > -1 ? 'auth' : 'app';
       var c = CURT[themeKey] || CURT.app;
       var first = current === null;
       current = key;
@@ -1512,7 +1902,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         .to(curtain, { clipPath: 'inset(0 0 100% 0)', duration: .8, ease: 'expo.inOut' }, '+=.15');
     }
     window.addEventListener('hashchange', route);
-    app.addEventListener('click', function(ev){ var c = ev.target.closest('[data-open]'); if (c){ location.hash = '#/event/' + c.dataset.open; return; } var f = ev.target.closest('[data-filter]'); if (f){ filter = f.dataset.filter; app.querySelectorAll('[data-filter]').forEach(function(x){ x.setAttribute('aria-pressed', x === f); }); applyFilter(true); return; } if (ev.target.closest('#newCard')) openChooser(ev.target.closest('#newCard')); });
+    app.addEventListener('keydown', function(ev){ var g = ev.target.closest && ev.target.closest('[data-go]'); if (g && (ev.key === 'Enter' || ev.key === ' ')){ ev.preventDefault(); location.hash = g.dataset.go; } });
+    app.addEventListener('click', function(ev){ var g = ev.target.closest('[data-go]'); if (g && !ev.target.closest('a')){ location.hash = g.dataset.go; return; } var c = ev.target.closest('[data-open]'); if (c){ location.hash = '#/event/' + c.dataset.open; return; } var f = ev.target.closest('[data-filter]'); if (f){ filter = f.dataset.filter; app.querySelectorAll('[data-filter]').forEach(function(x){ x.setAttribute('aria-pressed', x === f); }); applyFilter(true); return; } if (ev.target.closest('#newCard')) openChooser(ev.target.closest('#newCard')); });
 
     /* ---------------- chooser → planner → new event ---------------- */
     var chooser = document.getElementById('chooser');
