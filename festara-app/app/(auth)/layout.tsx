@@ -15,7 +15,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <aside className="hidden items-center justify-center border-l bg-secondary p-12 lg:flex" aria-hidden>
           <div className="grid w-full max-w-sm gap-4">
             <span className="lbl text-muted-foreground">Your events live here</span>
-            <EventCard event={{ name: "NUML Tech Fest 2027", type: "university_event", eventDate: "2027-03-20", location: "NUML Islamabad", coverColor: "night", role: "admin", memberCount: 14 }} />
+            <EventCard event={{ name: "Spring Tech Fest 2027", type: "university_event", eventDate: "2027-03-20", location: "Main Hall, Multan", coverColor: "night", role: "admin", memberCount: 14 }} />
           </div>
         </aside>
       </div>

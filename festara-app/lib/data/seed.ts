@@ -16,7 +16,7 @@ export function seedStore(store: Store): Store {
       description: "Family only. Dholki at 7, dinner at 9.", totalBudget: 500000, coverColor: "mehndi", createdBy: "u-rashid", createdAt: at },
     { id: "e-naran", name: "Naran Trip", type: "trip", eventDate: "2027-06-20", location: "Naran, Khyber Pakhtunkhwa",
       description: null, totalBudget: 150000, coverColor: "sky", createdBy: "u-hamza", createdAt: at },
-    { id: "e-fest", name: "NUML Tech Fest 2027", type: "university_event", eventDate: "2027-03-20", location: "NUML Islamabad",
+    { id: "e-fest", name: "Spring Tech Fest 2027", type: "university_event", eventDate: "2027-03-20", location: "Main Hall, Multan",
       description: null, totalBudget: 350000, coverColor: "night", createdBy: "u-areeba", createdAt: at },
   );
   store.members.push(

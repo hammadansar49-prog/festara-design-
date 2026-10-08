@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${hanken.variable} ${fraunces.variable}`}>
-      <body className="min-h-dvh bg-background text-foreground antialiased">
+    <html lang="en" suppressHydrationWarning className={`${hanken.variable} ${fraunces.variable}`}>
+      <body suppressHydrationWarning className="min-h-dvh bg-background text-foreground antialiased">
         {children}
         <Toaster />
       </body>
