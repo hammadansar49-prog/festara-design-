@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Festara</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1069,7 +1074,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     ScrollTrigger.addEventListener('scrollEnd', function(){
       var st = ScrollTrigger.getById('hz');
       if (!st || !st.isActive || snapping) return;
-      var raw = st.progress * (n - 1), i = lastDir > 0 ? Math.ceil(raw - .18) : Math.floor(raw + .18);
+      var raw = st.progress * (n - 1), i = lastDir > 0 ? Math.ceil(raw - .04) : Math.floor(raw + .04);
       i = Math.max(0, Math.min(n - 1, i));
       var y = st.start + (st.end - st.start) * i / (n - 1);
       if (Math.abs(window.scrollY - y) < 4) return;
