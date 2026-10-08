@@ -1,12 +1,7 @@
-import { Wordmark } from "@/components/brand/wordmark";
-import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
+import { getDataSource } from "@/lib/data";
 
-export default function Home() {
-  return (
-    <main className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center gap-6 px-4">
-      <Wordmark className="h-10 w-auto self-start" />
-      <h1 className="font-display text-4xl">A calm place for people planning something together.</h1>
-      <Button className="w-fit">Create event</Button>
-    </main>
-  );
+export default async function Home() {
+  const user = await (await getDataSource()).getCurrentUser();
+  redirect(user ? "/events" : "/login");
 }
