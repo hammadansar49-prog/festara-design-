@@ -213,9 +213,10 @@ section:first-of-type p{animation-delay:.8s!important}
 .journey h2,.bento-sec h2,.faq h2{font-size:clamp(34px,4.2vw,60px)!important}
 .j-track{position:relative;display:flex;flex-direction:column;gap:28px;padding:8px 0}
 .j-line{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:#23202A;border-radius:2px;overflow:hidden}
-.j-line i{position:absolute;inset:0;background:linear-gradient(to bottom,var(--g1),var(--g2),var(--accent));transform-origin:top;transform:scaleY(1)}
+.j-line i{position:absolute;inset:0;background:linear-gradient(to bottom,var(--g1),var(--g2),var(--accent));transform-origin:top;transform:scaleY(1);transition:transform .15s linear}
 .j-item{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center}
-.j-dot{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;box-shadow:0 0 0 5px #0D0C10,0 0 0 6px #3A3540;z-index:2}
+.j-dot{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;box-shadow:0 0 0 5px #0D0C10,0 0 0 6px #3A3540;z-index:2;scale:.7;transition:scale .4s cubic-bezier(.22,1,.36,1),box-shadow .4s}
+.j-dot.lit{scale:1;box-shadow:0 0 0 5px #0D0C10,0 0 0 6px var(--accent),0 0 22px var(--accent)}
 .j-card{grid-column:1;justify-self:end;width:auto;max-width:440px;min-width:0;margin-right:44px;padding:24px;border-radius:20px;background:#17151C;border:1px solid #2A2630;display:flex;flex-direction:column;gap:8px;transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .3s}
 .j-item:nth-of-type(even) .j-card{grid-column:2;justify-self:start;margin:0 0 0 44px}
 .j-card:hover{transform:translateY(-4px);border-color:var(--accent)}
@@ -265,11 +266,9 @@ section:first-of-type p{animation-delay:.8s!important}
 
 @keyframes count-in{from{opacity:0;letter-spacing:.2em}to{opacity:1;letter-spacing:0}}
 @supports (animation-timeline: view()){
-  .j-line i{animation:j-fill linear both;animation-timeline:view();animation-range:entry 30% exit 60%}
   .b-card,.faq details{animation:j-pop linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
   .j-card{animation:j-open-l linear both;animation-timeline:view();animation-range:entry 5% cover 35%}
   .j-item:nth-of-type(even) .j-card{animation-name:j-open-r}
-  .j-dot{animation:j-dot linear both;animation-timeline:view();animation-range:entry 40% cover 50%}
   .b-bar i{animation:bar-in linear both;animation-timeline:view();animation-range:entry 20% cover 45%}
   .b-big{animation:count-in linear both;animation-timeline:view();animation-range:entry 5% cover 35%}
 }
@@ -682,6 +681,16 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
 <script type="text/x-dc" data-dc-script data-props='{"g1":{"editor":"color","default":"#FF8A65","options":["#FF8A65","#9EE6D0","#FF9A8B","#F4EDE1"],"section":"Text gradient"},"g2":{"editor":"color","default":"#E85D9A","options":["#E85D9A","#6FA8FF","#E8B4D8","#FECF6A"],"section":"Text gradient"},"$preview":{"width":1440,"height":2900}}'>
 class Component extends DCLogic {
 componentDidMount() {
+  const fillLine = () => {
+    const line = document.querySelector('.j-line'); if (!line) return;
+    const r = line.getBoundingClientRect(), mid = (window.innerHeight || 800) * 0.6;
+    const k = Math.max(0, Math.min(1, (mid - r.top) / (r.height || 1)));
+    line.firstElementChild.style.transform = 'scaleY(' + k.toFixed(3) + ')';
+    document.querySelectorAll('.j-dot').forEach(d => d.classList.toggle('lit', d.getBoundingClientRect().top < mid));
+  };
+  this._fill = () => requestAnimationFrame(fillLine);
+  document.addEventListener('scroll', this._fill, { capture: true, passive: true });
+  window.addEventListener('resize', this._fill); fillLine();
   try { localStorage.removeItem('festara-colours'); } catch (e) {}
 }
 save(patch) {
