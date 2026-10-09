@@ -80,7 +80,10 @@ aside{animation:rise 1s cubic-bezier(.22,1,.36,1) .15s both}
 aside > article{animation:float 6s ease-in-out infinite}
 h1 em,h2 em{background:linear-gradient(90deg,var(--g1) 0%,var(--g2) 50%,var(--g1) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 5s linear infinite}
 a[style*="999px"]{transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,background-color .25s}
-a[style*="999px"]:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(217,168,78,.7);background:var(--g2)!important}
+a[style*="999px"]:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(217,168,78,.6)}
+a[style*="999px"]{position:relative;overflow:hidden;isolation:isolate}
+a[style*="999px"]::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.22,1,.36,1);pointer-events:none}
+a[style*="999px"]:hover::before{transform:translateX(120%)}
 .ajrak{position:relative;overflow:hidden;background-image:none!important}
 .ajrak > *:not(.art){position:relative;z-index:1}
 .art{position:absolute;z-index:0;right:-20px;bottom:-30px;width:200px;height:200px;color:rgba(255,255,255,.6);pointer-events:none;opacity:.5}

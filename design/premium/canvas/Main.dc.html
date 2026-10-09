@@ -34,7 +34,20 @@ div[style*="grid-template-columns"] > div:hover{transform:translateY(-8px);borde
 div[style*="grid-template-columns"] > div.ajrak:hover{animation-duration:8s}
 a[style*="999px"],button{transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,background-color .25s}
 a[style*="999px"]:hover{transform:translateY(-2px)}
-a[style*="background: var(--accent)"]:hover{box-shadow:0 14px 30px -10px rgba(217,168,78,.7);background:var(--g2)!important}
+/* buttons keep their colour; on hover they lift and a light sheen flows across */
+a[style*="999px"],button[style*="999px"]{position:relative;overflow:hidden;isolation:isolate}
+a[style*="999px"]::before,button[style*="999px"]::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.22,1,.36,1);pointer-events:none}
+a[style*="999px"]:hover::before,button[style*="999px"]:hover::before{transform:translateX(120%)}
+a[style*="999px"]:not([style*="var(--accent)"])::before{background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%)}
+a[style*="background: var(--accent)"]:hover{box-shadow:0 14px 30px -12px rgba(217,168,78,.6)}
+/* Join the mehndi: sheen + glow on hover, press and a glow ring that pulses out on click */
+article a[style*="height: 52px"]{position:relative;overflow:hidden;isolation:isolate;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+article a[style*="height: 52px"]::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(217,168,78,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.22,1,.36,1)}
+article a[style*="height: 52px"]:hover::before{transform:translateX(120%)}
+article a[style*="height: 52px"]:hover{transform:translateY(-2px);box-shadow:0 0 0 3px rgba(217,168,78,.35),0 12px 32px -8px rgba(217,168,78,.55)}
+article a[style*="height: 52px"]:active{transform:scale(.96);animation:join-glow .7s ease-out}
+article a[style*="height: 52px"]:focus-visible{outline:none;box-shadow:0 0 0 3px #0D0C10,0 0 0 5px #D9A84E}
+@keyframes join-glow{0%{box-shadow:0 0 0 0 rgba(217,168,78,.7),0 0 24px rgba(217,168,78,.8)}100%{box-shadow:0 0 0 18px rgba(217,168,78,0),0 0 40px rgba(217,168,78,0)}}
 a[style*="background: var(--accent)"]{animation:glow 2.8s ease-in-out infinite}
 a[style*="background: var(--accent)"] svg{transition:transform .3s}a[style*="background: var(--accent)"]:hover svg{transform:translateX(4px)}
 nav a{position:relative;padding:6px 0;transition:color .2s}nav a:hover{color:#F4EDE1!important}
@@ -68,7 +81,7 @@ span[style*="width: 30px; height: 30px; border-radius: 9px"]{transition:transfor
 span[style*="width: 30px; height: 30px; border-radius: 9px"]:hover{transform:translateY(-4px) scale(1.12)}
 span[style*="border-radius: 999px"]{transition:transform .3s,background-color .3s,color .3s}
 div > span[style*="padding: 6px 12px; border-radius: 999px"]:hover{transform:translateY(-3px)}
-button{cursor:pointer}button:hover{background:var(--g2)!important;transform:translateY(-1px)}
+button{cursor:pointer}button:hover{transform:translateY(-1px)}
 article a[style*="background: #F4EDE1"]{transition:background-color .3s,transform .3s}
 article a[style*="background: #F4EDE1"]:hover{background:var(--accent)!important;transform:translateY(-2px)}
 span[style*="border-radius: 50%"]{transition:transform .4s cubic-bezier(.22,1,.36,1)}
@@ -133,7 +146,13 @@ article .hero-scene{width:42%!important;right:-14px!important;height:100%!import
 article .ajrak{min-height:250px!important}
 article h2{padding-right:0!important;max-width:11ch}
 #occasions .ajrak > *:not(.scene){position:relative;z-index:1}
-#occasions .ajrak{height:320px!important}
+#occasions .ajrak{height:260px!important;padding:24px!important;border-radius:20px!important;cursor:pointer}
+#occasions h3{font-size:clamp(24px,2vw,30px)!important}
+#occasions p{font-size:14px!important;line-height:1.5!important}
+#occasions .ajrak > .card-link{position:absolute!important;inset:0;z-index:3!important;border-radius:inherit}
+#occasions .ajrak > .card-link:focus-visible{outline:2px solid #F4EDE1;outline-offset:3px}
+#occasions .ajrak::after{content:"Create →";position:absolute;right:20px;bottom:20px;z-index:2;padding:6px 12px;border-radius:999px;background:rgba(13,12,16,.35);color:#F4EDE1;font:600 12px 'Plus Jakarta Sans',sans-serif;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .4s cubic-bezier(.22,1,.36,1)}
+#occasions .ajrak:hover::after{opacity:1;transform:none}
 .sc-bloom{animation:sc-spin 40s linear infinite}
 .sc-toran{animation:sc-sway 5s ease-in-out infinite;transform-origin:150px 0}
 .sc-sun{animation:sc-rise 6s ease-in-out infinite}
@@ -177,6 +196,10 @@ code{font-family:'Plus Jakarta Sans',sans-serif!important;font-size:13px!importa
   article a[style*="height: 52px"]{height:44px!important;flex:none!important}
 }
 @media (max-width:600px){ section:last-of-type .art{display:none!important} section:last-of-type .ajrak{padding:52px 22px!important} }
+/* less air around the marquee */
+section:first-of-type{padding-bottom:28px!important}
+#how{padding-top:44px!important}
+.marquee{padding-top:12px!important;padding-bottom:12px!important;gap:6px!important}
 /* closing banner: shorter, crisp headline, both drawings sit whole inside their corners */
 section:last-of-type .ajrak{padding:72px 40px!important;gap:24px!important}
 section:last-of-type .ajrak h2{text-shadow:none!important;max-width:16ch!important;font-size:clamp(36px,4.2vw,60px)!important}
@@ -381,6 +404,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
     <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -0.02em">Built for the events <em style="color: var(--g1)">we actually</em> have.</h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
       <div class="ajrak" style="background-color: #8E2A1E; border-radius: 24px; padding: 32px; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between">
+        <a class="card-link" href="Events.dc.html#create" aria-label="Create a wedding event"></a>
         <svg class="scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
           <g class="sc-toran"><path d="M40 0 Q150 46 260 0" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2"></path>
             <path d="M70 13l7 12-7 12-7-12z M110 25l7 12-7 12-7-12z M150 29l7 12-7 12-7-12z M190 25l7 12-7 12-7-12z M230 13l7 12-7 12-7-12z" fill="#fff" fill-opacity=".18"></path></g>
@@ -395,6 +419,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
         <div><h3 style="margin: 0 0 10px; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 46px; line-height: 1">Mehndi, baraat, walima</h3><p style="margin: 0; color: #F2D9CF; line-height: 1.55">Each function its own event. One family, one plan.</p></div>
       </div>
       <div class="ajrak" style="background-color: #1E3F66; border-radius: 24px; padding: 32px; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between">
+        <a class="card-link" href="Events.dc.html#create" aria-label="Create a trip"></a>
         <svg class="scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
           <g class="sc-sun"><circle cx="210" cy="96" r="34" fill="#fff" fill-opacity=".16"></circle><circle cx="210" cy="96" r="50" fill="none" stroke="#fff" stroke-opacity=".14"></circle><circle cx="210" cy="96" r="68" fill="none" stroke="#fff" stroke-opacity=".08"></circle></g>
           <path d="M0 210 70 120 112 168 170 92 236 176 300 130V300H0z" fill="#fff" fill-opacity=".06"></path>
@@ -408,6 +433,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
         <div><h3 style="margin: 0 0 10px; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 46px; line-height: 1">Naran, four days</h3><p style="margin: 0; color: #CFDDEE; line-height: 1.55">Who's coming, who's driving, what it costs per head.</p></div>
       </div>
       <div class="ajrak" style="background-color: #3B2350; border-radius: 24px; padding: 32px; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between">
+        <a class="card-link" href="Events.dc.html#create" aria-label="Create a society event"></a>
         <svg class="scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
           <g class="sc-beam-l" style="transform-origin:90px 0"><path d="M80 0h20l70 300H40z" fill="#fff" fill-opacity=".06"></path></g>
           <g class="sc-beam-r" style="transform-origin:240px 0"><path d="M230 0h20l40 300H150z" fill="#fff" fill-opacity=".06"></path></g>

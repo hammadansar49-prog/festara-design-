@@ -24,7 +24,11 @@ aside a{transition:background-color .25s,color .25s}aside a:hover{background:#1E
 .ev .ajrak b,.ev .ajrak h2{transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .ev:hover .ajrak b,.ev:hover .ajrak h2{transform:translateX(6px)}
 a[style*="999px"],button{transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,background-color .25s}
-a[style*="background: var(--accent)"]:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(217,168,78,.7);background:var(--g2)!important}
+a[style*="background: var(--accent)"]:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(217,168,78,.6)}
+a[style*="999px"],button[style*="999px"]{position:relative;overflow:hidden;isolation:isolate}
+a[style*="999px"]::before,button[style*="999px"]::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.22,1,.36,1);pointer-events:none}
+a[style*="999px"]:hover::before,button[style*="999px"]:hover::before{transform:translateX(120%)}
+button[style*="transparent"]::before{background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%)}
 a[style*="background: var(--accent)"]{animation:glow 2.8s ease-in-out infinite}
 a[style*="dashed"]{transition:border-color .3s,background-color .3s}
 a[style*="dashed"]:hover{border-color:var(--accent)!important;background:rgba(217,168,78,.05)}
@@ -137,6 +141,39 @@ b[style*="font-size: 52px"]{font-size:clamp(34px,4vw,52px)!important}
 @keyframes a-tw{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.5);opacity:.3}}
 @keyframes a-road{to{stroke-dashoffset:-28}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* compact pass: one notch smaller everywhere */
+aside{max-width:236px!important;padding:22px 14px!important;gap:4px!important}
+aside > a:first-child{font-size:24px!important;padding:0 8px 18px!important}
+aside > a:first-child .logo{width:20px!important;height:25px!important}
+aside > a:not(:first-child){height:38px!important;font-size:14px!important;padding:0 12px!important;border-radius:10px!important}
+aside > a svg{width:16px;height:16px}
+aside > span{font-size:13px!important;height:36px!important;padding:0 12px!important}
+aside > span:first-of-type{font-size:10px!important;height:auto!important;margin:16px 12px 4px!important}
+aside > div:last-child{padding:10px!important}
+aside > div:last-child span[style*="width: 38px"]{width:32px!important;height:32px!important;font-size:11px!important}
+main{padding:32px 40px 56px!important;gap:28px!important}
+main span[style*="text-transform: uppercase"]{font-size:11px!important}
+h1{font-size:clamp(34px,3.6vw,50px)!important}
+a[style*="999px"],button[style*="999px"]{height:36px!important;padding:0 16px!important;font-size:13px!important}
+a[style*="999px"] svg{width:15px;height:15px}
+div[style*="padding: 4px; border-radius: 999px"] button{height:30px!important;padding:0 14px!important}
+form#create{padding:24px!important;gap:14px!important;border-radius:18px!important}
+form#create h2{font-size:28px!important}
+form#create label{font-size:13px!important;gap:6px!important}
+form#create input{height:42px!important;font-size:14px!important;padding:0 14px!important;border-radius:10px!important}
+form#create button[aria-label="Close"]{width:36px!important;height:36px!important;font-size:13px}
+form#create button[style*="999px"]{height:38px!important}
+.ev .ajrak h2{font-size:clamp(32px,3.4vw,48px)!important}
+.ev > div[style*="padding: 40px"]{padding:28px!important}
+b[style*="font-size: 52px"]{font-size:clamp(28px,3vw,40px)!important}
+div[style*="repeat(4"] > div{padding:12px 4px!important;border-radius:12px!important}
+main > div > h2,main div > h2[style*="font-size: 40px"]{font-size:30px!important}
+.ev b[style*="font-size: 40px"]{font-size:clamp(26px,2vw,32px)!important}
+.ev div[style*="padding: 26px"]{padding:20px!important;min-height:170px!important}
+.ev div[style*="padding: 18px 24px 22px"]{padding:14px 20px 16px!important;font-size:13px!important}
+a[style*="dashed"]{min-height:250px!important}
+a[style*="dashed"] > span:first-child{width:52px!important;height:52px!important;border-radius:16px!important}
+a[style*="dashed"] b{font-size:26px!important}
 </style>
 </head><body>
 <div style="background: #0D0C10; color: #F4EDE1; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; display: flex; flex-wrap: wrap; --accent: #D9A84E; --g1: #FF8A65; --g2: #E85D9A">
@@ -173,6 +210,20 @@ b[style*="font-size: 52px"]{font-size:clamp(34px,4vw,52px)!important}
       </div>
     </div>
 
+    
+      <form id="create" style="border-radius: 24px; background: #17151C; border: 1px solid var(--accent); padding: 32px; display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 40px">New <em style="color: var(--g1)">event</em></h2>
+          <button type="button" onClick="" aria-label="Close" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #3A3540; background: transparent; color: #F4EDE1; cursor: pointer">✕</button></div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+          <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4AA9C">Event name<input type="text" placeholder="Hira's Baraat" style="height: 50px; padding: 0 16px; border: 1px solid #3A3540; border-radius: 14px; background: #0D0C10; color: #F4EDE1; font: 400 16px 'Plus Jakarta Sans', sans-serif"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4AA9C">Date<input type="date" style="height: 50px; padding: 0 16px; border: 1px solid #3A3540; border-radius: 14px; background: #0D0C10; color: #F4EDE1; font: 400 16px 'Plus Jakarta Sans', sans-serif; color-scheme: dark"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #B4AA9C">Place<input type="text" placeholder="Pearl Marquee, Multan" style="height: 50px; padding: 0 16px; border: 1px solid #3A3540; border-radius: 14px; background: #0D0C10; color: #F4EDE1; font: 400 16px 'Plus Jakarta Sans', sans-serif"></label>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px">
+          <button type="button" onClick="" style="height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid #3A3540; background: transparent; color: #F4EDE1; font: 500 15px 'Plus Jakarta Sans', sans-serif; cursor: pointer">Cancel</button>
+          <button type="button" onClick="" style="height: 48px; padding: 0 24px; border-radius: 999px; border: 0; background: var(--accent); color: #17130C; font: 600 15px 'Plus Jakarta Sans', sans-serif; cursor: pointer">Create event</button>
+        </div>
+      </form>
     
 
     
