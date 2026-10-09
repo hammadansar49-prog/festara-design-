@@ -301,13 +301,38 @@ section:first-of-type p{animation-delay:.8s!important}
 .faq summary::after{font-size:18px!important}
 .faq details{border-radius:14px!important}
 .faq details p{padding:0 18px 16px!important;font-size:14px!important}
-/* hero: three invites take turns, sliding in and out */
-.hero-deck{flex:1 1 420px;min-width:0;max-width:500px;display:grid;perspective:1600px}
-.hero-deck>.deck-card{grid-area:1/1;width:100%;max-width:none!important;animation:deck 15s cubic-bezier(.65,0,.35,1) infinite both!important}
-.hero-deck>.dc1{animation-delay:0s!important}.hero-deck>.dc2{animation-delay:5s!important}.hero-deck>.dc3{animation-delay:10s!important}
-.hero-deck:hover>.deck-card{animation-play-state:paused}
-@keyframes deck{0%{opacity:0;translate:70px 0;rotate:y -18deg;scale:.94;z-index:1}5%,28%{opacity:1;translate:0 0;rotate:y 0deg;scale:1;z-index:2}33.3%{opacity:0;translate:-70px 0;rotate:y 18deg;scale:.94;z-index:1}100%{opacity:0;translate:-70px 0;z-index:0}}
-@media (prefers-reduced-motion:reduce){.hero-deck>.deck-card{animation:none}.hero-deck>.dc2,.hero-deck>.dc3{display:none}}
+/* hero: three invites take turns; swipe, drag, scroll sideways or use arrow keys to move them yourself */
+.hero-deck{position:relative;flex:1 1 420px;min-width:0;max-width:500px;display:grid;perspective:1600px;touch-action:pan-y;cursor:grab;outline:none}
+.hero-deck.dragging{cursor:grabbing}
+.hero-deck>.deck-card{grid-area:1/1;width:100%;max-width:none!important;animation:none!important;opacity:0;translate:70px 0;rotate:y -18deg;scale:.94;z-index:1;pointer-events:none;transition:opacity .7s cubic-bezier(.65,0,.35,1),translate .8s cubic-bezier(.65,0,.35,1),rotate .8s cubic-bezier(.65,0,.35,1),scale .8s cubic-bezier(.65,0,.35,1)}
+.hero-deck>.deck-card.left{translate:-70px 0;rotate:y 18deg}
+.hero-deck>.deck-card.on{opacity:1;translate:0 0;rotate:y 0deg;scale:1;z-index:2;pointer-events:auto}
+.hero-deck>.deck-card.snap{transition:none}
+.deck-dots{position:absolute;left:0;right:0;bottom:-26px;display:flex;justify-content:center;gap:8px}
+.deck-dots button{width:8px;height:8px;padding:0;border:0;border-radius:999px;background:#3A3540;cursor:pointer;transition:width .4s cubic-bezier(.22,1,.36,1),background-color .3s}
+.deck-dots button[aria-current="true"]{width:24px;background:var(--accent)}
+.hero-deck:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:30px}
+@media (prefers-reduced-motion:reduce){.hero-deck>.deck-card{transition:opacity .2s linear}}
+/* hero art: brighter and alive */
+.deck-card .hero-scene{width:50%!important;right:-6px!important;-webkit-mask-image:none!important;mask-image:none!important;overflow:visible}
+.deck-card .hero-scene [fill-opacity=".06"],.deck-card .hero-scene [fill-opacity=".07"]{fill-opacity:.14}
+.deck-card .hero-scene [fill-opacity=".09"],.deck-card .hero-scene [fill-opacity=".12"],.deck-card .hero-scene [fill-opacity=".13"]{fill-opacity:.22}
+.deck-card .hero-scene [fill-opacity=".16"],.deck-card .hero-scene [fill-opacity=".18"],.deck-card .hero-scene [fill-opacity=".2"],.deck-card .hero-scene [fill-opacity=".22"]{fill-opacity:.36}
+.deck-card .hero-scene [stroke-opacity=".22"],.deck-card .hero-scene [stroke-opacity=".25"]{stroke-opacity:.5}
+.deck-card .hero-scene{filter:drop-shadow(0 0 14px rgba(255,255,255,.08))}
+.hx-tw{transform-box:fill-box;transform-origin:center;animation:a-tw 2.6s ease-in-out infinite}
+.hx-fall{animation:hx-fall 7s linear infinite}
+@keyframes hx-fall{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translate(-30px,320px) rotate(260deg);opacity:0}}
+.hx-flame{transform-box:fill-box;transform-origin:50% 100%;animation:hx-flick .9s ease-in-out infinite alternate}
+@keyframes hx-flick{from{transform:scale(1,1)}to{transform:scale(.85,1.12)}}
+.hx-glow{animation:logo-glow 2.4s ease-in-out infinite}
+.hx-cloud{animation:hx-drift 14s ease-in-out infinite alternate}
+@keyframes hx-drift{to{transform:translateX(60px)}}
+.hx-car{offset-path:path("M150 300C140 280 196 270 176 252S150 236 168 228");offset-rotate:auto;animation:hx-car 6s ease-in-out infinite}
+@keyframes hx-car{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes a-tw{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.4);opacity:.3}}
+@media (prefers-reduced-motion:reduce){.hx-fall,.hx-car,.hx-cloud,.hx-flame,.hx-tw{animation:none}}
+.hero-deck>.deck-card{align-self:stretch;display:flex;flex-direction:column}.hero-deck>.deck-card>.ajrak{flex:1}
 /* less air around the marquee */
 section:first-of-type{padding-bottom:28px!important}
 #how{padding-top:44px!important}
@@ -427,7 +452,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
       </div>
     </div>
 
-    <div class="hero-deck">
+    <div class="hero-deck" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Invites, swipe or use arrow keys">
     <article class="deck-card dc1" style="flex: 1 1 420px; min-width: 0; max-width: 500px; border-radius: 28px; overflow: hidden; background: #17151C; border: 1px solid #2A2630; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9)">
       <div class="ajrak" style="background-color: #1F4D3A; padding: 36px; min-height: 340px; display: flex; flex-direction: column; justify-content: space-between">
         <svg class="scene hero-scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
@@ -439,7 +464,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
             <ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(45 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(90 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(135 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(180 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(225 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(270 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(315 150 190)"></ellipse>
             <circle cx="150" cy="190" r="16" fill="#fff" fill-opacity=".22"></circle></g>
           <path d="M70 300V170c0-58 36-100 80-118 44 18 80 60 80 118v130" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1.2"></path>
-        </svg>
+        <g class="hx-petals"><ellipse class="hx-fall" style="animation-delay:0s;animation-duration:7s" cx="60" cy="-10" rx="4" ry="7" fill="#FF9A8B"/><ellipse class="hx-fall" style="animation-delay:2.2s;animation-duration:8s" cx="120" cy="-10" rx="4" ry="7" fill="#FECF6A"/><ellipse class="hx-fall" style="animation-delay:4s;animation-duration:6.5s" cx="200" cy="-10" rx="4" ry="7" fill="#FF9A8B"/><ellipse class="hx-fall" style="animation-delay:1.2s;animation-duration:9s" cx="250" cy="-10" rx="4" ry="7" fill="#F4EDE1"/><ellipse class="hx-fall" style="animation-delay:5.4s;animation-duration:7.5s" cx="170" cy="-10" rx="4" ry="7" fill="#FECF6A"/></g><g class="hx-diya"><path d="M122 276c6 12 50 12 56 0z" fill="#E8A54B"/><path d="M118 276h64" stroke="#FFD58A" stroke-width="2"/><ellipse class="hx-glow" cx="150" cy="262" rx="22" ry="22" fill="#FFC86B" fill-opacity=".25"/><path class="hx-flame" d="M150 250c6 8 7 14 0 22-7-8-6-14 0-22z" fill="#FFD27A"/></g><path class="hx-tw" style="animation-delay:0s" d="M60 114l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/><path class="hx-tw" style="animation-delay:1s" d="M255 144l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/><path class="hx-tw" style="animation-delay:0.6s" d="M100 54l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/><path class="hx-tw" style="animation-delay:1.6s" d="M235 224l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/></svg>
         <div style="display: flex; justify-content: space-between; align-items: center">
           <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E2D3B0">You're invited</span>
           <span style="padding: 6px 12px; border-radius: 999px; background: rgba(13,12,16,.35); font-size: 13px; color: #F4EDE1">34 days</span>
@@ -469,7 +494,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
           <path d="M0 272 80 236 150 262 230 228 300 252V300H0z" fill="#fff" fill-opacity=".13"></path>
           <path class="sc-road" d="M150 300C140 280 196 270 176 252S150 236 168 228" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-dasharray="5 7"></path>
           <g class="sc-birds" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.4"><path d="M60 70q7-7 14 0q7-7 14 0"></path><path d="M98 52q5-5 10 0q5-5 10 0"></path></g>
-        </svg>
+        <g class="hx-cloud"><path d="M40 70c0-10 14-14 20-6 4-10 22-10 24 2 10 0 12 12 2 14H44c-8 0-10-8-4-10z" fill="#fff" fill-opacity=".35"/></g><g fill="#0F2742" fill-opacity=".75"><path d="M40 200l12 30h-24z M40 212l16 32h-32z"/><path d="M70 214l10 26h-20z M70 224l14 28h-28z"/><path d="M262 206l12 30h-24z M262 218l16 32h-32z"/><path d="M236 222l9 24h-18z M236 231l13 26h-26z"/></g><g class="hx-car"><rect x="-26" y="-10" width="26" height="10" rx="3" fill="#FECF6A"/><rect x="-21" y="-17" width="15" height="8" rx="2" fill="#FECF6A"/><circle cx="-20" cy="1" r="3" fill="#0D0C10"/><circle cx="-6" cy="1" r="3" fill="#0D0C10"/></g><path class="hx-tw" style="animation-delay:0s" d="M110 34l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/><path class="hx-tw" style="animation-delay:1.2s" d="M280 54l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/></svg>
         <div style="display: flex; justify-content: space-between; align-items: center">
           <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E2D3B0">You're invited</span>
           <span style="padding: 6px 12px; border-radius: 999px; background: rgba(13,12,16,.35); font-size: 13px; color: #F4EDE1">56 days</span>
@@ -499,7 +524,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
           <path d="M40 300h220v-26H40z" fill="#fff" fill-opacity=".12"></path>
           <g class="sc-bulbs" fill="#fff"><circle cx="72" cy="196" r="2.6" fill-opacity=".5"></circle><circle cx="96" cy="160" r="2.6" fill-opacity=".5"></circle><circle cx="126" cy="138" r="2.6" fill-opacity=".5"></circle><circle cx="150" cy="132" r="2.6" fill-opacity=".5"></circle><circle cx="174" cy="138" r="2.6" fill-opacity=".5"></circle><circle cx="204" cy="160" r="2.6" fill-opacity=".5"></circle><circle cx="228" cy="196" r="2.6" fill-opacity=".5"></circle></g>
           <path d="M150 196l26 10-26 10-26-10z M126 210v14c0 8 48 8 48 0v-14" fill="#fff" fill-opacity=".22"></path>
-        </svg>
+        <ellipse class="hx-glow" cx="150" cy="270" rx="110" ry="26" fill="#E8B4D8" fill-opacity=".22"/><g><rect class="hx-fall" style="animation-delay:0s;animation-duration:5s" x="50" y="-10" width="5" height="9" rx="1" fill="#FECF6A"/><rect class="hx-fall" style="animation-delay:1.4s;animation-duration:6s" x="90" y="-10" width="5" height="9" rx="1" fill="#9EE6D0"/><rect class="hx-fall" style="animation-delay:2.6s;animation-duration:5.5s" x="140" y="-10" width="5" height="9" rx="1" fill="#FF9A8B"/><rect class="hx-fall" style="animation-delay:0.7s;animation-duration:6.5s" x="190" y="-10" width="5" height="9" rx="1" fill="#FECF6A"/><rect class="hx-fall" style="animation-delay:3.4s;animation-duration:5s" x="230" y="-10" width="5" height="9" rx="1" fill="#6FA8FF"/><rect class="hx-fall" style="animation-delay:2s;animation-duration:6s" x="270" y="-10" width="5" height="9" rx="1" fill="#FF9A8B"/></g><path class="hx-tw" style="animation-delay:0s" d="M70 84l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/><path class="hx-tw" style="animation-delay:0.8s" d="M250 104l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/><path class="hx-tw" style="animation-delay:1.6s" d="M160 34l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#FFE7B0"/></svg>
         <div style="display: flex; justify-content: space-between; align-items: center">
           <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E2D3B0">You're invited</span>
           <span style="padding: 6px 12px; border-radius: 999px; background: rgba(13,12,16,.35); font-size: 13px; color: #F4EDE1">148 days</span>
@@ -519,6 +544,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
         <a href="SignIn.dc.html" style="display: grid; place-items: center; height: 52px; border-radius: 14px; background: #F4EDE1; color: #0D0C10; text-decoration: none; font-weight: 600">Join the fest</a>
       </div>
     </article>
+      <div class="deck-dots"><button type="button" aria-label="Mehndi invite"></button><button type="button" aria-label="Naran trip invite"></button><button type="button" aria-label="Tech fest invite"></button></div>
     </div>
   </section>
 
@@ -751,6 +777,32 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
 <script type="text/x-dc" data-dc-script data-props='{"g1":{"editor":"color","default":"#FF8A65","options":["#FF8A65","#9EE6D0","#FF9A8B","#F4EDE1"],"section":"Text gradient"},"g2":{"editor":"color","default":"#E85D9A","options":["#E85D9A","#6FA8FF","#E8B4D8","#FECF6A"],"section":"Text gradient"},"$preview":{"width":1440,"height":2900}}'>
 class Component extends DCLogic {
 componentDidMount() {
+  // hero deck: auto-advances, and follows swipe, drag, sideways scroll, dots and arrow keys
+  const deck = document.querySelector('.hero-deck');
+  if (deck) {
+    const cards = [...deck.querySelectorAll('.deck-card')], dots = [...deck.querySelectorAll('.deck-dots button')];
+    let i = 0, busy = false;
+    const paint = () => { cards.forEach((c, k) => { c.classList.toggle('on', k === i); c.setAttribute('aria-hidden', k === i ? 'false' : 'true'); }); dots.forEach((d, k) => d.setAttribute('aria-current', k === i ? 'true' : 'false')); };
+    const go = (n, dir) => {
+      if (busy || n === i) return; busy = true; setTimeout(() => { busy = false; }, 650);
+      const out = cards[i], inc = cards[(n + cards.length) % cards.length];
+      inc.classList.add('snap'); inc.classList.toggle('left', dir < 0); void inc.offsetWidth; inc.classList.remove('snap');
+      out.classList.toggle('left', dir > 0);
+      i = (n + cards.length) % cards.length; paint();
+    };
+    const next = () => go(i + 1, 1), prev = () => go(i - 1, -1);
+    const restart = () => { clearInterval(this._deckT); this._deckT = setInterval(() => { if (!deck.matches(':hover')) next(); }, 5000); };
+    paint(); restart();
+    dots.forEach((d, k) => d.addEventListener('click', () => { go(k, k > i ? 1 : -1); restart(); }));
+    deck.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { next(); restart(); } if (e.key === 'ArrowLeft') { prev(); restart(); } });
+    let acc = 0;
+    deck.addEventListener('wheel', (e) => { if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; e.preventDefault(); acc += e.deltaX; if (Math.abs(acc) > 40) { acc > 0 ? next() : prev(); acc = 0; restart(); } }, { passive: false });
+    let x0 = null, moved = false;
+    deck.addEventListener('pointerdown', (e) => { x0 = e.clientX; moved = false; deck.classList.add('dragging'); });
+    const end = (e) => { if (x0 == null) return; const dx = e.clientX - x0; x0 = null; deck.classList.remove('dragging'); if (Math.abs(dx) > 40) { moved = true; dx < 0 ? next() : prev(); restart(); } };
+    window.addEventListener('pointerup', end); window.addEventListener('pointercancel', () => { x0 = null; deck.classList.remove('dragging'); });
+    deck.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  }
   // copying: the Copy buttons put the Festara link on the clipboard, and any text copied from the page carries the link too
   const siteUrl = () => { try { return window.top.location.href.split('#')[0]; } catch (e) { return location.href.split('#')[0]; } };
   const put = (t) => { try { if (navigator.clipboard) return navigator.clipboard.writeText(t); } catch (e) {} const a = document.createElement('textarea'); a.value = t; a.style.position = 'fixed'; a.style.opacity = '0'; document.body.appendChild(a); a.select(); try { document.execCommand('copy'); } catch (e) {} a.remove(); };
