@@ -324,6 +324,9 @@ section:first-of-type p{animation-delay:.8s!important}
 @keyframes a-tw{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.4);opacity:.3}}
 @media (prefers-reduced-motion:reduce){.hx-fall,.hx-car,.hx-cloud,.hx-flame,.hx-tw{animation:none}}
 .hero-deck>.deck-card{align-self:stretch;display:flex;flex-direction:column}.hero-deck>.deck-card>.ajrak{flex:1}
+html,body,x-dc,x-dc > div,body > div{overflow-x:clip!important;max-width:100%}
+section:has(>.hero-deck){overflow-x:clip;overflow-y:visible}
+.hero-deck>.deck-card:not(.on){translate:40px 0}.hero-deck>.deck-card.left:not(.on){translate:-40px 0}
 /* less air around the marquee */
 section:first-of-type{padding-bottom:28px!important}
 #how{padding-top:44px!important}
