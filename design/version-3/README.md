@@ -1,7 +1,7 @@
 # Festara design, version 3: "Rangeen Raat"
 
 Built from scratch on top of Anas's real app (`festara-app/`), 100% different from version 2.
-Live version: see the artifact link in CLAUDE.md. Open `index.html` (internet needed for fonts and GSAP/Lenis).
+Local only now. Run `python -m http.server 5180` inside `design/` and open http://localhost:5180/version-3/ (or open index.html directly). Internet needed for fonts and GSAP/Lenis.
 
 **Follows Anas's app exactly:** the same routes (`/`, `/login`, `/register`, `/forgot-password`, `/reset-password`, `/events`, `/events?show=past`, `/events/new`, `/events/[id]`, `/events/[id]/members`, `/events/[id]/settings`, `/profile`, `/invite/[token]`), the seed data (Rashid, Hamza, Sana, Tariq, Areeba; Ayesha's Mehndi, Naran Trip, Spring Tech Fest 2027), the 9 event types, the 6 cover colours, the `can()` permission table, 7-day invite links, the last-Admin rule, the sample 90-day dashboard (same seeded algorithm), Planned Guests/Budget/Tasks, Ctrl K, and light/dark/system theme.
 
