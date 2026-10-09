@@ -255,18 +255,23 @@ section:first-of-type p{animation-delay:.8s!important}
 @keyframes j-pop{from{opacity:0;translate:0 50px;scale:.94}to{opacity:1;translate:0 0;scale:1}}
 @keyframes j-dot{from{box-shadow:0 0 0 5px #0D0C10,0 0 0 6px #3A3540;scale:.6}to{box-shadow:0 0 0 5px #0D0C10,0 0 0 6px var(--accent),0 0 22px var(--accent);scale:1}}
 @keyframes bar-in{from{width:0}}
-@keyframes j-open-l{from{clip-path:inset(0 0 0 100% round 20px);opacity:.2;translate:24px 20px}to{clip-path:inset(0 0 0 0 round 20px);opacity:1;translate:0 0}}
-@keyframes j-open-r{from{clip-path:inset(0 100% 0 0 round 20px);opacity:.2;translate:-24px 20px}to{clip-path:inset(0 0 0 0 round 20px);opacity:1;translate:0 0}}
-@media (max-width:760px){ .j-item:nth-of-type(even) .j-card{animation-name:j-open-l} }
+@keyframes j-open-l{from{rotate:y -88deg;opacity:0}60%{opacity:1}to{rotate:y 0deg;opacity:1}}
+@keyframes j-open-r{from{rotate:y 88deg;opacity:0}60%{opacity:1}to{rotate:y 0deg;opacity:1}}
+.j-item{perspective:1400px}
+.j-card{transform-origin:right center;backface-visibility:hidden;overflow-wrap:anywhere}
+.j-item:nth-of-type(even) .j-card{transform-origin:left center}
+.j-card p{overflow-wrap:normal}
+@media (max-width:760px){ .j-card,.j-item:nth-of-type(even) .j-card{transform-origin:left center} .j-item:nth-of-type(even) .j-card{animation-name:j-open-r} }
+
 @keyframes count-in{from{opacity:0;letter-spacing:.2em}to{opacity:1;letter-spacing:0}}
 @supports (animation-timeline: view()){
   .j-line i{animation:j-fill linear both;animation-timeline:view();animation-range:entry 30% exit 60%}
   .b-card,.faq details{animation:j-pop linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
-  .j-card{animation:j-open-l linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+  .j-card{animation:j-open-l linear both;animation-timeline:view();animation-range:entry 5% cover 35%}
   .j-item:nth-of-type(even) .j-card{animation-name:j-open-r}
   .j-dot{animation:j-dot linear both;animation-timeline:view();animation-range:entry 40% cover 50%}
   .b-bar i{animation:bar-in linear both;animation-timeline:view();animation-range:entry 20% cover 45%}
-  .b-big{animation:count-in linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+  .b-big{animation:count-in linear both;animation-timeline:view();animation-range:entry 5% cover 35%}
 }
 @media (max-width:760px){
   .j-line{left:9px}
