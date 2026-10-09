@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Festara home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#0D0C10}
+a{color:#F4EDE1}a:hover{color:var(--g2)}
+.ajrak{background-image:radial-gradient(circle at 50% 50%,rgba(255,255,255,.10) 2px,transparent 3px),repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 1px,transparent 1px 22px),repeating-linear-gradient(-45deg,rgba(255,255,255,.05) 0 1px,transparent 1px 22px);background-size:31px 31px,auto,auto}
+h1,h2,h3,b[style*="Cormorant"],span[style*="Cormorant"]{font-weight:600!important;letter-spacing:-0.015em!important}
+h1 em,h2 em{font-weight:500}
+.gold-rule{background:linear-gradient(90deg,transparent,var(--accent),transparent);height:1px}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes drift{to{background-position:62px 62px,44px 0,0 44px}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shine{from{background-position:-200% 0}to{background-position:200% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(217,168,78,0)}50%{box-shadow:0 0 0 7px rgba(217,168,78,.15)}}
+header{animation:rise .8s cubic-bezier(.22,1,.36,1) both}
+section > div > *,section > *{animation:rise 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 40%}
+section:first-of-type > div > *{animation-timeline:auto;animation-range:normal}
+section:first-of-type > div > *:nth-child(2){animation-delay:.1s}section:first-of-type > div > *:nth-child(3){animation-delay:.2s}section:first-of-type > div > *:nth-child(4){animation-delay:.3s}
+section:first-of-type > article{animation:rise 1.1s cubic-bezier(.22,1,.36,1) .25s both,float 6s ease-in-out 1.4s infinite}
+h1 em,h2 em{background:linear-gradient(90deg,var(--accent) 0%,var(--g2) 50%,var(--accent) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 5s linear infinite}
+.ajrak{animation:drift 40s linear infinite}
+div[style*="grid-template-columns"] > div{transition:transform .6s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .6s}
+div[style*="grid-template-columns"] > div:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 40px 80px -40px rgba(217,168,78,.3)}
+div[style*="grid-template-columns"] > div.ajrak:hover{animation-duration:8s}
+a[style*="999px"],button{transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,background-color .25s}
+a[style*="999px"]:hover{transform:translateY(-2px)}
+a[style*="background: var(--accent)"]:hover{box-shadow:0 14px 30px -10px rgba(217,168,78,.7);background:var(--g2)!important}
+a[style*="background: var(--accent)"]{animation:glow 2.8s ease-in-out infinite}
+a[style*="background: var(--accent)"] svg{transition:transform .3s}a[style*="background: var(--accent)"]:hover svg{transform:translateX(4px)}
+nav a{position:relative;padding:6px 0;transition:color .2s}nav a:hover{color:#F4EDE1!important}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;border-radius:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1);transform-origin:left}
+/* logo: mehrab arch draws itself, the lamp dot glows, hover lifts it */
+.logo{width:26px!important;height:32px!important;overflow:visible;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.logo-arch{stroke-dasharray:260;stroke-dashoffset:260;animation:logo-draw 1.8s cubic-bezier(.22,1,.36,1) .2s forwards}
+.logo-dot{animation:logo-glow 2.6s ease-in-out infinite}
+a:hover > .logo{transform:translateY(-3px) scale(1.06)}
+@keyframes logo-draw{to{stroke-dashoffset:0}}
+@keyframes logo-glow{0%,100%{opacity:.5}50%{opacity:1}}
+/* marquee: words travel endlessly, pause and light up on hover */
+.mq-track{display:flex;align-items:center;gap:44px;width:max-content;animation:mq 38s linear infinite;font-size:clamp(28px,3vw,42px)}
+.mq-track{will-change:transform;backface-visibility:hidden}
+.marquee .mq-track{font-size:clamp(20px,1.9vw,28px)!important;gap:26px!important}
+.marquee .mq-rev{animation:mq-back 46s linear infinite!important;font-size:clamp(17px,1.5vw,22px)!important;opacity:.8}
+.mq-s svg{width:14px;height:18px}
+.mq-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.7;flex:none}
+@keyframes mq-back{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.mq-w{transition:color .3s,transform .4s cubic-bezier(.22,1,.36,1);cursor:default}
+.mq-i{font-style:italic;color:#F4EDE1}
+.mq-w:hover{color:var(--accent);transform:translateY(-4px)}
+.mq-s{display:inline-flex;animation:mq-bob 3s ease-in-out infinite}
+.mq-s:nth-of-type(even){animation-delay:1.5s}
+@keyframes mq-bob{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(-5px);opacity:1}}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* hover everywhere else */
+header a[style*="border: 1px solid"]:hover,a[href="#how"][style*="border: 1px solid"]:hover{border-color:var(--accent)!important;color:var(--accent)}
+span[style*="width: 30px; height: 30px; border-radius: 9px"]{transition:transform .35s cubic-bezier(.22,1,.36,1);cursor:pointer}
+span[style*="width: 30px; height: 30px; border-radius: 9px"]:hover{transform:translateY(-4px) scale(1.12)}
+span[style*="border-radius: 999px"]{transition:transform .3s,background-color .3s,color .3s}
+div > span[style*="padding: 6px 12px; border-radius: 999px"]:hover{transform:translateY(-3px)}
+button{cursor:pointer}button:hover{background:var(--g2)!important;transform:translateY(-1px)}
+article a[style*="background: #F4EDE1"]{transition:background-color .3s,transform .3s}
+article a[style*="background: #F4EDE1"]:hover{background:var(--accent)!important;transform:translateY(-2px)}
+span[style*="border-radius: 50%"]{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+span[style*="border-radius: 50%"]:hover{transform:scale(1.12) rotate(-6deg)}
+article .gold-rule{animation:shine 4s linear infinite;background-size:200% 100%}
+footer span{transition:color .3s}footer span:hover{color:var(--accent)!important}
+h2{transition:letter-spacing .6s cubic-bezier(.22,1,.36,1)}
+code{transition:color .3s}div:hover > code{color:#F4EDE1}
+tbody tr{transition:background-color .25s}tbody tr:hover{background:#1E1B24}
+/* responsive: type scales with the screen, sections breathe less on small screens */
+/* one type scale for the whole site */
+h1{font-size:clamp(44px,6.2vw,96px)!important;line-height:.95!important}
+h2{font-size:clamp(34px,4.2vw,60px)!important;line-height:1.02!important}
+section:last-of-type h2{font-size:clamp(38px,5vw,72px)!important}
+article h2{font-size:clamp(38px,3.6vw,54px)!important}
+h3{font-size:clamp(26px,2.2vw,34px)!important}
+p{font-size:clamp(15px,1.1vw,17px)!important;line-height:1.65!important}
+section:first-of-type p{font-size:clamp(16px,1.25vw,19px)!important}
+header nav a{font-size:15px!important;font-weight:500}
+span[style*="text-transform: uppercase"]{font-size:12px!important;letter-spacing:.14em!important}
+/* buttons: one compact size, no pulsing ring */
+a[style*="999px"]{height:auto!important;min-height:0!important;padding:10px 20px!important;font-size:14px!important;font-weight:600!important;line-height:1.2}
+section:first-of-type > div a[style*="999px"],section:last-of-type a[style*="999px"]{padding:14px 26px!important;font-size:15px!important}
+a[style*="background: var(--accent)"]{animation:none!important}
+article a[style*="height: 52px"]{height:46px!important;font-size:15px}
+.pk-btn{height:38px!important;padding:0 14px 0 10px!important;font-size:13px!important;background:#17151C!important;color:#F4EDE1!important;border:1px solid #3A3540!important}
+.pk-btn svg{width:16px;height:16px;color:var(--accent)}
+/* compact pass: everything one notch smaller so the hero fits the first screen */
+header{padding-top:18px!important;padding-bottom:18px!important}
+header > a{font-size:28px!important}
+header nav{gap:28px!important}
+header nav a{font-size:14px!important}
+header a[style*="999px"]{padding:8px 16px!important;font-size:13px!important}
+section:first-of-type{padding-top:40px!important;padding-bottom:72px!important;gap:48px!important}
+section:first-of-type > div{gap:22px!important}
+section:first-of-type h1{font-size:clamp(42px,5.4vw,80px)!important}
+section:first-of-type > div > span{padding:6px 12px!important;font-size:11px!important}
+section:first-of-type > div a[style*="999px"]{padding:12px 22px!important;font-size:14px!important}
+section:first-of-type > article{max-width:440px!important}
+article .ajrak{min-height:260px!important;padding:28px!important}
+article h2{font-size:clamp(34px,3vw,46px)!important}
+article > div:last-child{padding:18px 22px!important}
+article a[style*="height: 52px"]{height:42px!important;font-size:14px!important}
+section:last-of-type a[style*="999px"]{padding:12px 22px!important;font-size:14px!important}
+div[style*="padding: 36px"]{padding:28px!important}
+/* occasion cards: compact, art sits whole inside the card, all three rise together */
+#occasions div[style*="grid-template-columns"]{align-items:stretch}
+#occasions .ajrak{min-height:0!important;height:300px;padding:28px!important;justify-content:space-between}
+#occasions .art{top:22px!important;right:22px!important;bottom:auto!important;width:130px!important;height:130px!important;opacity:.35!important}
+#occasions .ajrak:hover .art{opacity:.6!important}
+#occasions h3{font-size:clamp(28px,2.4vw,36px)!important;margin-bottom:8px!important}
+#occasions p{font-size:15px!important}
+@supports (animation-timeline: view()){
+  div[style*="grid-template-columns"] > div,div[style*="grid-template-columns"] > div:nth-child(2),div[style*="grid-template-columns"] > div:nth-child(3){animation:pop .9s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 70%!important}
+}
+@keyframes pop{from{opacity:0;translate:0 40px}to{opacity:1;translate:0 0}}
+.pk{right:16px!important;bottom:16px!important}
+/* occasion scenes: layered tone-on-tone illustrations filling the card's right side */
+.scene{position:absolute!important;z-index:0;right:0;top:0;width:78%;height:74%;pointer-events:none;transition:transform 1s cubic-bezier(.22,1,.36,1);-webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent);mask-image:linear-gradient(to bottom,#000 62%,transparent)}
+#occasions .ajrak:hover .scene,article:hover .scene{transform:scale(1.04)}
+article .hero-scene{width:42%!important;right:-14px!important;height:100%!important;-webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent);mask-image:linear-gradient(to bottom,#000 70%,transparent)}
+article .ajrak{min-height:250px!important}
+article h2{padding-right:0!important;max-width:11ch}
+#occasions .ajrak > *:not(.scene){position:relative;z-index:1}
+#occasions .ajrak{height:320px!important}
+.sc-bloom{animation:sc-spin 40s linear infinite}
+.sc-toran{animation:sc-sway 5s ease-in-out infinite;transform-origin:150px 0}
+.sc-sun{animation:sc-rise 6s ease-in-out infinite}
+.sc-road{animation:a-road 1.6s linear infinite}
+.sc-birds{animation:sc-fly 7s ease-in-out infinite}
+.sc-beam-l{animation:sc-beam 5s ease-in-out infinite}
+.sc-beam-r{animation:sc-beam 5s ease-in-out infinite reverse}
+.sc-bulbs circle{animation:logo-glow 2s ease-in-out infinite}
+.sc-bulbs circle:nth-child(even){animation-delay:1s}
+@keyframes sc-spin{to{transform:rotate(360deg)}}
+@keyframes sc-sway{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+@keyframes sc-rise{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes sc-fly{0%,100%{transform:translate(0,0)}50%{transform:translate(14px,-6px)}}
+@keyframes sc-beam{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+/* tighter rhythm between sections */
+#how{padding-top:72px!important;padding-bottom:64px!important;gap:32px!important}
+#how > div:first-child{flex-direction:column!important;align-items:flex-start!important;gap:12px!important}
+#how h2{max-width:none!important}
+#occasions{padding-bottom:64px!important;gap:28px!important}
+#access{padding-bottom:64px!important}
+#access > div{padding:44px!important}
+.marquee{margin-top:0}
+section:first-of-type{padding-bottom:48px!important}
+/* hero fits one screen: compact card, no empty middle */
+section:first-of-type{align-items:center!important;padding-top:24px!important;padding-bottom:56px!important}
+section:first-of-type h1{font-size:clamp(40px,4.8vw,72px)!important}
+section:first-of-type > article{max-width:400px!important}
+article .ajrak{min-height:0!important;height:auto!important;padding:24px 26px 26px!important;gap:56px!important}
+article .art.lg{top:auto!important;bottom:18px!important;right:18px!important;width:96px!important;height:96px!important;opacity:.28!important}
+article h2{font-size:clamp(32px,2.6vw,40px)!important;padding-right:70px}
+article .ajrak p{font-size:14px!important}
+article > div:last-child{padding:16px 20px!important;gap:12px!important}
+article span[style*="width: 40px"]{width:34px!important;height:34px!important}
+/* checked-in-browser fixes */
+.ajrak h2,.ajrak h3,.ajrak p,.ajrak span{text-shadow:none!important}
+h1 em,h2 em{background:linear-gradient(90deg,var(--g1) 0%,var(--g2) 50%,var(--g1) 100%)!important;background-size:200% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
+code{font-family:'Plus Jakarta Sans',sans-serif!important;font-size:13px!important}
+@media (max-width:480px){
+  section:first-of-type a{flex:initial}
+  section:first-of-type > div a[style*="999px"]{flex:1 1 100%;justify-content:center}
+  article a[style*="height: 52px"]{height:44px!important;flex:none!important}
+}
+@media (max-width:600px){ section:last-of-type .art{display:none!important} section:last-of-type .ajrak{padding:52px 22px!important} }
+/* closing banner: shorter, crisp headline, both drawings sit whole inside their corners */
+section:last-of-type .ajrak{padding:72px 40px!important;gap:24px!important}
+section:last-of-type .ajrak h2{text-shadow:none!important;max-width:16ch!important;font-size:clamp(36px,4.2vw,60px)!important}
+section:last-of-type .art.lg{width:170px!important;height:170px!important;opacity:.32!important}
+section:last-of-type .art.lg:first-child{left:40px!important;right:auto!important;top:0!important;bottom:auto!important}
+section:last-of-type .art.lg:nth-child(2){right:40px!important;left:auto!important;top:auto!important;bottom:32px!important}
+section:last-of-type .ajrak:hover .art{opacity:.5!important;transform:none!important}
+@media (max-width:900px){section:last-of-type .art.lg{width:110px!important;height:110px!important}section:last-of-type .art.lg:first-child{left:16px!important}section:last-of-type .art.lg:nth-child(2){right:16px!important;bottom:16px!important}}
+div[style*="font-size: 42px"]{font-size:clamp(26px,3vw,42px)!important;gap:10px 24px!important}
+@media (max-width:900px){
+  header,section,footer{padding-left:20px!important;padding-right:20px!important}
+  header nav{display:none!important}
+  section{padding-top:64px!important;padding-bottom:64px!important}
+  section:first-of-type{padding-top:32px!important;gap:40px!important}
+  div[style*="padding: 56px"]{padding:28px!important;gap:28px!important}
+  div[style*="padding: 96px 64px"]{padding:56px 22px!important}
+  div[style*="grid-template-columns"] > div{min-height:0!important}
+  .art.lg{width:260px;height:260px}
+}
+@media (max-width:480px){
+  header a[href="SignIn.dc.html"]{display:none!important}
+  section:first-of-type a{flex:1 1 100%;justify-content:center}
+  article h2{font-size:44px!important}
+  td,th{padding:10px 8px!important;font-size:14px}
+}
+/* colour picker */
+.pk{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.pk-btn{display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 20px 0 16px;border:0;border-radius:999px;background:var(--accent);color:#17130C;font:600 15px 'Plus Jakarta Sans',sans-serif;box-shadow:0 18px 40px -14px rgba(0,0,0,.8);cursor:pointer}
+.pk-btn svg{transition:transform .6s cubic-bezier(.22,1,.36,1)}.pk-btn:hover svg{transform:rotate(-30deg) scale(1.1)}
+.pk-panel{width:300px;max-width:calc(100vw - 40px);padding:20px;border-radius:22px;background:#17151C;border:1px solid #2A2630;box-shadow:0 40px 80px -30px rgba(0,0,0,.9);display:flex;flex-direction:column;gap:12px;animation:pk-in .35s cubic-bezier(.22,1,.36,1)}
+@keyframes pk-in{from{opacity:0;transform:translateY(12px) scale(.97)}}
+.pk-lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8F8678;margin-top:4px}
+.pk-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pk-sw{width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;transition:transform .25s}
+.pk-sw:hover,.pk-grad:hover{transform:scale(1.1)!important;background-color:transparent}
+.pk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pk-grad{height:34px;border-radius:10px;border:0;cursor:pointer;transition:transform .25s}
+.pk-custom{position:relative;width:34px;height:34px;border-radius:50%;border:1.5px dashed #6F6778;display:grid;place-items:center;color:#B4AA9C;cursor:pointer;overflow:hidden}
+.pk-custom input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.pk-pair{flex:1;display:flex;align-items:center;justify-content:space-between;gap:8px;height:42px;padding:0 6px 0 12px;border-radius:12px;border:1px solid #2A2630;font-size:13px;color:#B4AA9C}
+.pk-pair input{width:34px;height:28px;border:0;padding:0;background:none;cursor:pointer}
+.pk-link{border:0;background:none!important;color:#B4AA9C;font:500 13px 'Plus Jakarta Sans',sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.pk-link:hover{color:#F4EDE1;transform:none!important}
+/* line art never sits under the words: tucked into the top corner, quieter, text gets a soft shadow */
+.ajrak h2,.ajrak h3,.ajrak p,.ajrak span{text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.art{opacity:.3!important}
+:hover > .art{opacity:.55!important}
+article .art.lg{top:auto!important;bottom:18px!important;right:18px!important;width:84px!important;height:84px!important}
+article .ajrak:hover .art{transform:none!important}
+.pk{display:none!important}
+div[style*="grid-template-columns"] .art{top:-40px!important;right:-40px!important;bottom:auto!important;width:180px!important;height:180px!important}
+section:last-of-type .art.lg{width:300px!important;height:300px!important}
+/* scroll: each card pushes up on its own as it enters the screen (uses translate/scale so hover transform still works) */
+@keyframes pop{from{opacity:0;translate:0 90px;scale:.9}60%{opacity:1}to{opacity:1;translate:0 0;scale:1}}
+@keyframes slide{from{opacity:0;translate:-60px 0}to{opacity:1;translate:0 0}}
+@keyframes grow{from{scale:.86;opacity:.3}to{scale:1;opacity:1}}
+@keyframes bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@supports (animation-timeline: view()){
+  div[style*="grid-template-columns"] > div{animation:pop 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% cover 28%}
+  div[style*="grid-template-columns"] > div:nth-child(2){animation-range:entry 8% cover 34%}
+  div[style*="grid-template-columns"] > div:nth-child(3){animation-range:entry 16% cover 40%}
+  tbody tr{animation:slide 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% cover 30%}
+  section:last-of-type > div{animation:grow 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% cover 40%}
+  .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:50;background:linear-gradient(90deg,var(--g1),var(--g2));transform-origin:left;animation:bar linear both;animation-timeline:scroll(root)}
+}
+.ajrak{position:relative;overflow:hidden;background-image:none!important}
+.ajrak > *:not(.art){position:relative;z-index:1}
+.art{position:absolute;z-index:0;right:-24px;bottom:-24px;width:240px;height:240px;color:rgba(255,255,255,.6);pointer-events:none;opacity:.55;transition:opacity .5s,transform .9s cubic-bezier(.22,1,.36,1)}
+.art.lg{width:380px;height:380px;right:-50px;bottom:-70px}
+:hover > .art{opacity:.95;transform:scale(1.08) rotate(-3deg)}
+.art .spin{transform-origin:100px 100px;animation:a-spin 50s linear infinite}
+.art .float{animation:a-float 5s ease-in-out infinite}
+.art .sway{transform-box:fill-box;transform-origin:50% 0;animation:a-sway 4s ease-in-out infinite}
+.art .pulse{transform-box:fill-box;transform-origin:center;animation:a-pulse 4s ease-in-out infinite}
+.art .tw{transform-box:fill-box;transform-origin:center;animation:a-tw 2.6s ease-in-out infinite}
+.art .road{animation:a-road 1.4s linear infinite}
+.art .d2{animation-delay:.8s}.art .d3{animation-delay:1.6s}
+@keyframes a-spin{to{transform:rotate(360deg)}}
+@keyframes a-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes a-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes a-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes a-tw{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.5);opacity:.3}}
+@keyframes a-road{to{stroke-dashoffset:-28}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="--accent: {{accent}}; --g1: {{g1}}; --g2: {{g2}}; background: #0D0C10; color: #F4EDE1; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh">
+  <div class="progress" aria-hidden="true"></div>
+
+  <header style="max-width: 1240px; margin: 0 auto; padding: 28px 32px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between">
+    <a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 34px; letter-spacing: -0.01em">
+      <svg width="22" height="22" viewBox="0 0 80 100" class="logo" fill="none" aria-hidden="true"><path class="logo-arch" d="M8 98V42C8 20 24 6 40 2c16 4 32 18 32 40v56" stroke="var(--accent)" stroke-width="7"></path><path d="M33 80V42h18M33 60h13" stroke="#F4EDE1" stroke-width="8" stroke-linecap="round"></path><circle class="logo-dot" cx="40" cy="20" r="4.5" fill="var(--g2)"></circle></svg>Festara</a>
+    <nav style="display: flex; flex-wrap: wrap; gap: 32px; font-size: 15px; color: #B4AA9C">
+      <a href="#how" style="color: #B4AA9C; text-decoration: none">How it works</a>
+      <a href="#occasions" style="color: #B4AA9C; text-decoration: none">Occasions</a>
+      <a href="#access" style="color: #B4AA9C; text-decoration: none">Roles</a>
+    </nav>
+    <div style="display: flex; gap: 10px">
+      <a href="SignIn.dc.html" style="display: inline-flex; align-items: center; height: 46px; padding: 0 22px; border-radius: 999px; border: 1px solid #3A3540; text-decoration: none; font-size: 15px; font-weight: 500">Sign in</a>
+      <a href="Events.dc.html" style="display: inline-flex; align-items: center; height: 46px; padding: 0 24px; border-radius: 999px; background: var(--accent); color: #17130C; text-decoration: none; font-size: 15px; font-weight: 600">Create an event</a>
+    </div>
+  </header>
+
+  <section style="max-width: 1240px; margin: 0 auto; padding: 72px 32px 96px; display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
+    <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+      <span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; border: 1px solid #3A3540; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g1)">Weddings · trips · society events</span>
+      <h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 112px; line-height: 0.92; letter-spacing: -0.03em">One invite.<br><em style="color: var(--g1)">Every</em> family<br>in step.</h1>
+      <p style="margin: 0; max-width: 46ch; font-size: 19px; line-height: 1.6; color: #B4AA9C">Festara holds the whole celebration in one place. Send one link on WhatsApp, and each person sees exactly what their role allows.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px">
+        <a href="Events.dc.html" style="display: inline-flex; align-items: center; gap: 10px; height: 58px; padding: 0 30px; border-radius: 999px; background: var(--accent); color: #17130C; text-decoration: none; font-size: 16px; font-weight: 600">Plan your event
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="#how" style="display: inline-flex; align-items: center; height: 58px; padding: 0 28px; border-radius: 999px; border: 1px solid #3A3540; text-decoration: none; font-size: 16px; font-weight: 500">See how it works</a>
+      </div>
+    </div>
+
+    <article style="flex: 1 1 420px; min-width: 0; max-width: 500px; border-radius: 28px; overflow: hidden; background: #17151C; border: 1px solid #2A2630; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9)">
+      <div class="ajrak" style="background-color: #1F4D3A; padding: 36px; min-height: 340px; display: flex; flex-direction: column; justify-content: space-between">
+        <svg class="scene hero-scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+          <g class="sc-toran"><path d="M40 0 Q150 46 260 0" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2"></path>
+            <path d="M70 13l7 12-7 12-7-12z M110 25l7 12-7 12-7-12z M150 29l7 12-7 12-7-12z M190 25l7 12-7 12-7-12z M230 13l7 12-7 12-7-12z" fill="#fff" fill-opacity=".18"></path></g>
+          <path d="M70 300V170c0-58 36-100 80-118 44 18 80 60 80 118v130z" fill="#fff" fill-opacity=".06"></path>
+          <path d="M92 300V178c0-46 26-80 58-96 32 16 58 50 58 96v122z" fill="#fff" fill-opacity=".07"></path>
+          <g class="sc-bloom" style="transform-origin:150px 190px">
+            <ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(45 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(90 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(135 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(180 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(225 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(270 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(315 150 190)"></ellipse>
+            <circle cx="150" cy="190" r="16" fill="#fff" fill-opacity=".22"></circle></g>
+          <path d="M70 300V170c0-58 36-100 80-118 44 18 80 60 80 118v130" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1.2"></path>
+        </svg>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E2D3B0">You're invited</span>
+          <span style="padding: 6px 12px; border-radius: 999px; background: rgba(13,12,16,.35); font-size: 13px; color: #F4EDE1">34 days</span>
+        </div>
+        <div>
+          <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 64px; line-height: 0.95; letter-spacing: -0.02em">Hira &amp; Bilal's <em>Mehndi</em></h2>
+          <p style="margin: 14px 0 0; font-size: 15px; color: #E2D3B0">Thursday, 12 November · Garden Lawn, Multan</p>
+        </div>
+      </div>
+      <div class="gold-rule"></div>
+      <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 40px; height: 40px; border-radius: 50%; background: #8E2A1E; display: grid; place-items: center; font-size: 13px; font-weight: 600">SR</span>
+          <div style="flex: 1; min-width: 0"><b style="display: block; font-weight: 500">Sana Rashid</b><span style="font-size: 13px; color: #8F8678">Invited you as Member</span></div>
+          <span style="padding: 4px 10px; border-radius: 999px; border: 1px solid var(--accent); color: var(--g1); font-size: 12px; font-weight: 600">Member</span>
+        </div>
+        <a href="SignIn.dc.html" style="display: grid; place-items: center; height: 52px; border-radius: 14px; background: #F4EDE1; color: #0D0C10; text-decoration: none; font-weight: 600">Join the mehndi</a>
+      </div>
+    </article>
+  </section>
+
+  <div class="marquee" style="border-block: 1px solid #23202A; padding: 18px 0; overflow: hidden; font-family: 'Cormorant Garamond', serif; color: #6F6778; display: flex; flex-direction: column; gap: 10px">
+    <div class="mq-track mq-rev" aria-hidden="true">
+      <span class="mq-w mq-i">Dholki</span><span class="mq-dot"></span><span class="mq-w">Nikkah</span><span class="mq-dot"></span><span class="mq-w mq-i">Qawwali night</span><span class="mq-dot"></span><span class="mq-w">Farewell</span><span class="mq-dot"></span><span class="mq-w mq-i">Hunza trip</span><span class="mq-dot"></span><span class="mq-w">Iftar</span><span class="mq-dot"></span><span class="mq-w mq-i">Convocation</span><span class="mq-dot"></span><span class="mq-w">Aqeeqa</span><span class="mq-dot"></span>
+      <span class="mq-w mq-i">Dholki</span><span class="mq-dot"></span><span class="mq-w">Nikkah</span><span class="mq-dot"></span><span class="mq-w mq-i">Qawwali night</span><span class="mq-dot"></span><span class="mq-w">Farewell</span><span class="mq-dot"></span><span class="mq-w mq-i">Hunza trip</span><span class="mq-dot"></span><span class="mq-w">Iftar</span><span class="mq-dot"></span><span class="mq-w mq-i">Convocation</span><span class="mq-dot"></span><span class="mq-w">Aqeeqa</span><span class="mq-dot"></span>
+    </div>
+    <div class="mq-track">
+      <span class="mq-w">Mehndi</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w mq-i">Baraat</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w">Walima</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w mq-i">Naran trip</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w">Tech fest</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w mq-i">Engagement</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w">Eid Milan</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w mq-i">Birthday</span><span class="mq-dot" aria-hidden="true"></span>
+      <span class="mq-w" aria-hidden="true">Mehndi</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w mq-i" aria-hidden="true">Baraat</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w" aria-hidden="true">Walima</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w mq-i" aria-hidden="true">Naran trip</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w" aria-hidden="true">Tech fest</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w mq-i" aria-hidden="true">Engagement</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w" aria-hidden="true">Eid Milan</span><span class="mq-dot" aria-hidden="true"></span><span class="mq-w mq-i" aria-hidden="true">Birthday</span><span class="mq-dot" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <section id="how" style="max-width: 1240px; margin: 0 auto; padding: 120px 32px; display: flex; flex-direction: column; gap: 56px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+      <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -0.02em; max-width: 12ch">From idea to <em style="color: var(--g1)">everyone</em> on board.</h2>
+      <p style="margin: 0; max-width: 36ch; color: #B4AA9C; font-size: 17px">Three steps. No app to install, no group chat to scroll back through.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+      <div style="padding: 36px; border-radius: 24px; background: #17151C; border: 1px solid #2A2630; display: flex; flex-direction: column; gap: 18px; min-height: 300px">
+        <span style="font-family: 'Cormorant Garamond', serif; font-size: 56px; color: var(--g1); line-height: 1">01</span>
+        <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 34px">Create the event</h3>
+        <p style="margin: 0; color: #B4AA9C; line-height: 1.6">Name, date, place and a cover colour. You become its Admin.</p>
+        <div style="margin-top: auto; display: flex; gap: 8px">
+          <span style="width: 30px; height: 30px; border-radius: 9px; background: #1F4D3A; box-shadow: 0 0 0 2px #0D0C10, 0 0 0 3px var(--accent)"></span>
+          <span style="width: 30px; height: 30px; border-radius: 9px; background: #C98A2B"></span>
+          <span style="width: 30px; height: 30px; border-radius: 9px; background: #8E2A1E"></span>
+          <span style="width: 30px; height: 30px; border-radius: 9px; background: #5A3A22"></span>
+          <span style="width: 30px; height: 30px; border-radius: 9px; background: #1E3F66"></span>
+          <span style="width: 30px; height: 30px; border-radius: 9px; background: #3B2350"></span>
+        </div>
+      </div>
+      <div style="padding: 36px; border-radius: 24px; background: #17151C; border: 1px solid #2A2630; display: flex; flex-direction: column; gap: 18px; min-height: 300px">
+        <span style="font-family: 'Cormorant Garamond', serif; font-size: 56px; color: var(--g1); line-height: 1">02</span>
+        <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 34px">Share one link</h3>
+        <p style="margin: 0; color: #B4AA9C; line-height: 1.6">Drop it on WhatsApp. People see the event before they sign up.</p>
+        <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 10px 10px 10px 16px; border-radius: 14px; background: #0D0C10; border: 1px solid #2A2630">
+          <code style="flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; color: #8F8678">festara.app/invite/k3x9-mehndi</code>
+          <button type="button" style="height: 36px; padding: 0 14px; border: 0; border-radius: 10px; background: var(--accent); color: #17130C; font: 600 13px 'Plus Jakarta Sans', sans-serif">Copy</button>
+        </div>
+      </div>
+      <div style="padding: 36px; border-radius: 24px; background: #17151C; border: 1px solid #2A2630; display: flex; flex-direction: column; gap: 18px; min-height: 300px">
+        <span style="font-family: 'Cormorant Garamond', serif; font-size: 56px; color: var(--g1); line-height: 1">03</span>
+        <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 34px">Set each role</h3>
+        <p style="margin: 0; color: #B4AA9C; line-height: 1.6">Helpers become Members, elders stay Guests. Nobody changes the date by accident.</p>
+        <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="padding: 6px 12px; border-radius: 999px; background: #F4EDE1; color: #0D0C10; font-size: 13px; font-weight: 600">Admin</span>
+          <span style="padding: 6px 12px; border-radius: 999px; border: 1px solid var(--accent); color: var(--g1); font-size: 13px; font-weight: 600">Member</span>
+          <span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3A3540; color: #B4AA9C; font-size: 13px; font-weight: 600">Guest</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="occasions" style="max-width: 1240px; margin: 0 auto; padding: 0 32px 120px; display: flex; flex-direction: column; gap: 48px">
+    <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -0.02em">Built for the events <em style="color: var(--g1)">we actually</em> have.</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+      <div class="ajrak" style="background-color: #8E2A1E; border-radius: 24px; padding: 32px; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between">
+        <svg class="scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+          <g class="sc-toran"><path d="M40 0 Q150 46 260 0" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2"></path>
+            <path d="M70 13l7 12-7 12-7-12z M110 25l7 12-7 12-7-12z M150 29l7 12-7 12-7-12z M190 25l7 12-7 12-7-12z M230 13l7 12-7 12-7-12z" fill="#fff" fill-opacity=".18"></path></g>
+          <path d="M70 300V170c0-58 36-100 80-118 44 18 80 60 80 118v130z" fill="#fff" fill-opacity=".06"></path>
+          <path d="M92 300V178c0-46 26-80 58-96 32 16 58 50 58 96v122z" fill="#fff" fill-opacity=".07"></path>
+          <g class="sc-bloom" style="transform-origin:150px 190px">
+            <ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(45 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(90 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(135 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(180 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(225 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(270 150 190)"></ellipse><ellipse cx="150" cy="150" rx="13" ry="34" fill="#fff" fill-opacity=".13" transform="rotate(315 150 190)"></ellipse>
+            <circle cx="150" cy="190" r="16" fill="#fff" fill-opacity=".22"></circle></g>
+          <path d="M70 300V170c0-58 36-100 80-118 44 18 80 60 80 118v130" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1.2"></path>
+        </svg>
+        <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #F2D9CF">Wedding</span>
+        <div><h3 style="margin: 0 0 10px; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 46px; line-height: 1">Mehndi, baraat, walima</h3><p style="margin: 0; color: #F2D9CF; line-height: 1.55">Each function its own event. One family, one plan.</p></div>
+      </div>
+      <div class="ajrak" style="background-color: #1E3F66; border-radius: 24px; padding: 32px; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between">
+        <svg class="scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+          <g class="sc-sun"><circle cx="210" cy="96" r="34" fill="#fff" fill-opacity=".16"></circle><circle cx="210" cy="96" r="50" fill="none" stroke="#fff" stroke-opacity=".14"></circle><circle cx="210" cy="96" r="68" fill="none" stroke="#fff" stroke-opacity=".08"></circle></g>
+          <path d="M0 210 70 120 112 168 170 92 236 176 300 130V300H0z" fill="#fff" fill-opacity=".06"></path>
+          <path d="M150 104l20-12 22 28-14-6-12 10z" fill="#fff" fill-opacity=".2"></path>
+          <path d="M0 240 60 180 120 226 190 160 250 214 300 186V300H0z" fill="#fff" fill-opacity=".09"></path>
+          <path d="M0 272 80 236 150 262 230 228 300 252V300H0z" fill="#fff" fill-opacity=".13"></path>
+          <path class="sc-road" d="M150 300C140 280 196 270 176 252S150 236 168 228" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-dasharray="5 7"></path>
+          <g class="sc-birds" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.4"><path d="M60 70q7-7 14 0q7-7 14 0"></path><path d="M98 52q5-5 10 0q5-5 10 0"></path></g>
+        </svg>
+        <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #CFDDEE">Trip</span>
+        <div><h3 style="margin: 0 0 10px; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 46px; line-height: 1">Naran, four days</h3><p style="margin: 0; color: #CFDDEE; line-height: 1.55">Who's coming, who's driving, what it costs per head.</p></div>
+      </div>
+      <div class="ajrak" style="background-color: #3B2350; border-radius: 24px; padding: 32px; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between">
+        <svg class="scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+          <g class="sc-beam-l" style="transform-origin:90px 0"><path d="M80 0h20l70 300H40z" fill="#fff" fill-opacity=".06"></path></g>
+          <g class="sc-beam-r" style="transform-origin:240px 0"><path d="M230 0h20l40 300H150z" fill="#fff" fill-opacity=".06"></path></g>
+          <path d="M60 300V200c0-50 40-86 90-86s90 36 90 86v100z" fill="#fff" fill-opacity=".07"></path>
+          <path d="M84 300V206c0-38 30-66 66-66s66 28 66 66v94z" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2"></path>
+          <path d="M40 300h220v-26H40z" fill="#fff" fill-opacity=".12"></path>
+          <g class="sc-bulbs" fill="#fff"><circle cx="72" cy="196" r="2.6" fill-opacity=".5"></circle><circle cx="96" cy="160" r="2.6" fill-opacity=".5"></circle><circle cx="126" cy="138" r="2.6" fill-opacity=".5"></circle><circle cx="150" cy="132" r="2.6" fill-opacity=".5"></circle><circle cx="174" cy="138" r="2.6" fill-opacity=".5"></circle><circle cx="204" cy="160" r="2.6" fill-opacity=".5"></circle><circle cx="228" cy="196" r="2.6" fill-opacity=".5"></circle></g>
+          <path d="M150 196l26 10-26 10-26-10z M126 210v14c0 8 48 8 48 0v-14" fill="#fff" fill-opacity=".22"></path>
+        </svg>
+        <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E0D2EC">Society</span>
+        <div><h3 style="margin: 0 0 10px; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 46px; line-height: 1">Spring Tech Fest</h3><p style="margin: 0; color: #E0D2EC; line-height: 1.55">Volunteers as Members, sponsors as Guests.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="access" style="max-width: 1240px; margin: 0 auto; padding: 0 32px 120px">
+    <div style="border-radius: 32px; background: #17151C; border: 1px solid #2A2630; padding: 56px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+      <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+        <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g1)">Roles</span>
+        <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 56px; line-height: 1">Checked on the server, <em>not just hidden.</em></h2>
+        <p style="margin: 0; color: #B4AA9C; line-height: 1.6">A guest can't edit an event by guessing a URL. Every role is enforced where the data lives.</p>
+      </div>
+      <div style="flex: 1 1 520px; min-width: 0; overflow-x: auto">
+        <table style="width: 100%; border-collapse: collapse; font-size: 15px">
+          <thead><tr style="color: #8F8678; text-align: left"><th style="padding: 14px 0; font-weight: 500">Can they…</th><th style="padding: 14px; font-weight: 600; color: #F4EDE1">Admin</th><th style="padding: 14px; font-weight: 600; color: var(--g1)">Member</th><th style="padding: 14px; font-weight: 600">Guest</th></tr></thead>
+          <tbody>
+            <tr style="border-top: 1px solid #2A2630"><td style="padding: 14px 0">See date and place</td><td style="padding: 14px; color: var(--g1)">✓</td><td style="padding: 14px; color: var(--g1)">✓</td><td style="padding: 14px; color: var(--g1)">✓</td></tr>
+            <tr style="border-top: 1px solid #2A2630"><td style="padding: 14px 0">See the full plan</td><td style="padding: 14px; color: var(--g1)">✓</td><td style="padding: 14px; color: var(--g1)">✓</td><td style="padding: 14px; color: #4A4452">—</td></tr>
+            <tr style="border-top: 1px solid #2A2630"><td style="padding: 14px 0">Edit the event</td><td style="padding: 14px; color: var(--g1)">✓</td><td style="padding: 14px; color: #4A4452">—</td><td style="padding: 14px; color: #4A4452">—</td></tr>
+            <tr style="border-top: 1px solid #2A2630"><td style="padding: 14px 0">Invite and manage people</td><td style="padding: 14px; color: var(--g1)">✓</td><td style="padding: 14px; color: #4A4452">—</td><td style="padding: 14px; color: #4A4452">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1240px; margin: 0 auto; padding: 0 32px 80px">
+    <div class="ajrak" style="background-color: #1F4D3A; border-radius: 32px; padding: 96px 64px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 26px">
+      <svg class="art lg" style="left: -60px; right: auto; top: -60px; bottom: auto" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path class="pulse" d="M150 40a26 26 0 1 0 22 40a22 22 0 1 1-22-40z"></path><g class="sway"><path d="M60 0v50"></path><path d="M48 50h24l6 14-6 30H48l-6-30z"></path><path d="M60 94v10"></path></g><g class="sway d2"><path d="M100 0v80"></path><path d="M90 80h20l5 12-5 24H90l-5-24z"></path></g><path class="tw" d="M170 130l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"></path></svg>
+      <svg class="art lg" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><g class="spin"><circle cx="100" cy="100" r="92"></circle><circle cx="100" cy="100" r="80" stroke-dasharray="2 6"></circle><ellipse cx="100" cy="42" rx="10" ry="26"></ellipse><ellipse cx="100" cy="42" rx="10" ry="26" transform="rotate(60 100 100)"></ellipse><ellipse cx="100" cy="42" rx="10" ry="26" transform="rotate(120 100 100)"></ellipse><ellipse cx="100" cy="42" rx="10" ry="26" transform="rotate(180 100 100)"></ellipse><ellipse cx="100" cy="42" rx="10" ry="26" transform="rotate(240 100 100)"></ellipse><ellipse cx="100" cy="42" rx="10" ry="26" transform="rotate(300 100 100)"></ellipse><circle cx="100" cy="100" r="28"></circle></g></svg>
+      <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 88px; line-height: 0.95; letter-spacing: -0.02em; max-width: 14ch">Your next celebration starts with <em style="color: var(--g2)">one link.</em></h2>
+      <a href="Events.dc.html" style="display: inline-flex; align-items: center; height: 58px; padding: 0 32px; border-radius: 999px; background: #F4EDE1; color: #0D0C10; text-decoration: none; font-weight: 600">Create your event</a>
+    </div>
+  </section>
+
+  <div class="pk">
+    <sc-if value="{{open}}" hint-placeholder-val="{{false}}">
+      <div class="pk-panel" role="dialog" aria-label="Choose website colours">
+        <div style="display: flex; justify-content: space-between; align-items: center"><b style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600">Your colours</b>
+          <button type="button" onClick="{{reset}}" class="pk-link">Reset</button></div>
+        <span class="pk-lbl">Accent · buttons, logo, borders</span>
+        <div class="pk-row">
+          <sc-for list="{{accents}}" as="a" hint-placeholder-count="6"><button type="button" onClick="{{a.pick}}" aria-label="{{a.name}}" class="pk-sw" style="background: {{a.c}}; {{a.ring}}"></button></sc-for>
+          <label class="pk-custom" aria-label="Custom accent"><input type="color" value="{{accent}}" onChange="{{setAccent}}"><span>+</span></label>
+        </div>
+        <span class="pk-lbl">Text gradient · headline words</span>
+        <div class="pk-grid">
+          <sc-for list="{{grads}}" as="g" hint-placeholder-count="6"><button type="button" onClick="{{g.pick}}" aria-label="{{g.name}}" class="pk-grad" style="background: linear-gradient(90deg, {{g.a}}, {{g.b}}); {{g.ring}}"></button></sc-for>
+        </div>
+        <div class="pk-row">
+          <label class="pk-pair">From <input type="color" value="{{g1}}" onChange="{{setG1}}"></label>
+          <label class="pk-pair">To <input type="color" value="{{g2}}" onChange="{{setG2}}"></label>
+        </div>
+        <p style="margin: 0; font-size: 12px; color: #8F8678">Saved in this browser. Your events and Sign in use the same colours.</p>
+      </div>
+    </sc-if>
+    <button type="button" onClick="{{toggle}}" class="pk-btn" aria-label="Choose colours" aria-expanded="{{open}}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.9-.6-1.3-.6-2.1 0-.9.7-1.6 1.6-1.6H17a4 4 0 0 0 4-4c0-4.7-4-8.7-9-8.7z"></path><circle cx="7.5" cy="11" r="1.2" fill="currentColor"></circle><circle cx="10" cy="7" r="1.2" fill="currentColor"></circle><circle cx="15" cy="7" r="1.2" fill="currentColor"></circle></svg>
+      <span>Colours</span>
+    </button>
+  </div>
+
+  <footer style="max-width: 1240px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; color: #8F8678; font-size: 14px; border-top: 1px solid #23202A">
+    <span style="font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #F4EDE1">Festara</span>
+    <span>Planned together, in Multan and everywhere else.</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"g1":{"editor":"color","default":"#FF8A65","options":["#FF8A65","#9EE6D0","#FF9A8B","#F4EDE1"],"section":"Text gradient"},"g2":{"editor":"color","default":"#E85D9A","options":["#E85D9A","#6FA8FF","#E8B4D8","#FECF6A"],"section":"Text gradient"},"$preview":{"width":1440,"height":2900}}'>
+class Component extends DCLogic {
+componentDidMount() {
+  try { localStorage.removeItem('festara-colours'); } catch (e) {}
+}
+save(patch) {
+  this.setState(patch, () => { try { const st = this.state || {}; localStorage.setItem('festara-colours', JSON.stringify({ accent: st.accent, g1: st.g1, g2: st.g2 })); } catch (e) {} });
+}
+renderVals() {
+  const st = this.state || {};
+  const accent = '#D9A84E';
+  const g1 = st.g1 || this.props.g1 || '#FF8A65';
+  const g2 = st.g2 || this.props.g2 || '#E85D9A';
+  const ring = (on) => on ? 'box-shadow: 0 0 0 2px #17151C, 0 0 0 4px #F4EDE1' : '';
+  const accents = [['Gold', '#D9A84E'], ['Rose', '#E07A8B'], ['Mint', '#6FC3A8'], ['Lilac', '#9C8CF0'], ['Coral', '#FF8A65'], ['Sky', '#6FA8FF']]
+    .map(([name, c]) => ({ name, c, ring: ring(c.toLowerCase() === accent.toLowerCase()), pick: () => this.save({ accent: c }) }));
+  const grads = [['Rose blush', '#FF8A65', '#E85D9A'], ['Mint to sky', '#9EE6D0', '#6FA8FF'], ['Coral to pink', '#FF9A8B', '#E8B4D8'], ['Gold to cream', '#D9A84E', '#F5DDA2'], ['Ivory', '#F4EDE1', '#F4EDE1'], ['Sunset', '#FECF6A', '#FF7A7A']]
+    .map(([name, a, b]) => ({ name, a, b, ring: ring(a.toLowerCase() === g1.toLowerCase() && b.toLowerCase() === g2.toLowerCase()), pick: () => this.save({ g1: a, g2: b }) }));
+  return {
+    accent, g1, g2, accents, grads, open: !!st.open,
+    toggle: () => this.setState({ open: !st.open }),
+    setAccent: (e) => this.save({ accent: e.target.value }),
+    setG1: (e) => this.save({ g1: e.target.value }),
+    setG2: (e) => this.save({ g2: e.target.value }),
+    reset: () => { try { localStorage.removeItem('festara-colours'); } catch (e) {} this.setState({ accent: null, g1: null, g2: null }); }
+  };
+}
+}
+</script>
+</body>
+</html>

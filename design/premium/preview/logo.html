@@ -1,0 +1,120 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+.tile{transition:transform .6s cubic-bezier(.22,1,.36,1),border-color .3s}
+.tile:hover{transform:translateY(-6px);border-color:#D9A84E!important}
+.spin{transform-origin:50% 50%;transform-box:fill-box;animation:spin 30s linear infinite}
+.flick{transform-origin:50% 100%;transform-box:fill-box;animation:flick 1.6s ease-in-out infinite alternate}
+.glow{animation:glow 3s ease-in-out infinite}
+.draw{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 2.4s cubic-bezier(.22,1,.36,1) forwards}
+.tw{transform-origin:50% 50%;transform-box:fill-box;animation:tw 2.4s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes flick{from{transform:scaleY(1) skewX(0deg)}to{transform:scaleY(1.12) skewX(-3deg)}}
+@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes tw{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.55);opacity:.4}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.draw{stroke-dashoffset:0}}
+</style>
+</head><body>
+<div style="width: 1440px; height: 1200px; box-sizing: border-box; padding: 72px; background: #0D0C10; color: #F4EDE1; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; flex-direction: column; gap: 44px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div>
+      <span style="font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #D9A84E">Brand mark</span>
+      <h1 style="margin: 8px 0 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 72px; line-height: 1">Five ways to sign <em style="color: #D9A84E; font-weight: 500">Festara.</em></h1>
+    </div>
+    <p style="margin: 0; max-width: 34ch; color: #8F8678; font-size: 15px">Each mark comes from something at every celebration here: the arch, the diya, the seal, the two rings, the eight-point star.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px">
+
+    <!-- 1 · Mehrab monogram -->
+    <div class="tile" style="grid-column: span 3; min-height: 380px; border-radius: 28px; background: #17151C; border: 1px solid #2A2630; padding: 36px; display: flex; flex-direction: column; justify-content: space-between">
+      <div style="display: flex; justify-content: space-between"><span style="font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #8F8678">01 · Mehrab</span><span style="padding: 4px 10px; border-radius: 999px; background: #D9A84E; color: #17130C; font-size: 12px; font-weight: 600">Recommended</span></div>
+      <div style="display: flex; align-items: center; gap: 22px">
+        <svg width="96" height="120" viewBox="0 0 80 100" fill="none" stroke="#D9A84E" stroke-width="2.2" aria-hidden="true">
+          <path class="draw" d="M8 98V42C8 20 24 6 40 2c16 4 32 18 32 40v56"></path>
+          <path class="draw" d="M18 98V46c0-14 10-24 22-28 12 4 22 14 22 28v52" stroke-width="1.2" style="animation-delay:.3s"></path>
+          <path d="M33 80V42h18M33 60h13" stroke="#F4EDE1" stroke-width="3" stroke-linecap="round"></path>
+          <circle class="glow" cx="40" cy="12" r="2.6" fill="#F5DDA2" stroke="none"></circle>
+        </svg>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 64px; line-height: .9; letter-spacing: -0.01em">Festara</span>
+          <span style="font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: #8F8678">Plan together</span>
+        </div>
+      </div>
+      <p style="margin: 0; color: #B4AA9C; font-size: 14px">An F standing in a jharokha arch: the door every guest walks through. Works tiny as an app icon.</p>
+    </div>
+
+    <!-- 2 · Diya -->
+    <div class="tile" style="grid-column: span 3; min-height: 380px; border-radius: 28px; background: #17151C; border: 1px solid #2A2630; padding: 36px; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #8F8678">02 · Diya</span>
+      <div style="display: flex; align-items: center; gap: 22px">
+        <svg width="100" height="110" viewBox="0 0 90 100" fill="none" aria-hidden="true">
+          <path class="flick" d="M45 8c10 14 14 24 14 32a14 14 0 0 1-28 0c0-8 4-18 14-32z" fill="#D9A84E"></path>
+          <path class="flick" d="M45 26c5 7 6 12 6 15a6 6 0 0 1-12 0c0-3 1-8 6-15z" fill="#F5DDA2" style="animation-duration:1.1s"></path>
+          <path d="M8 62h74c0 18-16 30-37 30S8 80 8 62z" stroke="#D9A84E" stroke-width="2.2"></path>
+          <path d="M20 70h50" stroke="#D9A84E" stroke-width="1.2" stroke-dasharray="2 5"></path>
+        </svg>
+        <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 68px; line-height: .9">festara</span>
+      </div>
+      <p style="margin: 0; color: #B4AA9C; font-size: 14px">A lit diya: every celebration starts by lighting one. Warm, festive, the flame flickers gently.</p>
+    </div>
+
+    <!-- 3 · Seal -->
+    <div class="tile" style="grid-column: span 2; min-height: 360px; border-radius: 28px; background: #17151C; border: 1px solid #2A2630; padding: 32px; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #8F8678">03 · Mohar seal</span>
+      <svg width="150" height="150" viewBox="0 0 120 120" fill="none" stroke="#D9A84E" aria-hidden="true" style="align-self: center">
+        <g class="spin"><circle cx="60" cy="60" r="56" stroke-width="1.4"></circle><circle cx="60" cy="60" r="50" stroke-width="1" stroke-dasharray="1.5 4.5"></circle>
+          <path d="M60 10v8M60 102v8M10 60h8M102 60h8M25 25l6 6M89 89l6 6M95 25l-6 6M31 89l-6 6" stroke-width="1.4"></path></g>
+        <circle cx="60" cy="60" r="34" fill="#1F4D3A" stroke-width="1.6"></circle>
+        <text x="60" y="76" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="48" font-weight="600" fill="#F4EDE1" stroke="none">F</text>
+      </svg>
+      <p style="margin: 0; color: #B4AA9C; font-size: 14px">A wax-seal stamp, like the one on a shaadi card. The outer ring turns slowly.</p>
+    </div>
+
+    <!-- 4 · Two rings -->
+    <div class="tile" style="grid-column: span 2; min-height: 360px; border-radius: 28px; background: #17151C; border: 1px solid #2A2630; padding: 32px; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #8F8678">04 · One link</span>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 14px">
+        <svg width="90" height="60" viewBox="0 0 90 60" fill="none" stroke-width="3" aria-hidden="true">
+          <circle class="draw" cx="32" cy="30" r="22" stroke="#D9A84E"></circle>
+          <circle class="draw" cx="58" cy="30" r="22" stroke="#F4EDE1" style="animation-delay:.4s"></circle>
+        </svg>
+        <span style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 48px">Festara</span>
+      </div>
+      <p style="margin: 0; color: #B4AA9C; font-size: 14px">Two linked rings: one invite joining two families. Tells the product story in one shape.</p>
+    </div>
+
+    <!-- 5 · Eight-point star -->
+    <div class="tile" style="grid-column: span 2; min-height: 360px; border-radius: 28px; background: #17151C; border: 1px solid #2A2630; padding: 32px; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #8F8678">05 · Ajrak star</span>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 14px">
+        <svg width="72" height="72" viewBox="0 0 60 60" fill="none" stroke="#D9A84E" stroke-width="2" aria-hidden="true">
+          <g class="spin" style="animation-duration:40s"><rect x="12" y="12" width="36" height="36"></rect><rect x="12" y="12" width="36" height="36" transform="rotate(45 30 30)"></rect></g>
+          <circle class="tw" cx="30" cy="30" r="4" fill="#F5DDA2" stroke="none"></circle>
+        </svg>
+        <span style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 48px">Festara</span>
+      </div>
+      <p style="margin: 0; color: #B4AA9C; font-size: 14px">The Mughal eight-point star from ajrak and tiles. The current sparkle, made ours.</p>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center">
+    <span style="font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #8F8678; margin-right: 12px">Mehrab as app icon</span>
+    <div style="width: 96px; height: 96px; border-radius: 24px; background: #1F4D3A; display: grid; place-items: center">
+      <svg width="48" height="60" viewBox="0 0 80 100" fill="none" stroke="#D9A84E" stroke-width="5" aria-hidden="true"><path d="M8 98V42C8 20 24 6 40 2c16 4 32 18 32 40v56"></path><path d="M33 80V42h18M33 60h13" stroke="#F4EDE1" stroke-width="6" stroke-linecap="round"></path></svg>
+    </div>
+    <div style="width: 96px; height: 96px; border-radius: 24px; background: #D9A84E; display: grid; place-items: center">
+      <svg width="48" height="60" viewBox="0 0 80 100" fill="none" stroke="#17130C" stroke-width="5" aria-hidden="true"><path d="M8 98V42C8 20 24 6 40 2c16 4 32 18 32 40v56"></path><path d="M33 80V42h18M33 60h13" stroke-width="6" stroke-linecap="round"></path></svg>
+    </div>
+    <div style="width: 96px; height: 96px; border-radius: 24px; background: #F4EDE1; display: grid; place-items: center">
+      <svg width="48" height="60" viewBox="0 0 80 100" fill="none" stroke="#3B2350" stroke-width="5" aria-hidden="true"><path d="M8 98V42C8 20 24 6 40 2c16 4 32 18 32 40v56"></path><path d="M33 80V42h18M33 60h13" stroke="#8E2A1E" stroke-width="6" stroke-linecap="round"></path></svg>
+    </div>
+    <div style="width: 44px; height: 44px; border-radius: 12px; background: #1F4D3A; display: grid; place-items: center">
+      <svg width="22" height="28" viewBox="0 0 80 100" fill="none" stroke="#D9A84E" stroke-width="7" aria-hidden="true"><path d="M8 98V42C8 20 24 6 40 2c16 4 32 18 32 40v56"></path><path d="M33 80V42h18M33 60h13" stroke="#F4EDE1" stroke-width="8" stroke-linecap="round"></path></svg>
+    </div>
+    <span style="color: #8F8678; font-size: 13px">96 px, and 44 px for the browser tab</span>
+  </div>
+</div>
+</body></html>
