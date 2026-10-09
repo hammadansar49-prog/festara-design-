@@ -1,13 +1,14 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
+import { EventCard } from "@/components/event-card";
 import { Field } from "@/components/field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import type { ActionState } from "@/lib/actions/state";
-import { COVER_COLORS, COVER_LABELS, EVENT_TYPES, EVENT_TYPE_LABELS } from "@/lib/constants";
+import { COVER_COLORS, COVER_LABELS, EVENT_TYPES, EVENT_TYPE_LABELS, type CoverColor, type EventType } from "@/lib/constants";
 
 export type EventFormValues = {
   name: string; type: string; eventDate: string; location: string;
@@ -26,9 +27,17 @@ export function EventForm({
   const e = state.fieldErrors ?? {};
   const bad = (k: string) => ({ "aria-invalid": !!e[k], "aria-describedby": e[k] ? `${k}-error` : undefined });
 
+  // Live preview only: mirrors what is typed into the card people will see. It never feeds the action.
+  const [live, setLive] = useState({ name: v.name, type: v.type, eventDate: v.eventDate, location: v.location, coverColor: v.coverColor });
+  const mirror = (form: HTMLFormElement) => {
+    const fd = new FormData(form);
+    setLive((l) => ({ ...l, name: String(fd.get("name") ?? ""), eventDate: String(fd.get("eventDate") ?? ""), location: String(fd.get("location") ?? ""), coverColor: String(fd.get("coverColor") ?? l.coverColor) }));
+  };
+
   return (
-    // The key remounts the form after an error so defaults (including the select) are reapplied.
-    <form key={state.values ? JSON.stringify(state.values) : "initial"} action={formAction} className="grid gap-5" noValidate>
+    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-start">
+    {/* The key remounts the form after an error so defaults (including the select) are reapplied. */}
+    <form key={state.values ? JSON.stringify(state.values) : "initial"} action={formAction} onInput={(ev) => mirror(ev.currentTarget)} className="grid gap-6 rounded-[24px] border bg-card p-6 sm:p-8" noValidate>
       {state.message && !state.confirmPast && (
         <p role={state.ok ? "status" : "alert"} className={`rounded-md p-3 text-sm ${state.ok ? "bg-ok-tint text-ok" : "bg-over-tint text-over"}`}>
           {state.message}
@@ -41,7 +50,7 @@ export function EventForm({
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="type" label="Type" error={e.type}>
-          <Select name="type" defaultValue={v.type || undefined}>
+          <Select name="type" defaultValue={v.type || undefined} onValueChange={(t) => setLive((l) => ({ ...l, type: t }))}>
             <SelectTrigger id="type" className="w-full" {...bad("type")}><SelectValue placeholder="Choose a type" /></SelectTrigger>
             <SelectContent>
               {EVENT_TYPES.map((t) => <SelectItem key={t} value={t}>{EVENT_TYPE_LABELS[t]}</SelectItem>)}
@@ -82,7 +91,7 @@ export function EventForm({
           {COVER_COLORS.map((c) => (
             <label key={c} className="relative cursor-pointer">
               <input type="radio" name="coverColor" value={c} defaultChecked={v.coverColor === c} className="peer sr-only" />
-              <span aria-hidden className="block size-8 rounded-full border-2 border-card ring-1 ring-input peer-checked:ring-2 peer-checked:ring-foreground peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2"
+              <span aria-hidden className="block size-11 rounded-2xl transition-transform duration-300 hover:-translate-y-0.5 peer-checked:scale-110 peer-checked:ring-2 peer-checked:ring-foreground peer-checked:ring-offset-2 peer-checked:ring-offset-card peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4"
                 style={{ background: `var(--event-${c})` }} />
               <span className="sr-only">{COVER_LABELS[c]}</span>
             </label>
@@ -93,5 +102,15 @@ export function EventForm({
 
       <Button type="submit" size="lg" disabled={pending} className="w-fit">{pending ? "Saving" : submitLabel}</Button>
     </form>
+
+    <aside aria-label="Live preview" className="grid gap-3 lg:sticky lg:top-24">
+      <span className="lbl text-muted-foreground">Live preview</span>
+      <EventCard event={{
+        name: live.name || "Your event", type: (live.type || "other") as EventType, eventDate: live.eventDate || new Date().toLocaleDateString("en-CA"),
+        location: live.location || null, coverColor: (live.coverColor || "mehndi") as CoverColor, role: "admin", memberCount: 1,
+      }} />
+      <p className="text-sm text-muted-foreground">This is how the event looks in everyone&rsquo;s list.</p>
+    </aside>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Link2, X } from "lucide-react";
+import { Check, Copy, Link2, X } from "lucide-react";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 import { RoleBadge } from "@/components/role-badge";
@@ -10,8 +10,36 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { changeRoleAction, createInvitationAction, removeMemberAction } from "@/lib/actions/members";
 import type { InviteRole, Member } from "@/lib/data/types";
-import type { Role } from "@/lib/permissions";
+import { can, type Action, type Role } from "@/lib/permissions";
 import { initials } from "@/lib/text";
+
+const ROLE_BLURB: Record<Role, string> = { admin: "Runs the event", member: "Helps plan", guest: "Just attends" };
+const ABILITIES: { action: Action; label: string }[] = [
+  { action: "event.viewBasic", label: "Sees the date and place" },
+  { action: "event.viewFull", label: "Sees the full plan" },
+  { action: "guest.add", label: "Adds guests" },
+  { action: "invite.create", label: "Creates invite links" },
+  { action: "member.manage", label: "Changes roles" },
+];
+
+/** Three cards, one per role, built from the same can() table the server checks. */
+function RoleCards({ members }: { members: Member[] }) {
+  return (
+    <ul className="grid gap-4 md:grid-cols-3" aria-label="What each role can do">
+      {(["admin", "member", "guest"] as const).map((r) => (
+        <li key={r} className="grid content-start gap-3 rounded-[20px] border bg-card p-5 transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-overlay)]">
+          <div className="flex items-center justify-between"><RoleBadge role={r} /><span className="font-display text-4xl tabular-nums">{members.filter((m) => m.role === r).length}</span></div>
+          <p className="font-semibold">{ROLE_BLURB[r]}</p>
+          <ul className="grid gap-1.5 text-sm text-muted-foreground">
+            {ABILITIES.filter((a) => can(r, a.action)).map((a) => (
+              <li key={a.action} className="flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full bg-ok-tint text-ok"><Check className="size-3" aria-hidden /></span>{a.label}</li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export type InviteView = { id: string; token: string; role: InviteRole; daysLeft: number };
 
@@ -53,10 +81,11 @@ export function MembersPanel({
   }
 
   return (
-    <div className="grid max-w-3xl gap-10">
+    <div className="grid max-w-4xl gap-10">
+      <RoleCards members={members} />
       {canManage && (
         <section aria-labelledby="invite-h" className="grid gap-3">
-          <h2 id="invite-h" className="text-lg font-semibold">Invite link</h2>
+          <h2 id="invite-h" className="font-display text-3xl">Invite link</h2>
           <div className="flex flex-wrap items-center gap-2">
             <Select value={inviteRole} onValueChange={(v) => setInviteRole(v as InviteRole)}>
               <SelectTrigger aria-label="Role for this link" className="w-40"><SelectValue /></SelectTrigger>
@@ -72,7 +101,7 @@ export function MembersPanel({
             <ul className="grid gap-2">
               {invites.map((i) => (
                 <li key={i.id} className="flex items-center gap-2">
-                  <code className="min-w-0 flex-1 truncate rounded-md border bg-card px-3 py-2.5 font-mono text-sm text-muted-foreground">/invite/{i.token}</code>
+                  <code className="min-w-0 flex-1 truncate rounded-xl border bg-card px-4 py-3 font-mono text-sm text-muted-foreground">/invite/{i.token}</code>
                   <RoleBadge role={i.role} />
                   <span className="hidden text-xs text-muted-foreground sm:inline">{i.daysLeft} {i.daysLeft === 1 ? "day" : "days"} left</span>
                   <Button variant="outline" onClick={() => copy(i.token)}><Copy className="size-4" aria-hidden />Copy link</Button>
@@ -84,7 +113,7 @@ export function MembersPanel({
       )}
 
       <section aria-labelledby="people-h" className="grid gap-1">
-        <h2 id="people-h" className="text-lg font-semibold">{members.length} {members.length === 1 ? "person" : "people"}</h2>
+        <h2 id="people-h" className="font-display text-3xl">{members.length} {members.length === 1 ? "person" : "people"}</h2>
         <ul>
           {members.map((m) => (
             <li key={m.userId} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b py-3 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_9rem_2.5rem]">
