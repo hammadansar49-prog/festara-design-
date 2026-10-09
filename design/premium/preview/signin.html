@@ -265,6 +265,7 @@ aside .deck-dots button{background:rgba(255,255,255,.22)}
   .panel-scene{width:clamp(110px,12vw,170px)!important;opacity:.55}
 }
 .panel-scene{display:none!important}
+@media (min-width:961px){ main,aside{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important} }
 /* fit short screens */
 @media (min-width:900px){ h1{font-size:clamp(32px,min(4vw,7.5vh),60px)!important} h2{font-size:clamp(34px,min(4.4vw,9vh),72px)!important} input{height:clamp(40px,6.4vh,52px)!important} button[type="submit"],form button{height:clamp(40px,6.4vh,48px)!important} form{gap:clamp(10px,2vh,18px)!important} }
 </style>
@@ -419,4 +420,29 @@ aside .deck-dots button{background:rgba(255,255,255,.22)}
     </div></div>
   </aside>
 </div>
-</body></html>
+<script>  // hero deck: auto-advances, and follows swipe, drag, sideways scroll, dots and arrow keys
+  const deck = document.querySelector('.hero-deck');
+  if (deck) {
+    const cards = [...deck.querySelectorAll('.deck-card')], dots = [...deck.querySelectorAll('.deck-dots button')];
+    let i = 0, busy = false;
+    const paint = () => { cards.forEach((c, k) => { c.classList.toggle('on', k === i); c.setAttribute('aria-hidden', k === i ? 'false' : 'true'); }); dots.forEach((d, k) => d.setAttribute('aria-current', k === i ? 'true' : 'false')); };
+    const go = (n, dir) => {
+      if (busy || n === i) return; busy = true; setTimeout(() => { busy = false; }, 650);
+      const out = cards[i], inc = cards[(n + cards.length) % cards.length];
+      inc.classList.add('snap'); inc.classList.toggle('left', dir < 0); void inc.offsetWidth; inc.classList.remove('snap');
+      out.classList.toggle('left', dir > 0);
+      i = (n + cards.length) % cards.length; paint();
+    };
+    const next = () => go(i + 1, 1), prev = () => go(i - 1, -1);
+    const restart = () => { clearInterval(window._deckT); window._deckT = setInterval(() => { if (!deck.matches(':hover')) next(); }, 5000); };
+    paint(); restart();
+    dots.forEach((d, k) => d.addEventListener('click', () => { go(k, k > i ? 1 : -1); restart(); }));
+    deck.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { next(); restart(); } if (e.key === 'ArrowLeft') { prev(); restart(); } });
+    let acc = 0;
+    deck.addEventListener('wheel', (e) => { if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; e.preventDefault(); acc += e.deltaX; if (Math.abs(acc) > 40) { acc > 0 ? next() : prev(); acc = 0; restart(); } }, { passive: false });
+    let x0 = null, moved = false;
+    deck.addEventListener('pointerdown', (e) => { x0 = e.clientX; moved = false; deck.classList.add('dragging'); });
+    const end = (e) => { if (x0 == null) return; const dx = e.clientX - x0; x0 = null; deck.classList.remove('dragging'); if (Math.abs(dx) > 40) { moved = true; dx < 0 ? next() : prev(); restart(); } };
+    window.addEventListener('pointerup', end); window.addEventListener('pointercancel', () => { x0 = null; deck.classList.remove('dragging'); });
+    deck.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  }</script></body></html>
