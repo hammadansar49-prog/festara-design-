@@ -89,6 +89,8 @@ a[style*="999px"]:hover::before{transform:translateX(120%)}
 @keyframes a-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 @keyframes a-tw{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.5);opacity:.3}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* fit short screens */
+@media (min-width:900px){ h1{font-size:clamp(32px,min(4vw,7.5vh),60px)!important} h2{font-size:clamp(34px,min(4.4vw,9vh),72px)!important} input{height:clamp(40px,6.4vh,52px)!important} button[type="submit"],form button{height:clamp(40px,6.4vh,48px)!important} form{gap:clamp(10px,2vh,18px)!important} }
 </style>
 </head><body>
 <div style="--accent: #D9A84E; --g1: #FF8A65; --g2: #E85D9A; min-height: 100vh; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); background: #0D0C10; color: #F4EDE1; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
