@@ -251,6 +251,19 @@ aside .deck-card{box-shadow:0 18px 40px -22px rgba(0,0,0,.55)!important;border-c
 aside .deck-card .hero-scene{filter:none!important}
 aside .deck-dots button{background:rgba(255,255,255,.22)}
 @media (max-width:960px){aside .deck-wrap{display:none}}
+/* redesign: one compact centred auth card instead of two giant halves */
+@media (min-width:961px){
+  x-dc > div,body > div{height:100vh;box-sizing:border-box;grid-template-columns:minmax(0,1fr) minmax(0,.9fr)!important;padding:max(16px,calc((100vh - 600px)/2)) max(20px,calc((100vw - 1040px)/2))!important;background:radial-gradient(60% 60% at 80% 20%,rgba(232,93,154,.10),transparent 70%),radial-gradient(50% 60% at 10% 90%,rgba(217,168,78,.08),transparent 70%),#0D0C10!important}
+  main{background:#131118;border:1px solid #26222D;border-right:0;border-radius:24px 0 0 24px;padding:clamp(20px,4vh,36px) clamp(28px,4vw,52px)!important;justify-content:center!important;gap:clamp(18px,4vh,34px)!important;position:relative}
+  main > div:first-child{position:absolute;top:clamp(18px,3.4vh,28px);left:clamp(28px,4vw,52px);right:clamp(28px,4vw,52px)}
+  main > span{position:absolute;bottom:clamp(16px,3vh,24px);left:clamp(28px,4vw,52px)}
+  main form{max-width:none!important;margin-top:clamp(24px,5vh,40px)}
+  aside{margin:0!important;border-radius:0 24px 24px 0!important;padding:clamp(20px,4vh,36px) clamp(20px,3vw,40px)!important;background:linear-gradient(160deg,#2E1C3F 0%,#1C1428 100%)!important;border:1px solid #26222D;border-left:0;justify-content:center!important;align-items:center;text-align:center;gap:clamp(14px,3vh,24px)!important}
+  aside > h2{font-size:clamp(24px,min(2.4vw,5vh),34px)!important;max-width:none!important;line-height:1.05!important}
+  aside > h2 br{display:none}
+  aside .deck-wrap{margin:0!important;max-width:min(330px,100%)!important;text-align:left}
+  .panel-scene{width:clamp(110px,12vw,170px)!important;opacity:.55}
+}
 /* fit short screens */
 @media (min-width:900px){ h1{font-size:clamp(32px,min(4vw,7.5vh),60px)!important} h2{font-size:clamp(34px,min(4.4vw,9vh),72px)!important} input{height:clamp(40px,6.4vh,52px)!important} button[type="submit"],form button{height:clamp(40px,6.4vh,48px)!important} form{gap:clamp(10px,2vh,18px)!important} }
 </style>
