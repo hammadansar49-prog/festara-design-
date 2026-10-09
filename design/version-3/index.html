@@ -6,23 +6,29 @@
 <title>Festara</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,100,0;1,9..144,400..700,100,0&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: a night-market of colour. Dark ink ground, every event a saturated block wearing an ajrak-style pattern;
    landing scrolls as stacked cards, the app is a desk with a sidebar, routes change with a flood of the event's colour. */
 :root{
-  /* tokens mirror festara-app/app/tokens.css (Anas). Light paper first, dark on request. */
-  --bg:#F8F5EF; --panel:#FFFDF9; --panel2:#EFE9DD; --line:#E6E0D6; --line2:#8C847C; --text:#1C1A22; --muted:#6B645E; --faint:#8C847C; --brand:#E9A23B; --ok:#2F6B3C; --warn:#A85410; --over:#B3261E; --ok-t:#E3EEE2; --warn-t:#FCF3E8; --over-t:#F6DDD9; --shadow-overlay:0 1px 2px rgb(28 26 34 / .06),0 12px 32px -8px rgb(28 26 34 / .18);
-  --mehndi:#4C6B35; --mehndi-fg:#FFFDF9; --marigold:#E9A23B; --marigold-fg:#1C1A22; --sindoor:#B03A28; --sindoor-fg:#FFFDF9;
-  --kahwa:#6E4A2B; --kahwa-fg:#FFFDF9; --sky:#2F6F9A; --sky-fg:#FFFDF9; --night:#2A2950; --night-fg:#FFFDF9;
-  --f-display:"Fraunces",Georgia,serif; --f-serif:"Fraunces",Georgia,serif;
-  --f-body:"Hanken Grotesk",ui-sans-serif,system-ui,sans-serif; --f-mono:"Hanken Grotesk",ui-sans-serif,system-ui,sans-serif;
-  --r-xl:12px; --r-lg:12px; --r-md:6px; --r-sm:4px;
+  --bg:#0D0C10; --panel:#17151C; --panel2:#1E1B24; --line:#2A2630; --line2:#3A3540;
+  --text:#F4EDE1; --muted:#B4AA9C; --faint:#8F8678;
+  --brand:#D9A84E; --ok:#7BC48A; --warn:#F0A257; --over:#F2837A; --ok-t:#1C2B20; --warn-t:#2F2318; --over-t:#33201E;
+  --mehndi:#1F4D3A; --mehndi-fg:#F4EDE1; --marigold:#C98A2B; --marigold-fg:#17130C; --sindoor:#8E2A1E; --sindoor-fg:#F4EDE1;
+  --kahwa:#5A3A22; --kahwa-fg:#F4EDE1; --sky:#1E3F66; --sky-fg:#F4EDE1; --night:#3B2350; --night-fg:#F4EDE1;
+  --f-display:"Cormorant Garamond",Georgia,serif; --f-serif:"Cormorant Garamond",Georgia,serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif; --f-mono:"Plus Jakarta Sans",system-ui,sans-serif;
+  --r-xl:28px; --r-lg:18px; --r-md:12px; --r-sm:8px;
   --ease:cubic-bezier(.22,1,.36,1);
-  color-scheme:light;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#16141B; --panel:#1F1C25; --panel2:#262230; --line:#34303B; --line2:#6F6878; --text:#F2EDE3; --muted:#A8A099; --faint:#6F6878; --brand:#EDAE4B; --ok:#78BB86; --warn:#E69A52; --over:#F08177; --ok-t:#1E2E22; --warn-t:#33261A; --over-t:#36201E; --shadow-overlay:0 0 0 1px rgb(255 255 255 / .06),0 16px 40px -8px rgb(0 0 0 / .6); color-scheme:dark } }
-:root[data-theme="dark"]{ --bg:#16141B; --panel:#1F1C25; --panel2:#262230; --line:#34303B; --line2:#6F6878; --text:#F2EDE3; --muted:#A8A099; --faint:#6F6878; --brand:#EDAE4B; --ok:#78BB86; --warn:#E69A52; --over:#F08177; --ok-t:#1E2E22; --warn-t:#33261A; --over-t:#36201E; --shadow-overlay:0 0 0 1px rgb(255 255 255 / .06),0 16px 40px -8px rgb(0 0 0 / .6); color-scheme:dark }
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+  --bg:#F4EFE6; --panel:#FFFCF6; --panel2:#EFE8DB; --line:#E2DACB; --line2:#B9AF9F; --text:#17141B; --muted:#6A635C; --faint:#9A9289;
+  --ok:#2F6B3C; --warn:#A85410; --over:#B3261E; --ok-t:#E3EEE2; --warn-t:#FCF3E8; --over-t:#F6DDD9; --brand:#A9761F; color-scheme:light } }
+:root[data-theme="light"]{
+  --bg:#F4EFE6; --panel:#FFFCF6; --panel2:#EFE8DB; --line:#E2DACB; --line2:#B9AF9F; --text:#17141B; --muted:#6A635C; --faint:#9A9289;
+  --ok:#2F6B3C; --warn:#A85410; --over:#B3261E; --ok-t:#E3EEE2; --warn-t:#FCF3E8; --over-t:#F6DDD9; --brand:#A9761F; color-scheme:light }
+:root[data-theme="dark"]{ color-scheme:dark }
 
 *{box-sizing:border-box}
 html{scroll-behavior:auto}
@@ -600,54 +606,53 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
 @media (min-width:981px){ .demo-bar{left:auto;right:16px} }
 
 
-/* ===================== v4 · Anas's style lock (festara-app/.tastemaker/style-lock.md) =====================
-   Tokens, fonts, 12px cards / 6px controls, one overlay shadow, plain cover blocks, no scroll tricks.
-   Version 3 layout, cards, countdown, guest page and calm entrances stay. */
-.cover::before,.art,.glow,.flood{display:none!important}
-:is(h1,h2,h3,h4,.wordmark,.stage .ttl,.acc .big,.ecard .cv b,.ecard-mini .cv b,.stat b,.countdown b,.ticks b,.nextup .cv b,.rcard b.n,.marquee .row,.problem p,.auth-side .big,.scard .num,.l-sheet a,.sec-t h2){font-family:var(--f-display);font-weight:560;font-variation-settings:"SOFT" 100,"WONK" 0;letter-spacing:-.02em;line-height:1.08}
-.serif{font-family:var(--f-display);font-style:italic;font-weight:500;color:inherit!important;letter-spacing:-.01em}
-.lbl{letter-spacing:.07em}
-.hero h1{font-size:clamp(48px,6.4vw,96px)}
-.sec-h h2,.close h2{font-size:clamp(38px,4.6vw,60px)}
-.problem p{font-size:clamp(32px,4.4vw,60px)}
-.ph h1{font-size:clamp(38px,4.4vw,56px)}
-.ehead h1{font-size:clamp(38px,5vw,68px)}
-.countdown b{font-size:clamp(64px,7vw,104px)}
-.scard .num{-webkit-text-stroke:0;color:var(--faint);font-size:72px}
-/* shape: cards 12px, controls 6px, tags 4px */
-.btn,.inp,.sel,.icon-btn,.jump,.seg,.seg a,.seg button,.roletabs,.roletabs button,.theme-t,.theme-t button,.swatch{border-radius:var(--r-md)}
-.badge,.sample{border-radius:var(--r-sm)}
-.l-nav{border-radius:var(--r-lg)}
-/* primary = ink; marigold only as the mark */
-.btn::after{display:none}.btn:hover{color:var(--bg);background:color-mix(in srgb,var(--text) 86%,var(--bg))}
-.btn.ghost:hover{color:var(--text);background:var(--panel2)}
-.btn.danger:hover{color:#fff;background:var(--over)}
-.close .btn:hover{background:var(--mehndi-fg);color:var(--mehndi)}
-.newtile .plus{background:var(--text);color:var(--bg)}
-.badge.member{background:var(--panel2);color:var(--text);box-shadow:inset 0 0 0 1px var(--line2)}
-.matrix .hl{background:var(--panel2)}
-.demo-bar{background:var(--text);color:var(--bg)}
-.nav-a[aria-current="page"]::before{background:var(--text)}
-.tabs a[aria-current="page"] svg{color:var(--text)}
-.inp:focus{border-color:var(--text);box-shadow:none}
-:focus-visible{outline-color:var(--text)}
-/* one shadow only: overlays (nav pill, menus, modals, toast); everything else gets a hairline */
-.ecard,.ecard:hover,.scard,.stage,.panel,.stat,.formcard,.gcard,.rcard,.rcard:hover,.nextup,.nextup:hover,.inv-ticket,.joincard,.toast-card,.ecard-mini,.matrix,.demo-bar{box-shadow:0 0 0 1px var(--line)}
-.l-nav,.menu,.modal .box,.toast{box-shadow:var(--shadow-overlay)}
-.ecard:hover,.nextup:hover,.rcard:hover{transform:translateY(-2px)}
-/* no sticky stacks */
-.scard{position:relative!important;top:auto!important}
-.preview{position:relative;top:0}
-.stack{gap:22px}
-/* covers: plain colour blocks */
-.h-stage,.auth-side .cards .ecard{transform:none!important}
-.toast:empty{visibility:hidden}
+/* ===================== premium · Rangeen Raat Gold =====================
+   Night ground, gold accent, jewel covers, Cormorant Garamond + Plus Jakarta Sans,
+   each cover keeps its own animated line art (no dot pattern), cards push up on scroll. */
+.cover::before{display:none!important}
+:is(h1,h2,h3,h4,.wordmark,.stage .ttl,.acc .big,.ecard .cv b,.ecard-mini .cv b,.stat b,.countdown b,.ticks b,.nextup .cv b,.rcard b.n,.marquee .row,.problem p,.auth-side .big,.scard .num,.l-sheet a,.sec-t h2,.flood b){font-family:var(--f-display);font-weight:600;letter-spacing:-.015em;line-height:1}
+.serif{font-family:var(--f-serif);font-style:italic;font-weight:500;letter-spacing:-.01em}
+:is(h1,h2) .serif{background:linear-gradient(90deg,#D9A84E 0%,#F5DDA2 50%,#D9A84E 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{from{background-position:-200% 0}to{background-position:200% 0}}
+.hero h1{font-size:clamp(60px,8vw,128px);line-height:.92}
+.scard .num{-webkit-text-stroke:0;color:var(--brand)}
+.lbl{letter-spacing:.14em}
+/* gold primary buttons */
+.btn{background:var(--brand);color:#17130C}
+.btn::after{background:#F5DDA2}
+.btn:hover{color:#17130C;box-shadow:0 14px 30px -10px color-mix(in srgb,var(--brand) 70%,transparent)}
+.btn.ghost{background:transparent;color:var(--text)}
+.btn.ghost:hover{color:#17130C}
+.newtile .plus{background:var(--brand)}
+.badge.admin{background:var(--text);color:var(--bg)}
+.badge.member{background:transparent;color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
+/* nav: gold underline grows on hover */
+.l-nav nav a{position:relative}
+.l-nav nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:6px;height:1.5px;border-radius:1px;background:var(--brand);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.l-nav nav a:hover::after,.l-nav nav a:focus-visible::after{transform:scaleX(1);transform-origin:left}
+/* line art brighter, glows on hover */
+.art{color:rgba(255,255,255,.75)}
+.ecard:hover .art,.acc:hover .art,.nextup:hover .art{opacity:.95}
+/* cards: deeper, gold edge on hover */
+.ecard:hover,.rcard:hover,.nextup:hover{box-shadow:0 0 0 1px var(--brand),0 40px 80px -40px color-mix(in srgb,var(--brand) 40%,transparent)}
+/* scroll: each card pushes up on its own (translate/scale, so hover transforms still work) */
+@keyframes pop{from{opacity:0;translate:0 90px;scale:.9}60%{opacity:1}to{opacity:1;translate:0 0;scale:1}}
+@keyframes bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@supports (animation-timeline: view()){
+  .grid3 > *,.stats > .stat,.roles3 > .rcard,.acc,.matrix tbody tr{animation:pop 1s var(--ease) both;animation-timeline:view();animation-range:entry 0% cover 28%}
+  .grid3 > *:nth-child(3n+2),.stats > .stat:nth-child(2),.roles3 > .rcard:nth-child(2),.acc:nth-child(2){animation-range:entry 8% cover 34%}
+  .grid3 > *:nth-child(3n),.stats > .stat:nth-child(3),.roles3 > .rcard:nth-child(3),.acc:nth-child(3){animation-range:entry 16% cover 40%}
+  .stats > .stat:nth-child(4){animation-range:entry 24% cover 46%}
+  .scroll-bar{position:fixed;top:0;left:0;right:0;height:3px;z-index:300;background:linear-gradient(90deg,#B8862F,#F5DDA2);transform-origin:left;animation:bar linear both;animation-timeline:scroll(root);pointer-events:none}
+}
+/* phone fixes */
 .scard > *,.mock,.mock > *{min-width:0}
 .bubble{max-width:100%}
-.c-marigold .chip,.c-marigold .cd{background:rgba(255,255,255,.35)}
+@media (prefers-reduced-motion:reduce){:is(h1,h2) .serif{animation:none}}
 </style>
-<div class="demo-bar" role="note">Design version 3 · sample data from Anas's mock. Try any sign-in with password <code>festara123</code>.<button type="button" id="demoX" aria-label="Hide this note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+<div class="demo-bar" role="note">Festara · sample data from Anas's mock. Try any sign-in with password <code>festara123</code>.<button type="button" id="demoX" aria-label="Hide this note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="glow" id="glow" aria-hidden="true"></div>
+<div class="scroll-bar" aria-hidden="true"></div>
 
 <!-- ======================= LANDING ======================= -->
 <div class="view on" id="v-landing">
@@ -796,6 +801,7 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
   'use strict';
@@ -885,7 +891,7 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
   function daysUntil(d){ return Math.round((new Date(d + 'T00:00:00') - today) / 864e5); }
   function fdate(d){ return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short', year:'numeric' }); }
   function initials(n){ return n.split(/\s+/).map(function(w){ return w[0]; }).join('').slice(0, 2).toUpperCase(); }
-  var AVC = ['#4C6B35','#B03A28','#2F6F9A','#6E4A2B','#2A2950','#8A5A0A'];
+  var AVC = ['#1F4D3A','#8E2A1E','#1E3F66','#5A3A22','#3B2350','#8A6420'];
   function av(n, i){ return '<span class="av" style="background:' + AVC[(i || 0) % AVC.length] + '">' + esc(initials(n)) + '</span>'; }
   function badge(r){ return '<span class="badge ' + r + '">' + ROLE[r] + '</span>'; }
 
@@ -917,7 +923,7 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
 
   /* ---------------- smooth scroll ---------------- */
   var lenis = null;
-  if (false && window.Lenis && !reduce){ /* Anas style lock: never alter scrolling */
+  if (window.Lenis && !reduce){
     lenis = new Lenis({ duration: 1.2, easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true });
     if (hasG){ lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(function(t){ lenis.raf(t * 1000); }); gsap.ticker.lagSmoothing(0); }
     else (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(0);
@@ -934,9 +940,9 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
   function toast(msg){ toastEl.innerHTML = ICON.check + '<span>' + esc(msg) + '</span>'; if (!hasG){ return; } gsap.killTweensOf(toastEl); gsap.fromTo(toastEl, { yPercent: 160 }, { yPercent: 0, duration: .6, ease: 'expo.out' }); gsap.to(toastEl, { yPercent: 180, delay: 2.6, duration: .5, ease: 'power3.in' }); }
   var bc = $('#burst'), bx = bc.getContext('2d'), parts = [], running = false;
   function burst(el, color){
-    if (true) return; /* calm app: no confetti */ var r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2, d = Math.min(2, devicePixelRatio || 1);
+    if (reduce) return; var r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2, d = Math.min(2, devicePixelRatio || 1);
     bc.width = innerWidth * d; bc.height = innerHeight * d; bx.setTransform(d, 0, 0, d, 0, 0);
-    var cols = [color || '#F2B33D', '#F2B33D', '#D04A33', '#5E8A3E', '#3B85B8', '#F3EEE6'];
+    var cols = [color || '#D9A84E', '#D9A84E', '#F5DDA2', '#8E2A1E', '#1F4D3A', '#F4EDE1'];
     for (var i = 0; i < 80; i++){ var a = Math.random() * 6.28, s = 4 + Math.random() * 9; parts.push({ x:cx, y:cy, vx:Math.cos(a) * s, vy:Math.sin(a) * s - 5, r:Math.random() * 6, vr:(Math.random() - .5) * .3, s:4 + Math.random() * 6, c:cols[i % cols.length], life:1, sq:i % 3 === 0 }); }
     if (!running){ running = true; requestAnimationFrame(step); }
   }
@@ -999,17 +1005,20 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
 
     if (!hasG || reduce) return;
     /* hero entrance: headline lines rise, stage tilts in */
-    gsap.from('.hero h1 .ln > span', { yPercent: 100, duration: .9, stagger: .09, ease: 'expo.out', delay: .15 });
+    gsap.from('.hero h1 .ln > span', { yPercent: 110, duration: 1.3, stagger: .09, ease: 'expo.out', delay: .15 });
     gsap.from('.h-in', { y: 30, opacity: 0, duration: 1, stagger: .08, ease: 'expo.out', delay: .5 });
-    gsap.from('.h-stage', { y: 24, opacity: 0, duration: .8, ease: 'expo.out', delay: .3 }); /* straight card, one calm rise */
+    gsap.from('.h-stage', { y: 80, rotate: 6, opacity: 0, duration: 1.5, ease: 'expo.out', delay: .3 });
+    gsap.to('.h-stage', { y: -60, rotate: -2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     /* problem: the sentence lights up word by word as you read */
     var p = $('#problem'); p.innerHTML = p.innerHTML.replace(/(<span class="serif">)(.*?)(<\/span>)/, function(m, a, b, c){ return b.split(' ').map(function(w){ return '<span class="w serif">' + w + '</span>'; }).join(' '); });
     p.innerHTML = p.innerHTML.split(/(<span class="w serif">.*?<\/span>)/).map(function(part){ return part.indexOf('class="w') > -1 ? part : part.split(' ').filter(Boolean).map(function(w){ return '<span class="w">' + w + '</span>'; }).join(' '); }).join(' ');
-    gsap.to('#problem .w', { opacity: 1, stagger: .04, duration: .6, ease: 'power2.out', scrollTrigger: { trigger: '.problem', start: 'top 75%', once: true } });
+    gsap.to('#problem .w', { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: '.problem', start: 'top 70%', end: 'bottom 60%', scrub: .6 } });
     /* stacked cards: each one sinks back as the next arrives */
     var cards = $$('.scard');
+    cards.forEach(function(c, i){ if (i === cards.length - 1) return; gsap.to(c, { scale: .92 - (cards.length - i) * .01, opacity: .55, filter: 'blur(1px)', ease: 'none', scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top 140px', scrub: true } }); });
     gsap.from('.acc', { y: 120, opacity: 0, stagger: .1, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: '#acc', start: 'top 85%' } });
     gsap.from('#matrix tbody tr', { x: 40, opacity: 0, stagger: .06, duration: .9, ease: 'expo.out', scrollTrigger: { trigger: '#matrix', start: 'top 80%' } });
+    gsap.from('.close', { clipPath: 'inset(12% 8% 12% 8% round 28px)', ease: 'none', scrollTrigger: { trigger: '.close', start: 'top bottom', end: 'top 30%', scrub: true } });
     $$('.sec-h h2, .close h2').forEach(function(h){ gsap.from(h, { y: 60, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: h, start: 'top 85%' } }); });
   }
 
@@ -1035,7 +1044,7 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
       }
       render(r); scrollTo(0, { immediate: true }); if (hasG && !reduce) enter();
     };
-    if (true){ first = false; go(); return; } /* no colour flood between pages */
+    if (first || !hasG || reduce){ first = false; go(); return; }
     flood.style.background = col; flood.style.color = fg; $('#floodTxt').textContent = label;
     flood.classList.toggle('cover', !!c); var fa = flood.querySelector('.art'); if (fa) fa.remove(); if (c && r.parts[0] === 'events') flood.insertAdjacentHTML('afterbegin', art(ev(r.parts[1]).type).replace('class="art ', 'class="art flood-art '));
     var R = Math.hypot(Math.max(lastClick.x, innerWidth - lastClick.x), Math.max(lastClick.y, innerHeight - lastClick.y));
@@ -1149,7 +1158,7 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
       + (!past && list.length ? nextUp(list.slice().sort(function(a, b){ return a.eventDate < b.eventDate ? -1 : 1; })[0]) + '<div class="sec-t" data-in><h2>All upcoming</h2><span style="color:var(--muted);font-size:14px">' + list.length + ' events</span></div>' : '')
       + (list.length ? '<div class="grid3">' + list.map(function(e){ return '<div data-in>' + cardHTML(e, roleIn(e.id)) + '</div>'; }).join('') + (past ? '' : '<a class="newtile" href="#/events/new" data-in><span class="plus">' + ICON.plus + '</span><b style="font-family:var(--f-display);font-size:24px;letter-spacing:-.03em;color:var(--text)">New event</b><span>Wedding, trip, society or anything</span></a>') + '</div>'
         : '<div class="empty" data-in><p>' + (past ? 'No past events.' : 'No events yet. Create one, or open an invite link someone sent you.') + '</p>' + (past ? '' : '<a class="btn ghost" href="#/events/new">' + ICON.plus + '<span>Create event</span></a>') + '</div>');
-    if (false) $$('.ecard', page).forEach(function(c){ c.addEventListener('mousemove', function(e){ var r = c.getBoundingClientRect(); gsap.to(c, { rotateY: ((e.clientX - r.left) / r.width - .5) * 7, rotateX: -((e.clientY - r.top) / r.height - .5) * 7, transformPerspective: 900, duration: .5 }); }); c.addEventListener('mouseleave', function(){ gsap.to(c, { rotateY: 0, rotateX: 0, duration: .8, ease: 'elastic.out(1,.5)' }); }); });
+    if (hasG && !reduce) $$('.ecard', page).forEach(function(c){ c.addEventListener('mousemove', function(e){ var r = c.getBoundingClientRect(); gsap.to(c, { rotateY: ((e.clientX - r.left) / r.width - .5) * 7, rotateX: -((e.clientY - r.top) / r.height - .5) * 7, transformPerspective: 900, duration: .5 }); }); c.addEventListener('mouseleave', function(){ gsap.to(c, { rotateY: 0, rotateX: 0, duration: .8, ease: 'elastic.out(1,.5)' }); }); });
   }
 
   function nextUp(e){
@@ -1294,7 +1303,7 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
     box.className = 'inv-page';
     box.innerHTML = '<div class="inv-ticket" id="tk" data-in><div class="cv cover c-' + e.coverColor + '">' + art(e.type, 'draw') + '<span class="lbl">You\'re invited</span><h1>' + esc(e.name) + '</h1></div><div class="perf"></div><div class="body"><p style="font-size:18px"><b>' + esc(inviter ? inviter.fullName : 'Someone') + '</b> invited you to join as a <b>' + ROLE[inv.role] + '</b>.</p><ul><li>' + ICON.cal + fdate(e.eventDate) + '</li>' + (e.location ? '<li>' + ICON.pin + esc(e.location) + '</li>' : '') + '</ul>'
       + '<div id="joinBox" style="display:grid;gap:10px"><button type="button" class="btn lg" id="joinBtn" style="width:100%"><span>Join ' + esc(e.name) + '</span></button><a class="btn ghost lg" href="#/login" style="width:100%"><span>I already have an account</span></a></div><p style="font-size:13px;color:var(--muted)">' + (inv.role === 'guest' ? 'As a guest you can see the event details.' : 'As a member you can see everything about the event and add to it.') + '</p></div></div>';
-    if (false){ var tk = $('#tk'); tk.addEventListener('mousemove', function(ev){ var r = tk.getBoundingClientRect(); gsap.to(tk, { rotateY: ((ev.clientX - r.left) / r.width - .5) * 10, rotateX: -((ev.clientY - r.top) / r.height - .5) * 10, transformPerspective: 1000, duration: .6 }); }); tk.addEventListener('mouseleave', function(){ gsap.to(tk, { rotateX: 0, rotateY: 0, duration: 1, ease: 'elastic.out(1,.4)' }); }); }
+    if (hasG && !reduce){ var tk = $('#tk'); tk.addEventListener('mousemove', function(ev){ var r = tk.getBoundingClientRect(); gsap.to(tk, { rotateY: ((ev.clientX - r.left) / r.width - .5) * 10, rotateX: -((ev.clientY - r.top) / r.height - .5) * 10, transformPerspective: 1000, duration: .6 }); }); tk.addEventListener('mouseleave', function(){ gsap.to(tk, { rotateX: 0, rotateY: 0, duration: 1, ease: 'elastic.out(1,.4)' }); }); }
     $('#joinBtn').addEventListener('click', function(){ var b = this; if (!DB.members.some(function(m){ return m[0] === e.id && m[1] === me.id; })) DB.members.push([e.id, me.id, inv.role]); burst(b, 'var(--' + e.coverColor + ')'); $('#joinBox').innerHTML = '<p class="msg ok" role="status" style="font-size:16px">You\'re in. Welcome to ' + esc(e.name) + '.</p><a class="btn lg" href="#/events/' + e.id + '" style="width:100%"><span>Open the event</span></a>'; if (hasG) gsap.from('#joinBox > *', { y: 20, opacity: 0, stagger: .08, duration: .7, ease: 'expo.out' }); });
   }
 
@@ -1322,7 +1331,7 @@ textarea.inp{height:auto;padding:14px 16px;resize:vertical;min-height:96px}
   document.addEventListener('keydown', function(e){ if (e.key.toLowerCase() === 'k' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); cmd.classList.contains('on') ? closeCmd() : openCmd(); } if (e.key === 'Escape'){ closeCmd(); closeModal(); closeMenus(); } });
 
   /* magnetic buttons */
-  if (false){ document.addEventListener('mousemove', function(e){ var b = e.target.closest && e.target.closest('.btn'); if (!b) return; var r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .2, y: (e.clientY - r.top - r.height / 2) * .3, duration: .4, ease: 'power3.out' }); }); document.addEventListener('mouseout', function(e){ var b = e.target.closest && e.target.closest('.btn'); if (b && !b.contains(e.relatedTarget)) gsap.to(b, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1,.4)' }); }); }
+  if (hasG && !reduce && matchMedia('(pointer:fine)').matches){ document.addEventListener('mousemove', function(e){ var b = e.target.closest && e.target.closest('.btn'); if (!b) return; var r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .2, y: (e.clientY - r.top - r.height / 2) * .3, duration: .4, ease: 'power3.out' }); }); document.addEventListener('mouseout', function(e){ var b = e.target.closest && e.target.closest('.btn'); if (b && !b.contains(e.relatedTarget)) gsap.to(b, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1,.4)' }); }); }
 
   /* sample-data note can be hidden */
   try { if (localStorage.getItem('festara-demo-x')) $('.demo-bar').hidden = true; } catch (e) {}
