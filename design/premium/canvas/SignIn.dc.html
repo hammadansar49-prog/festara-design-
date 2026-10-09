@@ -113,6 +113,27 @@ a[style*="999px"]:hover::before{transform:translateX(120%)}
   aside > article > div:last-child{padding:clamp(8px,1.6vh,16px) clamp(14px,1.8vw,24px)!important;font-size:13px!important}
   .panel-scene{width:clamp(160px,22vw,300px)!important;height:auto!important}
 }
+/* calmer scale: less zoomed on every desktop */
+@media (min-width:961px){
+  main{padding:clamp(18px,4vh,40px) clamp(28px,6vw,96px)!important}
+  main > div:first-child > a{font-size:24px!important}
+  main > div:first-child > span a{font-size:13px!important}
+  main > div:first-child > span{font-size:13px!important}
+  main form{max-width:360px!important;gap:clamp(8px,1.6vh,14px)!important}
+  main form h1{font-size:clamp(26px,min(2.6vw,5.4vh),40px)!important}
+  main form span[style*="uppercase"]{font-size:11px!important}
+  main form label{font-size:13px!important;gap:6px!important}
+  main form input{height:clamp(38px,5.6vh,44px)!important;font-size:14px!important;padding:0 14px!important;border-radius:11px!important}
+  main form a[style*="999px"]{height:clamp(38px,5.6vh,44px)!important;font-size:14px!important}
+  main form p,main > span{font-size:12.5px!important}
+  aside > h2{font-size:clamp(32px,min(4vw,8.4vh),60px)!important}
+  aside > article{width:clamp(220px,min(20vw,40vh),300px)!important}
+  aside > article b{font-size:clamp(20px,min(1.8vw,4vh),28px)!important}
+  aside > article span{font-size:10.5px!important}
+  aside > article > .ajrak{min-height:clamp(80px,14vh,120px)!important}
+  aside > article > div:last-child{font-size:12px!important}
+  .panel-scene{width:clamp(130px,16vw,220px)!important}
+}
 /* fit short screens */
 @media (min-width:900px){ h1{font-size:clamp(32px,min(4vw,7.5vh),60px)!important} h2{font-size:clamp(34px,min(4.4vw,9vh),72px)!important} input{height:clamp(40px,6.4vh,52px)!important} button[type="submit"],form button{height:clamp(40px,6.4vh,48px)!important} form{gap:clamp(10px,2vh,18px)!important} }
 </style>
