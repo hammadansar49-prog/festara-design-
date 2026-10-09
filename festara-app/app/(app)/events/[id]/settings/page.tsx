@@ -14,7 +14,7 @@ export default async function EventSettingsPage({ params }: { params: Promise<{ 
     return <p className="text-muted-foreground">Only the Admin can change this event's settings.</p>;
   }
   return (
-    <div className="grid max-w-xl gap-10">
+    <div className="grid max-w-5xl gap-10">
       <EventForm
         action={updateEventAction.bind(null, id)}
         submitLabel="Save changes"
@@ -23,8 +23,8 @@ export default async function EventSettingsPage({ params }: { params: Promise<{ 
           totalBudget: String(event.totalBudget), description: event.description ?? "", coverColor: event.coverColor,
         }}
       />
-      <section aria-labelledby="danger" className="grid gap-3 border-t pt-6">
-        <h2 id="danger" className="text-lg font-semibold">Delete event</h2>
+      <section aria-labelledby="danger" className="grid gap-3 rounded-[24px] border border-over/40 p-6 sm:p-8">
+        <h2 id="danger" className="font-display text-3xl text-over">Delete event</h2>
         <p className="text-sm text-muted-foreground">Members, guests and expenses go with it. This can't be undone.</p>
         <DeleteEventDialog eventId={id} eventName={event.name} />
       </section>

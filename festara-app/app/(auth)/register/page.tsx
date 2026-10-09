@@ -8,7 +8,7 @@ export default async function RegisterPage({ searchParams }: { searchParams: Pro
   return (
     <div className="grid gap-6">
       <div className="grid gap-2">
-        <h1 className="font-display text-[2rem]">Create your account</h1>
+        <h1 className="font-display text-5xl sm:text-6xl">Start <span className="accent">planning.</span></h1>
         <p className="text-muted-foreground">One account for every event you plan or join.</p>
       </div>
       <RegisterForm next={next ?? ""} />

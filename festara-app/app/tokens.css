@@ -1,25 +1,29 @@
 /*
- * Festara design tokens — Tailwind v4 + shadcn/ui
- * Drop into app/globals.css after `@import "tailwindcss";`
- * Every text/background pair below is checked to WCAG AA (see brand book, Color).
+ * Festara design tokens, "Rangeen Raat" (Hammad's design, locked).
+ * Tailwind v4 + shadcn/ui contract. Dark and light are both first class; the default follows the system.
+ * Every text/background pair is checked for readable contrast in both themes.
+ * Names are unchanged from the earlier tokens so every existing component picks the new look up automatically.
  *
- * Fonts (next/font/google):
- *   Hanken_Grotesk -> --font-hanken  (all UI; digits are already tabular, no feature needed)
- *   Fraunces       -> --font-fraunces, axes: SOFT 100, opsz auto, weight 560 (event titles + big numbers, >= 24px only)
+ * Fonts (next/font/google, wired in app/layout.tsx):
+ *   Bricolage Grotesque -> --font-bricolage  (display: titles, big numbers, buttons' weight)
+ *   Instrument Serif    -> --font-instrument (italic accent word inside a title)
+ *   Geist               -> --font-geist      (all UI text)
+ *   Geist Mono          -> --font-geist-mono (money, codes, tokens)
  */
 
 :root {
-  /* Chrome */
-  --paper: #F8F5EF;
-  --card: #FFFDF9;
-  --ink: #1C1A22;
+  /* Chrome (light) */
+  --paper: #F4EFE6;
+  --card: #FFFCF6;
+  --ink: #17141B;
   --ink-hover: #34303C;
-  --stone: #6B645E;
-  --line: #E6E0D6;          /* decorative dividers only */
-  --line-strong: #8C847C;   /* input + control borders (3:1) */
-  --marigold: #E9A23B;      /* brand mark + rare highlight, never text, never meaning */
+  --stone: #5F5850;
+  --line: #E2DACB;            /* decorative dividers and card edges */
+  --line-strong: #8C847C;     /* input + control borders (3:1) */
+  --marigold: #E9A23B;        /* brand accent: marks, highlights, hover wipe. Never body text. */
+  --panel-2: #EFE8DB;
 
-  /* States — always paired with an icon and a word */
+  /* States, always paired with an icon and a word */
   --ok: #2F6B3C;
   --warn: #A85410;
   --over: #B3261E;
@@ -27,13 +31,13 @@
   --warn-tint: #FCF3E8;
   --over-tint: #F6DDD9;
 
-  /* Event covers (each event picks one) and the text color used on it */
-  --event-mehndi: #4C6B35;   --event-mehndi-fg: #FFFDF9;
-  --event-marigold: #E9A23B; --event-marigold-fg: #1C1A22;
-  --event-sindoor: #B03A28;  --event-sindoor-fg: #FFFDF9;
-  --event-kahwa: #6E4A2B;    --event-kahwa-fg: #FFFDF9;
-  --event-sky: #2F6F9A;      --event-sky-fg: #FFFDF9;
-  --event-night: #2A2950;    --event-night-fg: #FFFDF9;
+  /* Event covers (each event picks one) and the text colour used on it */
+  --event-mehndi: #4C6B35;   --event-mehndi-fg: #FFFDF6;
+  --event-marigold: #E9A23B; --event-marigold-fg: #17141B;
+  --event-sindoor: #B03A28;  --event-sindoor-fg: #FFFDF6;
+  --event-kahwa: #6E4A2B;    --event-kahwa-fg: #FFFDF6;
+  --event-sky: #2F6F9A;      --event-sky-fg: #FFFDF6;
+  --event-night: #2A2950;    --event-night-fg: #FFFDF6;
 
   /* shadcn/ui variable contract */
   --background: var(--paper);
@@ -43,24 +47,24 @@
   --popover-foreground: var(--ink);
   --primary: var(--ink);
   --primary-foreground: var(--paper);
-  --secondary: #EFE9DD;
+  --secondary: var(--panel-2);
   --secondary-foreground: var(--ink);
-  --muted: #EFE9DD;
+  --muted: var(--panel-2);
   --muted-foreground: var(--stone);
-  --accent: #EFE9DD;
+  --accent: var(--panel-2);
   --accent-foreground: var(--ink);
   --destructive: var(--over);
-  --destructive-foreground: #FFFDF9;
+  --destructive-foreground: #FFFCF6;
   --border: var(--line);
   --input: var(--line-strong);
   --ring: var(--ink);
 
-  /* Sidebar + charts (aliases of the brand tokens, so dark mode follows automatically) */
-  --sidebar: var(--secondary);
+  /* Sidebar + charts (aliases, so dark mode follows automatically) */
+  --sidebar: var(--card);
   --sidebar-foreground: var(--ink);
   --sidebar-primary: var(--ink);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--card);
+  --sidebar-accent: var(--panel-2);
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border: var(--line);
   --sidebar-ring: var(--ring);
@@ -71,17 +75,17 @@
   --chart-5: var(--event-kahwa);
 
   /* Shape */
-  --radius: 0.75rem;          /* cards, sheets: 12px */
-  --radius-control: 0.375rem; /* buttons, inputs, chips: 6px */
+  --radius: 1.25rem;          /* cards, sheets: 20px */
+  --radius-control: 0.75rem;  /* inputs, selects, chips: 12px (buttons are pills) */
 
-  /* One overlay shadow (popovers, sheets, dialogs). Nothing else is shadowed. */
-  --shadow-overlay: 0 1px 2px rgb(28 26 34 / .06), 0 12px 32px -8px rgb(28 26 34 / .18);
+  /* One overlay shadow (popovers, sheets, dialogs, floating pills) */
+  --shadow-overlay: 0 1px 2px rgb(23 20 27 / .06), 0 18px 40px -12px rgb(23 20 27 / .22);
 
   /* Motion */
   --ease-out: cubic-bezier(.22, 1, .36, 1);
-  --dur-press: 100ms;   /* feedback on pointer-down */
-  --dur-ui: 220ms;      /* menus, tabs, toasts */
-  --dur-sheet: 320ms;   /* sheets, dialogs */
+  --dur-press: 100ms;
+  --dur-ui: 220ms;
+  --dur-sheet: 360ms;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -91,23 +95,35 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #16141B; --card: #1F1C25; --ink: #F2EDE3; --ink-hover: #FFFFFF;
-    --stone: #A8A099; --line: #34303B; --line-strong: #6F6878; --marigold: #EDAE4B;
-    --ok: #78BB86; --warn: #E69A52; --over: #F08177;
-    --ok-tint: #1E2E22; --warn-tint: #33261A; --over-tint: #36201E;
-    --secondary: #262230; --muted: #262230; --accent: #262230;
-    --primary-foreground: #16141B; --destructive-foreground: #16141B;
-    --shadow-overlay: 0 0 0 1px rgb(255 255 255 / .06), 0 16px 40px -8px rgb(0 0 0 / .6);
+    --paper: #0E0D12; --card: #17151D; --ink: #F3EEE6; --ink-hover: #FFFFFF;
+    --stone: #A8A09A; --line: #2B2834; --line-strong: #6F6878; --marigold: #F2B33D; --panel-2: #1F1C27;
+    --ok: #7BC48A; --warn: #F0A257; --over: #F2837A;
+    --ok-tint: #1C2B20; --warn-tint: #2F2318; --over-tint: #33201E;
+    --event-mehndi: #55803A;
+    --event-marigold: #F2B33D;
+    --event-sindoor: #CC4A33;
+    --event-kahwa: #8A5E37;
+    --event-sky: #2F79AA;
+    --event-night: #3D3A7A;
+    --primary-foreground: #0E0D12; --destructive-foreground: #0E0D12;
+    --ring: var(--marigold);
+    --shadow-overlay: 0 0 0 1px rgb(255 255 255 / .06), 0 24px 50px -12px rgb(0 0 0 / .7);
   }
 }
 :root[data-theme="dark"] {
-  --paper: #16141B; --card: #1F1C25; --ink: #F2EDE3; --ink-hover: #FFFFFF;
-  --stone: #A8A099; --line: #34303B; --line-strong: #6F6878; --marigold: #EDAE4B;
-  --ok: #78BB86; --warn: #E69A52; --over: #F08177;
-  --ok-tint: #1E2E22; --warn-tint: #33261A; --over-tint: #36201E;
-  --secondary: #262230; --muted: #262230; --accent: #262230;
-  --primary-foreground: #16141B; --destructive-foreground: #16141B;
-  --shadow-overlay: 0 0 0 1px rgb(255 255 255 / .06), 0 16px 40px -8px rgb(0 0 0 / .6);
+  --paper: #0E0D12; --card: #17151D; --ink: #F3EEE6; --ink-hover: #FFFFFF;
+  --stone: #A8A09A; --line: #2B2834; --line-strong: #6F6878; --marigold: #F2B33D; --panel-2: #1F1C27;
+  --ok: #7BC48A; --warn: #F0A257; --over: #F2837A;
+  --ok-tint: #1C2B20; --warn-tint: #2F2318; --over-tint: #33201E;
+  --event-mehndi: #55803A;
+  --event-marigold: #F2B33D;
+  --event-sindoor: #CC4A33;
+  --event-kahwa: #8A5E37;
+  --event-sky: #2F79AA;
+  --event-night: #3D3A7A;
+  --primary-foreground: #0E0D12; --destructive-foreground: #0E0D12;
+  --ring: var(--marigold);
+  --shadow-overlay: 0 0 0 1px rgb(255 255 255 / .06), 0 24px 50px -12px rgb(0 0 0 / .7);
 }
 
 /* Tailwind v4 theme mapping: gives bg-background, text-muted-foreground, rounded-lg, font-display ... */
@@ -148,13 +164,15 @@
   --color-warn: var(--warn);   --color-warn-tint: var(--warn-tint);
   --color-over: var(--over);   --color-over-tint: var(--over-tint);
 
-  --radius-lg: var(--radius);          /* 12px: cards, sheets */
-  --radius-md: var(--radius-control);  /* 6px: controls */
-  --radius-sm: 0.25rem;                /* 4px: small tags */
+  --radius-lg: var(--radius);          /* 20px: cards, sheets */
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-md: var(--radius-control);  /* 12px: controls */
+  --radius-sm: 0.5rem;                 /* 8px: small tags */
 
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, serif;
-  /* overlay shadow is used as shadow-[var(--shadow-overlay)] */
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), "Arial Black", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "Cascadia Code", monospace;
 }
 
 @layer base {
@@ -168,14 +186,22 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  /* Display face: event titles and big figures only, >= 24px. Tracking tightens as size grows. */
+  /* Display face: titles, event names and big figures. Tight tracking, heavy weight. */
   .font-display {
     font-family: var(--font-display);
-    font-weight: 560;
-    font-variation-settings: "SOFT" 100, "WONK" 0;
-    font-optical-sizing: auto;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-weight: 800;
+    font-variation-settings: "opsz" 48;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+  /* The one italic serif word inside a title: <em className="accent">back</em> */
+  .accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--marigold);
+    padding-right: .06em;
   }
   h1, h2, h3 { text-wrap: balance; }
   :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
@@ -189,5 +215,5 @@
 
 @layer components {
   /* Small uppercase label: category names, field groups. Never for sentences. */
-  .lbl { font-size: .75rem; line-height: 1.3; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
+  .lbl { font-size: .75rem; line-height: 1.3; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 }

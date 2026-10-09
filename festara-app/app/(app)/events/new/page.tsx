@@ -6,10 +6,10 @@ export const metadata: Metadata = { title: "New event" };
 
 export default function NewEventPage() {
   return (
-    <div className="grid max-w-xl gap-6">
+    <div className="grid max-w-5xl gap-8">
       <div className="grid gap-2">
         <span className="lbl text-muted-foreground">New event</span>
-        <h1 className="font-display text-[2rem]">What are you planning?</h1>
+        <h1 className="font-display text-5xl sm:text-6xl">What are you <span className="accent">planning?</span></h1>
       </div>
       <EventForm
         action={createEventAction}

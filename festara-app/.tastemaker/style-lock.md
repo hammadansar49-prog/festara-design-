@@ -1,15 +1,26 @@
-# Style lock: Festara
+# Style lock: Festara, "Rangeen Raat" (Hammad's design, locked)
 
-Source of truth: `app/tokens.css` (mirrors `../brand/tokens.css`). Use tokens, never raw hex.
+Locked on 2026-10-09 from the approved prototype `design/version-3/index.html` (artifact https://claude.ai/artifact/B2M16x3qe8ERPCJxtpeRN5).
+This replaces the earlier style lock (calm paper, no photos, no scroll motion). Do not drift from it without Hammad's say-so.
 
-- Mood: calm, warm paper. Ink primary buttons. Marigold is the mark only, never text.
-- Type: Fraunces (soft axis, 560) at 24px+ for titles and big numbers; Hanken Grotesk for all UI.
-- Covers: mehndi, marigold, sindoor, kahwa, sky, night. Charts alias them (--chart-1..5).
-- Shape: radius 12px cards, 6px controls. One shadow only (--shadow-overlay), used on the landing nav pill and overlays.
-- Dark mode: runtime toggle (next-themes, data-theme). Both palettes live in tokens.css.
-- Assets: no stock photos, no illustrations. Visuals are the product's own components.
-- Dashboard: shadcn Sidebar (inset, icon-collapsible) + dashboard-01 layout. Planned modules (Guests, Budget, Tasks) show only as "Planned" nav items; their numbers are sample data tagged "Sample".
-- Motion: landing only, GSAP + ScrollTrigger in components/landing/motion.tsx. Each motion plays once (hero entrance, fade-up on enter, budget meter fill). Never alter scrolling: no smooth scroll, pinning, scrubbing or sticky stacks. transform/opacity only. Reduced motion: finished page at once. App chrome has no scroll motion.
-- Landing system: one container (max-w-6xl, px-4/sm:px-6), one section rhythm (py-24/lg:py-32), every section head = lbl + Fraunces h2 (text-4xl/sm:text-5xl). Chapters in cover colors: hero frame mehndi, occasions night, close mehndi. No watermarks or decorative shapes inside cover blocks.
-- No institution name anywhere in the app.
-- App layout (decided 2026-10-08): desktop = Planner's desk (inset sidebar + overview). Phone (below md) = Pocket event: bottom tab bar (components/shell/bottom-tabs.tsx, tabs follow role via can()) and an event-color hero with a big countdown on the overview. Tab bar and hero are md:hidden / below md only. Guests see one friendly page. A "Run of show" timeline may become a tab later.
+Source of truth for values: `app/tokens.css` (colour, radius, shadow, motion tokens) and `app/globals.css` (cover pattern, line art, flood, landing). Use tokens, never raw hex.
+
+## Look
+- Dark first, light second, both designed; default follows the system (next-themes). Marigold is the one brand accent.
+- No photos. Every event is a saturated block in its cover colour (mehndi, marigold, sindoor, kahwa, sky, night) wearing the ajrak-style geometric pattern (`.cover`, drifts slowly) and its own animated line art (`components/brand/event-art.tsx`: mandala, mehrab and lights, jhoomar, rings, balloons and cake, lanterns and crescent, mountains and road, graduation cap).
+- Type: Bricolage Grotesque for titles, numbers and card titles (`font-display`, heavy, tight tracking); Instrument Serif italic for the one accent word in a title (`.accent`); Geist for UI; Geist Mono for codes.
+- Shape: 20px cards and sheets, 28px for hero and cover blocks, 12px controls, **pill buttons**. Default button wipes up to marigold on hover.
+- Status colours stay tied to meaning (ok, warn at 80% budget, over) and always come with a word or icon.
+
+## Motion (Hammad's call: smooth, flowing, never blocking)
+- Landing: eased wheel scrolling (`landing/smooth-scroll.tsx`, no library), headline rises line by line, a sentence that lights up word by word, stacked step cards that sink back as the next slides over, an occasions accordion, a permission table that highlights a role, a marquee that speeds with scroll, live mini-demos (cover colours, copy link, role cycling).
+- App: a colour flood on page change in the destination event's colour (`route-flood.tsx`), skeleton shimmer, a live second-by-second "Next up" countdown, 3D-tilt cards and invite ticket, self-drawing line art.
+- Only transform, opacity and clip-path are animated. `prefers-reduced-motion` gets the finished page at once.
+
+## Layout
+- Desktop: shadcn inset sidebar with a marigold active marker; event header is a full cover block with a huge countdown. Below `md`: bottom tab bar (role-aware) as before. Guests get a friendly one-page view instead of a dashboard.
+- Events home: "Next up" spotlight, then all upcoming. Event form shows a live preview card. Members page opens with three role cards drawn from `can()`.
+- No horizontal scroll at 375, 768 or 1440px.
+
+## Not design (leave alone)
+Routes, data, actions, permissions and schema belong to Anas. Keep component props, exports and file names so his work merges cleanly. No institution name anywhere in the app.
