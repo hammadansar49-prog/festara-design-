@@ -188,7 +188,7 @@ article > div:last-child{padding:16px 20px!important;gap:12px!important}
 article span[style*="width: 40px"]{width:34px!important;height:34px!important}
 /* checked-in-browser fixes */
 .ajrak h2,.ajrak h3,.ajrak p,.ajrak span{text-shadow:none!important}
-h1 em,h2 em{background:linear-gradient(90deg,var(--g1) 0%,var(--g2) 50%,var(--g1) 100%)!important;background-size:200% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
+h1 em,h2 em{background-image:linear-gradient(90deg,var(--g1) 0%,var(--g2) 50%,var(--g1) 100%)!important;background-size:200% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
 code{font-family:'Plus Jakarta Sans',sans-serif!important;font-size:13px!important}
 @media (max-width:480px){
   section:first-of-type a{flex:initial}
@@ -196,6 +196,82 @@ code{font-family:'Plus Jakarta Sans',sans-serif!important;font-size:13px!importa
   article a[style*="height: 52px"]{height:44px!important;flex:none!important}
 }
 @media (max-width:600px){ section:last-of-type .art{display:none!important} section:last-of-type .ajrak{padding:52px 22px!important} }
+/* colour reveal: words start as dim ink and fill with their colour left-to-right as they scroll in */
+@keyframes ink{from{background-position:100% 0}to{background-position:0 0}}
+:is(h1,section h2,section h3,section p):not(.ajrak *):not(article *){background-image:linear-gradient(90deg,currentColor 0 50%,#3A3540 50% 100%);background-size:200% 100%;background-position:0 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+:is(h1,h2) em:not(.ajrak *):not(article *){background-image:linear-gradient(90deg,var(--g1) 0%,var(--g2) 50%,#3A3540 50%,#3A3540 100%)!important;background-size:200% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
+section:first-of-type :is(h1,p),section:first-of-type h1 em{animation:ink 1.6s cubic-bezier(.65,0,.35,1) .3s both!important}
+section:first-of-type p{animation-delay:.8s!important}
+@supports (animation-timeline: view()){
+  :is(section h2,section h3,section p):not(.ajrak *):not(article *):not(section:first-of-type *),section:not(:first-of-type) h2 em:not(.ajrak *){animation:ink linear both!important;animation-timeline:view()!important;animation-range:entry 15% cover 42%!important}
+}
+@media (prefers-reduced-motion:reduce){:is(h1,h2,h3,p,em){animation:none!important;background-position:0 0!important}}
+/* ---------- new sections: journey timeline, bento, FAQ ---------- */
+.journey,.bento-sec,.faq{max-width:1240px;margin:0 auto;padding:24px 32px 72px!important;display:flex;flex-direction:column;gap:36px}
+.j-head{display:flex;flex-direction:column;gap:10px}
+.j-lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--g1)}
+.journey h2,.bento-sec h2,.faq h2{font-size:clamp(34px,4.2vw,60px)!important}
+.j-track{position:relative;display:flex;flex-direction:column;gap:28px;padding:8px 0}
+.j-line{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:#23202A;border-radius:2px;overflow:hidden}
+.j-line i{position:absolute;inset:0;background:linear-gradient(to bottom,var(--g1),var(--g2),var(--accent));transform-origin:top;transform:scaleY(1)}
+.j-item{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center}
+.j-dot{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;box-shadow:0 0 0 5px #0D0C10,0 0 0 6px #3A3540;z-index:2}
+.j-card{grid-column:1;justify-self:end;width:auto;max-width:440px;min-width:0;margin-right:44px;padding:24px;border-radius:20px;background:#17151C;border:1px solid #2A2630;display:flex;flex-direction:column;gap:8px;transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .3s}
+.j-item:nth-of-type(even) .j-card{grid-column:2;justify-self:start;margin:0 0 0 44px}
+.j-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.j-when{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8F8678}
+.j-card h3{margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px!important;line-height:1}
+.j-card p{margin:0;color:#B4AA9C}
+.j-meta{font-size:13px;color:var(--g1)}
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.b-card{position:relative;overflow:hidden;padding:24px;border-radius:22px;background:#17151C;border:1px solid #2A2630;display:flex;flex-direction:column;gap:12px;min-height:180px;transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .3s}
+.b-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.b-count{grid-column:span 2;grid-row:span 2;background:radial-gradient(circle at 80% 20%,rgba(217,168,78,.14),transparent 55%),#17151C}
+.b-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8F8678;display:flex;gap:8px;align-items:center}
+.b-sample{font-style:normal;font-size:9px;border:1px dashed #4A4452;border-radius:999px;padding:1px 7px}
+.b-card h3{margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px!important;line-height:1.05}
+.b-big{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(110px,12vw,180px);line-height:.85;background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:auto}
+.b-big small{font-size:.22em;margin-left:10px;-webkit-text-fill-color:#B4AA9C}
+.b-count p{margin:0;max-width:34ch;color:#B4AA9C}
+.b-ring{position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px dashed rgba(217,168,78,.35);animation:sc-spin 30s linear infinite}
+.b-link{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding:8px 8px 8px 14px;border-radius:12px;background:#0D0C10;border:1px solid #2A2630;font-size:13px;color:#8F8678}
+.b-link b{padding:5px 10px;border-radius:8px;background:var(--accent);color:#17130C;font-size:12px}
+.b-roles{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
+.b-roles span{padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;transition:transform .3s}
+.b-roles span:hover{transform:translateY(-3px)}
+.r-a{background:#F4EDE1;color:#0D0C10}.r-m{border:1px solid var(--accent);color:var(--accent)}.r-g{border:1px solid #3A3540;color:#B4AA9C}
+.b-bar{margin-top:auto;height:8px;border-radius:4px;background:#23202A;overflow:hidden}
+.b-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--g1),var(--g2))}
+.faq-list{display:flex;flex-direction:column;gap:12px;max-width:860px}
+.faq details{border-radius:16px;background:#17151C;border:1px solid #2A2630;transition:border-color .3s}
+.faq details[open]{border-color:var(--accent)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font-size:16px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;font-weight:400;color:var(--accent);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0;padding:0 22px 20px;color:#B4AA9C!important}
+.faq details:hover summary{color:#fff}
+@keyframes j-fill{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes j-pop{from{opacity:0;translate:0 50px;scale:.94}to{opacity:1;translate:0 0;scale:1}}
+@keyframes j-dot{from{box-shadow:0 0 0 5px #0D0C10,0 0 0 6px #3A3540;scale:.6}to{box-shadow:0 0 0 5px #0D0C10,0 0 0 6px var(--accent),0 0 22px var(--accent);scale:1}}
+@keyframes bar-in{from{width:0}}
+@keyframes count-in{from{opacity:0;letter-spacing:.2em}to{opacity:1;letter-spacing:0}}
+@supports (animation-timeline: view()){
+  .j-line i{animation:j-fill linear both;animation-timeline:view();animation-range:entry 30% exit 60%}
+  .j-card,.b-card,.faq details{animation:j-pop linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+  .j-dot{animation:j-dot linear both;animation-timeline:view();animation-range:entry 40% cover 50%}
+  .b-bar i{animation:bar-in linear both;animation-timeline:view();animation-range:entry 20% cover 45%}
+  .b-big{animation:count-in linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+}
+@media (max-width:760px){
+  .j-line{left:9px}
+  .j-dot{left:9px}
+  .j-item{grid-template-columns:1fr}
+  .j-card,.j-item:nth-of-type(even) .j-card{grid-column:1;justify-self:stretch;width:auto;margin:0 0 0 40px}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .journey,.bento-sec,.faq{padding:16px 20px 56px!important}
+}
+@media (max-width:480px){ .bento{grid-template-columns:minmax(0,1fr)} .b-count{grid-column:auto;grid-row:auto} }
 /* less air around the marquee */
 section:first-of-type{padding-bottom:28px!important}
 #how{padding-top:44px!important}
@@ -449,6 +525,55 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
     </div>
   </section>
 
+  <section id="journey" class="journey">
+    <div class="j-head">
+      <span class="j-lbl">One wedding, four evenings</span>
+      <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 60px; line-height: 1">Every function gets <em>its own page.</em></h2>
+    </div>
+    <div class="j-track">
+      <div class="j-line" aria-hidden="true"><i></i></div>
+      <article class="j-item"><span class="j-dot" style="background: #C98A2B"></span><div class="j-card"><span class="j-when">Thu · 10 Nov</span><h3>Dholki</h3><p>Cousins only. Songs list, who brings the dhol, who books the van.</p><span class="j-meta">14 people · Member link</span></div></article>
+      <article class="j-item"><span class="j-dot" style="background: #1F4D3A"></span><div class="j-card"><span class="j-when">Sat · 12 Nov</span><h3>Mehndi</h3><p>Both families. Stage colours, mehndi artist timing, the dance order.</p><span class="j-meta">86 guests · Guest link</span></div></article>
+      <article class="j-item"><span class="j-dot" style="background: #8E2A1E"></span><div class="j-card"><span class="j-when">Sun · 13 Nov</span><h3>Baraat</h3><p>Arrival time, the car list, who greets at the gate. Elders see the date and place.</p><span class="j-meta">240 guests · Read-only for elders</span></div></article>
+      <article class="j-item"><span class="j-dot" style="background: #5A3A22"></span><div class="j-card"><span class="j-when">Tue · 15 Nov</span><h3>Walima</h3><p>Dinner at eight. Seating, the menu tasting, and the final headcount.</p><span class="j-meta">310 guests · Admin: Areeba</span></div></article>
+    </div>
+  </section>
+
+  <section id="inside" class="bento-sec">
+    <div class="j-head">
+      <span class="j-lbl">Inside every event</span>
+      <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 60px; line-height: 1">Everything the family <em>keeps asking.</em></h2>
+    </div>
+    <div class="bento">
+      <div class="b-card b-count">
+        <span class="b-lbl">Countdown</span>
+        <div class="b-big">34<small>days</small></div>
+        <p>Until Hira &amp; Bilal's Mehndi. Everyone sees the same number, nobody asks "kab hai?" again.</p>
+        <div class="b-ring" aria-hidden="true"></div>
+      </div>
+      <div class="b-card">
+        <span class="b-lbl">One link</span>
+        <h3>Share once on WhatsApp</h3>
+        <div class="b-link"><span>festara.app/i/k3x9</span><b>Copied</b></div>
+      </div>
+      <div class="b-card">
+        <span class="b-lbl">Roles</span>
+        <h3>Three ways in</h3>
+        <div class="b-roles"><span class="r-a">Admin</span><span class="r-m">Member</span><span class="r-g">Guest</span></div>
+      </div>
+      <div class="b-card">
+        <span class="b-lbl">RSVP <em class="b-sample">Sample</em></span>
+        <h3>30 of 44 coming</h3>
+        <div class="b-bar"><i style="width: 68%"></i></div>
+      </div>
+      <div class="b-card">
+        <span class="b-lbl">Budget <em class="b-sample">Sample</em></span>
+        <h3>Rs 268,582 spent</h3>
+        <div class="b-bar"><i style="width: 54%"></i></div>
+      </div>
+    </div>
+  </section>
+
   <section id="access" style="max-width: 1240px; margin: 0 auto; padding: 0 32px 120px">
     <div style="border-radius: 32px; background: #17151C; border: 1px solid #2A2630; padding: 56px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
       <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
@@ -467,6 +592,19 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
           </tbody>
         </table>
       </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="j-head">
+      <span class="j-lbl">Questions</span>
+      <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 60px; line-height: 1">Asked at every <em>family dinner.</em></h2>
+    </div>
+    <div class="faq-list">
+      <details open><summary>Do guests need to download an app?</summary><p>No. The invite opens in the phone's browser, the same way a WhatsApp link does.</p></details>
+      <details><summary>Can my phuppo change the date by mistake?</summary><p>Only Admins can edit an event. Members help plan, Guests only see the date and place.</p></details>
+      <details><summary>Can one wedding have separate pages for each function?</summary><p>Yes. Make Dholki, Mehndi, Baraat and Walima as separate events, each with its own link and people.</p></details>
+      <details><summary>What happens when the invite link is old?</summary><p>Links expire after seven days. An Admin can make a new one in a tap.</p></details>
     </div>
   </section>
 
