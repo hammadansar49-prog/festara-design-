@@ -842,9 +842,9 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
     }, { passive: false });
     window.addEventListener('scroll', () => { if (!raf) target = se().scrollTop; }, { passive: true });
   }
-  // closing banner: vines grow when it scrolls into view
+  // closing banner: vines grow every time it scrolls into view, and reset when it leaves
   const cta = document.querySelector('.cta');
-  if (cta) { if ('IntersectionObserver' in window) { const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { cta.classList.add('grow'); io.disconnect(); } }), { threshold: 0.3 }); io.observe(cta); } else cta.classList.add('grow'); }
+  if (cta) { if ('IntersectionObserver' in window) { const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { cta.classList.remove('grow'); void cta.offsetWidth; cta.classList.add('grow'); } else cta.classList.remove('grow'); }), { threshold: 0.3 }); io.observe(cta); } else cta.classList.add('grow'); }
   // hero deck: auto-advances, and follows swipe, drag, sideways scroll, dots and arrow keys
   const deck = document.querySelector('.hero-deck');
   if (deck) {
