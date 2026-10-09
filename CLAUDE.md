@@ -43,6 +43,7 @@ Keep component props, exports, file names and routes the same, so Anas's work ke
 
 ## Where the design lives
 
+- **Version 3 is the FINAL design** (confirmed by Hammad, 2026-10-09). Online prototype: https://claude.ai/artifact/B2M16x3qe8ERPCJxtpeRN5 (the only Festara artifact kept; all others were deleted). Don't start new design versions; refine this one.
 - **`design/version-3/index.html`** is Hammad's chosen design, a single self-contained file (HTML, CSS and JS inline; fonts, GSAP, ScrollTrigger and Lenis load from CDNs). It is the source of truth: edit this file directly. Older versions 1 and 2 were deleted on purpose.
 - Open it by running `python -m http.server 5180` inside `design/` and visiting http://localhost:5180/version-3/ (hard refresh with Ctrl+Shift+R after edits). Opening the file directly also works.
 - Anas's real app is in `festara-app/` (Next.js 16, React 19, Tailwind 4, shadcn/ui). The prototype is a design reference; the end goal is to bring it into `festara-app/` as restyled components, without changing their logic.
