@@ -236,7 +236,8 @@ section:first-of-type p{animation-delay:.8s!important}
 .b-count p{margin:0;max-width:34ch;color:#B4AA9C}
 .b-ring{position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px dashed rgba(217,168,78,.35);animation:sc-spin 30s linear infinite}
 .b-link{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding:8px 8px 8px 14px;border-radius:12px;background:#0D0C10;border:1px solid #2A2630;font-size:13px;color:#8F8678}
-.b-link b{padding:5px 10px;border-radius:8px;background:var(--accent);color:#17130C;font-size:12px}
+.b-link b,.b-link button{padding:5px 10px;border:0;cursor:pointer;border-radius:8px;background:var(--accent);color:#17130C;font:600 12px 'Plus Jakarta Sans',sans-serif}
+[data-copy]{transition:transform .2s}[data-copy]:active{transform:scale(.94)}
 .b-roles{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
 .b-roles span{padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;transition:transform .3s}
 .b-roles span:hover{transform:translateY(-3px)}
@@ -300,6 +301,13 @@ section:first-of-type p{animation-delay:.8s!important}
 .faq summary::after{font-size:18px!important}
 .faq details{border-radius:14px!important}
 .faq details p{padding:0 18px 16px!important;font-size:14px!important}
+/* hero: three invites take turns, sliding in and out */
+.hero-deck{flex:1 1 420px;min-width:0;max-width:500px;display:grid;perspective:1600px}
+.hero-deck>.deck-card{grid-area:1/1;width:100%;max-width:none!important;animation:deck 15s cubic-bezier(.65,0,.35,1) infinite both!important}
+.hero-deck>.dc1{animation-delay:0s!important}.hero-deck>.dc2{animation-delay:5s!important}.hero-deck>.dc3{animation-delay:10s!important}
+.hero-deck:hover>.deck-card{animation-play-state:paused}
+@keyframes deck{0%{opacity:0;translate:70px 0;rotate:y -18deg;scale:.94;z-index:1}5%,28%{opacity:1;translate:0 0;rotate:y 0deg;scale:1;z-index:2}33.3%{opacity:0;translate:-70px 0;rotate:y 18deg;scale:.94;z-index:1}100%{opacity:0;translate:-70px 0;z-index:0}}
+@media (prefers-reduced-motion:reduce){.hero-deck>.deck-card{animation:none}.hero-deck>.dc2,.hero-deck>.dc3{display:none}}
 /* less air around the marquee */
 section:first-of-type{padding-bottom:28px!important}
 #how{padding-top:44px!important}
@@ -419,7 +427,8 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
       </div>
     </div>
 
-    <article style="flex: 1 1 420px; min-width: 0; max-width: 500px; border-radius: 28px; overflow: hidden; background: #17151C; border: 1px solid #2A2630; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9)">
+    <div class="hero-deck">
+    <article class="deck-card dc1" style="flex: 1 1 420px; min-width: 0; max-width: 500px; border-radius: 28px; overflow: hidden; background: #17151C; border: 1px solid #2A2630; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9)">
       <div class="ajrak" style="background-color: #1F4D3A; padding: 36px; min-height: 340px; display: flex; flex-direction: column; justify-content: space-between">
         <svg class="scene hero-scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
           <g class="sc-toran"><path d="M40 0 Q150 46 260 0" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2"></path>
@@ -450,6 +459,67 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
         <a href="SignIn.dc.html" style="display: grid; place-items: center; height: 52px; border-radius: 14px; background: #F4EDE1; color: #0D0C10; text-decoration: none; font-weight: 600">Join the mehndi</a>
       </div>
     </article>
+    <article class="deck-card dc2" style="flex: 1 1 420px; min-width: 0; max-width: 500px; border-radius: 28px; overflow: hidden; background: #17151C; border: 1px solid #2A2630; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9)">
+      <div class="ajrak" style="background-color: #1E3F66; padding: 36px; min-height: 340px; display: flex; flex-direction: column; justify-content: space-between">
+        <svg class="scene hero-scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+          <g class="sc-sun"><circle cx="210" cy="96" r="34" fill="#fff" fill-opacity=".16"></circle><circle cx="210" cy="96" r="50" fill="none" stroke="#fff" stroke-opacity=".14"></circle><circle cx="210" cy="96" r="68" fill="none" stroke="#fff" stroke-opacity=".08"></circle></g>
+          <path d="M0 210 70 120 112 168 170 92 236 176 300 130V300H0z" fill="#fff" fill-opacity=".06"></path>
+          <path d="M150 104l20-12 22 28-14-6-12 10z" fill="#fff" fill-opacity=".2"></path>
+          <path d="M0 240 60 180 120 226 190 160 250 214 300 186V300H0z" fill="#fff" fill-opacity=".09"></path>
+          <path d="M0 272 80 236 150 262 230 228 300 252V300H0z" fill="#fff" fill-opacity=".13"></path>
+          <path class="sc-road" d="M150 300C140 280 196 270 176 252S150 236 168 228" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-dasharray="5 7"></path>
+          <g class="sc-birds" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.4"><path d="M60 70q7-7 14 0q7-7 14 0"></path><path d="M98 52q5-5 10 0q5-5 10 0"></path></g>
+        </svg>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E2D3B0">You're invited</span>
+          <span style="padding: 6px 12px; border-radius: 999px; background: rgba(13,12,16,.35); font-size: 13px; color: #F4EDE1">56 days</span>
+        </div>
+        <div>
+          <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 64px; line-height: 0.95; letter-spacing: -0.02em">Naran <em>Trip</em></h2>
+          <p style="margin: 14px 0 0; font-size: 15px; color: #E2D3B0">Friday, 4 December · 4 days, 2 cars</p>
+        </div>
+      </div>
+      <div class="gold-rule"></div>
+      <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 40px; height: 40px; border-radius: 50%; background: #1E3F66; display: grid; place-items: center; font-size: 13px; font-weight: 600">HA</span>
+          <div style="flex: 1; min-width: 0"><b style="display: block; font-weight: 500">Hamza Ali</b><span style="font-size: 13px; color: #8F8678">Invited you as Member</span></div>
+          <span style="padding: 4px 10px; border-radius: 999px; border: 1px solid var(--accent); color: var(--g1); font-size: 12px; font-weight: 600">Member</span>
+        </div>
+        <a href="SignIn.dc.html" style="display: grid; place-items: center; height: 52px; border-radius: 14px; background: #F4EDE1; color: #0D0C10; text-decoration: none; font-weight: 600">Join the trip</a>
+      </div>
+    </article>
+    <article class="deck-card dc3" style="flex: 1 1 420px; min-width: 0; max-width: 500px; border-radius: 28px; overflow: hidden; background: #17151C; border: 1px solid #2A2630; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9)">
+      <div class="ajrak" style="background-color: #3B2350; padding: 36px; min-height: 340px; display: flex; flex-direction: column; justify-content: space-between">
+        <svg class="scene hero-scene" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+          <g class="sc-beam-l" style="transform-origin:90px 0"><path d="M80 0h20l70 300H40z" fill="#fff" fill-opacity=".06"></path></g>
+          <g class="sc-beam-r" style="transform-origin:240px 0"><path d="M230 0h20l40 300H150z" fill="#fff" fill-opacity=".06"></path></g>
+          <path d="M60 300V200c0-50 40-86 90-86s90 36 90 86v100z" fill="#fff" fill-opacity=".07"></path>
+          <path d="M84 300V206c0-38 30-66 66-66s66 28 66 66v94z" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2"></path>
+          <path d="M40 300h220v-26H40z" fill="#fff" fill-opacity=".12"></path>
+          <g class="sc-bulbs" fill="#fff"><circle cx="72" cy="196" r="2.6" fill-opacity=".5"></circle><circle cx="96" cy="160" r="2.6" fill-opacity=".5"></circle><circle cx="126" cy="138" r="2.6" fill-opacity=".5"></circle><circle cx="150" cy="132" r="2.6" fill-opacity=".5"></circle><circle cx="174" cy="138" r="2.6" fill-opacity=".5"></circle><circle cx="204" cy="160" r="2.6" fill-opacity=".5"></circle><circle cx="228" cy="196" r="2.6" fill-opacity=".5"></circle></g>
+          <path d="M150 196l26 10-26 10-26-10z M126 210v14c0 8 48 8 48 0v-14" fill="#fff" fill-opacity=".22"></path>
+        </svg>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E2D3B0">You're invited</span>
+          <span style="padding: 6px 12px; border-radius: 999px; background: rgba(13,12,16,.35); font-size: 13px; color: #F4EDE1">148 days</span>
+        </div>
+        <div>
+          <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 64px; line-height: 0.95; letter-spacing: -0.02em">Spring <em>Tech Fest</em></h2>
+          <p style="margin: 14px 0 0; font-size: 15px; color: #E2D3B0">Saturday, 6 March · Main Auditorium</p>
+        </div>
+      </div>
+      <div class="gold-rule"></div>
+      <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 40px; height: 40px; border-radius: 50%; background: #3B2350; display: grid; place-items: center; font-size: 13px; font-weight: 600">TK</span>
+          <div style="flex: 1; min-width: 0"><b style="display: block; font-weight: 500">Tariq Khan</b><span style="font-size: 13px; color: #8F8678">Invited you as Guest</span></div>
+          <span style="padding: 4px 10px; border-radius: 999px; border: 1px solid var(--accent); color: var(--g1); font-size: 12px; font-weight: 600">Guest</span>
+        </div>
+        <a href="SignIn.dc.html" style="display: grid; place-items: center; height: 52px; border-radius: 14px; background: #F4EDE1; color: #0D0C10; text-decoration: none; font-weight: 600">Join the fest</a>
+      </div>
+    </article>
+    </div>
   </section>
 
   <div class="marquee" style="border-block: 1px solid #23202A; padding: 18px 0; overflow: hidden; font-family: 'Cormorant Garamond', serif; color: #6F6778; display: flex; flex-direction: column; gap: 10px">
@@ -488,7 +558,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
         <p style="margin: 0; color: #B4AA9C; line-height: 1.6">Drop it on WhatsApp. People see the event before they sign up.</p>
         <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 10px 10px 10px 16px; border-radius: 14px; background: #0D0C10; border: 1px solid #2A2630">
           <code style="flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; color: #8F8678">festara.app/invite/k3x9-mehndi</code>
-          <button type="button" style="height: 36px; padding: 0 14px; border: 0; border-radius: 10px; background: var(--accent); color: #17130C; font: 600 13px 'Plus Jakarta Sans', sans-serif">Copy</button>
+          <button type="button" data-copy aria-label="Copy the Festara link" style="cursor: pointer; height: 36px; padding: 0 14px; border: 0; border-radius: 10px; background: var(--accent); color: #17130C; font: 600 13px 'Plus Jakarta Sans', sans-serif">Copy</button>
         </div>
       </div>
       <div style="padding: 36px; border-radius: 24px; background: #17151C; border: 1px solid #2A2630; display: flex; flex-direction: column; gap: 18px; min-height: 300px">
@@ -582,7 +652,7 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
       <div class="b-card">
         <span class="b-lbl">One link</span>
         <h3>Share once on WhatsApp</h3>
-        <div class="b-link"><span>festara.app/i/k3x9</span><b>Copied</b></div>
+        <div class="b-link"><span>festara.app/i/k3x9</span><button type="button" data-copy aria-label="Copy the Festara link">Copy</button></div>
       </div>
       <div class="b-card">
         <span class="b-lbl">Roles</span>
@@ -681,6 +751,12 @@ section:last-of-type .art.lg{width:300px!important;height:300px!important}
 <script type="text/x-dc" data-dc-script data-props='{"g1":{"editor":"color","default":"#FF8A65","options":["#FF8A65","#9EE6D0","#FF9A8B","#F4EDE1"],"section":"Text gradient"},"g2":{"editor":"color","default":"#E85D9A","options":["#E85D9A","#6FA8FF","#E8B4D8","#FECF6A"],"section":"Text gradient"},"$preview":{"width":1440,"height":2900}}'>
 class Component extends DCLogic {
 componentDidMount() {
+  // copying: the Copy buttons put the Festara link on the clipboard, and any text copied from the page carries the link too
+  const siteUrl = () => { try { return window.top.location.href.split('#')[0]; } catch (e) { return location.href.split('#')[0]; } };
+  const put = (t) => { try { if (navigator.clipboard) return navigator.clipboard.writeText(t); } catch (e) {} const a = document.createElement('textarea'); a.value = t; a.style.position = 'fixed'; a.style.opacity = '0'; document.body.appendChild(a); a.select(); try { document.execCommand('copy'); } catch (e) {} a.remove(); };
+  this._copyBtn = (e) => { const b = e.target.closest && e.target.closest('[data-copy]'); if (!b) return; this._own = true; put(siteUrl()); this._own = false; b.textContent = 'Copied'; clearTimeout(b._t); b._t = setTimeout(() => { b.textContent = 'Copy'; }, 1600); };
+  this._copyText = (e) => { if (this._own) return; const sel = String(window.getSelection() || '').trim(); const url = siteUrl(); if (!e.clipboardData) return; e.clipboardData.setData('text/plain', sel ? sel + '\n\n' + url : url); e.preventDefault(); };
+  document.addEventListener('click', this._copyBtn); document.addEventListener('copy', this._copyText);
   const fillLine = () => {
     const line = document.querySelector('.j-line'); if (!line) return;
     const r = line.getBoundingClientRect(), mid = (window.innerHeight || 800) * 0.6;
