@@ -10,6 +10,8 @@
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
 <style>
+html{scroll-behavior:smooth}
+
 :root{--bg:#0D0C10;--panel:#141218;--line:#24202B;--line2:#2F2A37;--ink:#F4EDE1;--mute:#9A9187;--dim:#6F6778}
 html,body{margin:0;background:var(--bg)!important;overflow-x:clip}
 *{box-sizing:border-box}
@@ -194,6 +196,25 @@ h1 em,h2 em,h3 em{font-weight:500;background:linear-gradient(90deg,var(--g1),var
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"g1":{"editor":"color","default":"#FF8A65","options":["#FF8A65","#9EE6D0","#FF9A8B","#F4EDE1"],"section":"Text gradient"},"g2":{"editor":"color","default":"#E85D9A","options":["#E85D9A","#6FA8FF","#E8B4D8","#FECF6A"],"section":"Text gradient"},"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
+componentDidMount() {
+  // smooth scrolling: soft, eased wheel scrolling on every page (skipped for reduced motion, pinch-zoom and inner scroll areas)
+  if (!window.__festaraSmooth && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    window.__festaraSmooth = true;
+    const se = () => document.scrollingElement || document.documentElement;
+    let target = se().scrollTop, raf = 0;
+    const step = () => { const el = se(); const cur = el.scrollTop; const d = target - cur; if (Math.abs(d) < 1.5) { el.scrollTo({ top: target, behavior: 'instant' }); raf = 0; return; } el.scrollTo({ top: cur + d * 0.14 + Math.sign(d), behavior: 'instant' }); if (el.scrollTop === cur) { raf = 0; target = cur; return; } raf = requestAnimationFrame(step); };
+    const inner = (n) => { for (; n && n !== document.body; n = n.parentElement) { const cs = getComputedStyle(n); if (/(auto|scroll)/.test(cs.overflowY) && n.scrollHeight > n.clientHeight + 1) return true; } return false; };
+    window.addEventListener('wheel', (e) => {
+      if (e.ctrlKey || e.defaultPrevented || Math.abs(e.deltaX) > Math.abs(e.deltaY) || inner(e.target)) return;
+      e.preventDefault();
+      const el = se(), max = el.scrollHeight - el.clientHeight;
+      if (!raf) target = el.scrollTop;
+      target = Math.max(0, Math.min(max, target + e.deltaY * (e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? el.clientHeight : 1)));
+      if (!raf) raf = requestAnimationFrame(step);
+    }, { passive: false });
+    window.addEventListener('scroll', () => { if (!raf) target = se().scrollTop; }, { passive: true });
+  }
+}
 renderVals() {
   const st = this.state || {};
   const name = st.name != null ? st.name : 'Rashid Mehmood';
