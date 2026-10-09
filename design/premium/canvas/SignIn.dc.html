@@ -98,6 +98,21 @@ a[style*="999px"]:hover::before{transform:translateX(120%)}
 @keyframes a-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 @keyframes a-tw{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.5);opacity:.3}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* fit any screen: on desktop the page is exactly one screen tall */
+@media (min-width:961px){
+  x-dc > div,body > div{height:100vh;min-height:0!important;overflow:hidden}
+  main{padding:clamp(18px,4vh,44px) clamp(28px,7vw,112px)!important;min-height:0!important;gap:clamp(8px,2vh,20px)}
+  main form{gap:clamp(8px,1.8vh,18px)!important}
+  main form h1{font-size:clamp(28px,min(3.6vw,7vh),60px)!important}
+  main form > div:first-child{gap:clamp(4px,1vh,12px)!important}
+  aside{margin:clamp(10px,2vh,18px)!important;padding:clamp(20px,5vh,56px) clamp(24px,3.6vw,56px)!important;min-height:0!important;gap:clamp(10px,2vh,24px)!important;overflow:hidden}
+  aside > h2{font-size:clamp(36px,min(5.6vw,11vh),88px)!important}
+  aside > article{width:clamp(240px,min(26vw,48vh),380px)!important;flex:none}
+  aside > article > .ajrak{min-height:clamp(90px,17vh,150px)!important;padding:clamp(14px,2.6vh,26px)!important}
+  aside > article b{font-size:clamp(24px,min(2.4vw,5vh),38px)!important}
+  aside > article > div:last-child{padding:clamp(8px,1.6vh,16px) clamp(14px,1.8vw,24px)!important;font-size:13px!important}
+  .panel-scene{width:clamp(160px,22vw,300px)!important;height:auto!important}
+}
 /* fit short screens */
 @media (min-width:900px){ h1{font-size:clamp(32px,min(4vw,7.5vh),60px)!important} h2{font-size:clamp(34px,min(4.4vw,9vh),72px)!important} input{height:clamp(40px,6.4vh,52px)!important} button[type="submit"],form button{height:clamp(40px,6.4vh,48px)!important} form{gap:clamp(10px,2vh,18px)!important} }
 </style>
